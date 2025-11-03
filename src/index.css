@@ -33,7 +33,11 @@
 /* DARK MODE COLORS */
 html[data-theme="dark"] {
   --color-text: hsl(0, 0%, 98%);
+  --color-text-secondary: #d4d4d8;
+  --text-black: #1c1c1c;
+
   --color-background: #1c1c1c;
+  --color-background-secondary: hsl(0, 0%, 98%);
 
   --color-primary: #3b82f6;
   --color-primary-hover: #60a5fa;
@@ -58,19 +62,29 @@ html[data-theme="dark"] {
   body {
     background-color: var(--color-background);
     color: var(--color-text);
+    font-family: "Montserrat", sans-serif;
   }
 }
 
 /* Custom Utilities */
 @layer utilities {
   .font-geist {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Geist Mono", monospace;
   }
   .bg-color {
     background-color: var(--color-background);
   }
   .text-color {
     color: var(--color-text);
+  }
+  .text-color-black {
+    color: var(--text-black);
+  }
+  .text-secondary {
+    color: var(--color-secondary-text);
+  }
+  .bg-secondary {
+    background-color: var(--color-background-secondary);
   }
 }
 

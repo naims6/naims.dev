@@ -1,0 +1,81 @@
+/* google font import geist mono  */
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+/* @plugin "daisyui"; */
+
+/* LIGHT MODE COLORS */
+:root {
+  /* Primary text and background */
+  --color-text: #212529;
+  --color-background: #f8f9fa;
+  --color-text-hover: #212529;
+  --color-background-hover: #f8f9fa;
+
+  --color-primary: #0d6efd;
+  --color-primary-hover: #0b5ed7;
+
+  /* Secondary colors */
+  --color-secondary-text: #6c757d;
+  --color-surface: #ffffff;
+  --color-border: #dee2e6;
+
+  /* Standard system colors */
+  --color-success: #198754;
+  --color-warning: #ffc107;
+  --color-danger: #dc3545;
+
+  /* Other common variables */
+  --border-radius: 8px;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+/* DARK MODE COLORS */
+html[data-theme="dark"] {
+  --color-text: hsl(0, 0%, 98%);
+  --color-background: #1c1c1c;
+
+  --color-primary: #3b82f6;
+  --color-primary-hover: #60a5fa;
+
+  /* Secondary colors */
+  --color-secondary-text: #adb5bd;
+  --color-surface: #343a40;
+  --color-border: #495057;
+
+  /* Standard system colors */
+  --color-success: #20c997;
+  --color-warning: #ffd700;
+  --color-danger: #f08080;
+}
+
+/* Base */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .font-geist {
+    font-family: "Montserrat", sans-serif;
+  }
+  .bg-color {
+    background-color: var(--color-background);
+  }
+  .text-color {
+    color: var(--color-text);
+  }
+}
+
+@layer components {
+  .container2 {
+    @apply w-full max-w-[1000px] mx-auto px-4;
+  }
+}

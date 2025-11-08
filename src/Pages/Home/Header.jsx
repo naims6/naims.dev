@@ -19,15 +19,15 @@ const Header = () => {
           <h1 className="text-2xl font-semibold tracking-tighter">
             Naim Sorker
           </h1>
-          <h3 className="text-lg font-medium text-secondary">
+          <h3 className="text-lg font-medium text-text-muted">
             Full-Stack Developer
           </h3>
-          <h4 className="text-sm text-secondary">Dhaka, Bangladesh</h4>
+          <h4 className="text-sm text-text-muted">Dhaka, Bangladesh</h4>
         </div>
       </div>
       {/* middle */}
       <div className="mt-4">
-        <p className="text-secondary">
+        <p className="text-text-muted">
           I’m a passionate Full Stack Developer who loves turning ideas into
           real, functional web applications. I work with both frontend and
           backend technologies to build fast, secure, and user-friendly
@@ -40,7 +40,7 @@ const Header = () => {
       {/* bottom */}
       {/* contacts actions btn */}
       <div className="flex items-center gap-5 mt-6">
-        <Link className="flex items-center bg-secondary text-black py-2 px-5 rounded-lg gap-2 text-base font-medium">
+        <Link className="flex items-center bg-bg-inverse text-text-inverse py-2 px-5 rounded-lg gap-2 text-base font-medium">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -115,6 +115,7 @@ const Header = () => {
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
           </svg>
         </Link>
+        <h1 className="text-naim">NEW TEXT</h1>
       </div>
     </div>
   );

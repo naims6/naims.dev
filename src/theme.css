@@ -49,14 +49,14 @@
   --color-accent: #fbbf24;
 
   /* Backgrounds */
-  --color-bg: #0f0f0f;
+  --color-bg: #08090a;
   --color-bg-surface: #fafafa;
   --color-bg-muted: #374151;
   --color-bg-hover: #4b5563;
 
   /* Text */
   --color-text-primary: #fafafa;
-  --color-text-secondary: #d4d4d8;
+  --color-text-secondary: #a3a3a3;
   --color-text-muted: #0f0f0f;
   --color-text-reverse: #0f0f0f;
 

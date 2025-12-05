@@ -19,7 +19,7 @@ const TechStack = () => {
 
   return (
     <div className="mt-10">
-      <h1 className="text-xl font-medium mb-2">Tech Stack</h1>
+      <h1 className="text-xl font-medium mb-2">Skills</h1>
       <div>
         <ul className="flex gap-2 flex-wrap">
           {skills.map((s) => (

@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 import AuthorImage from "../../assets/fullstack-developer.jpg";
+import About from "../About/About";
 
 const Header = () => {
   return (
     <div>
-      {/* top  */}
       <div className="flex justify-between">
         <div className="flex gap-4">
           {/* image part */}
@@ -15,7 +15,7 @@ const Header = () => {
               alt="Full Stack Developer Image"
             />
           </div>
-          {/* details part */}
+          {/* details part name, title, location*/}
           <div>
             <h1 className="text-2xl font-semibold tracking-tighter">
               Naim Sorker
@@ -27,22 +27,9 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {/* middle */}
-      <div className="mt-4">
-        <p className="text-text-secondary">
-          I’m a passionate Full Stack Developer who loves turning ideas into
-          real, functional web applications. I work with both frontend and
-          backend technologies to build fast, secure, and user-friendly
-          experiences. I enjoy solving problems, learning new tools, and
-          continuously improving my skills to stay updated with the latest
-          trends in web development.{" "}
-        </p>
-      </div>
-
-      {/* bottom */}
       {/* contacts actions btn */}
       <div className="flex items-center gap-5 mt-6">
-        <Link className="flex items-center bg-[#Fff] text-text-reverse py-2 px-5 rounded-lg gap-2 text-base font-medium">
+        <Link className="flex items-center bg-bg-surface text-text-reverse py-2 px-5 rounded-lg gap-2 text-base font-medium">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -118,6 +105,7 @@ const Header = () => {
           </svg>
         </Link>
       </div>
+      <About />
     </div>
   );
 };

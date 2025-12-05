@@ -1,20 +1,7 @@
-import React, { useState } from "react";
 import { Link } from "react-router";
 import AuthorImage from "../../assets/fullstack-developer.jpg";
-import useTheme from "../../hooks/useTheme";
-const Header = () => {
-  const { theme, setTheme } = useTheme();
-  const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
-  // handle theme toggle
-  const handleThemeToggle = (currentTheme) => {
-    setTheme(currentTheme);
-    handleThemeDropdownOpen();
-  };
-  // toggle theme dropdown
-  const handleThemeDropdownOpen = () => {
-    setIsThemeDropdownOpen((prev) => !prev);
-  };
 
+const Header = () => {
   return (
     <div>
       {/* top  */}
@@ -33,45 +20,16 @@ const Header = () => {
             <h1 className="text-2xl font-semibold tracking-tighter">
               Naim Sorker
             </h1>
-            <h3 className="text-lg font-medium text-text-muted">
+            <h3 className="text-lg font-medium text-text-secondary">
               Full-Stack Developer
             </h3>
-            <h4 className="text-sm text-text-muted">Dhaka, Bangladesh</h4>
-          </div>
-        </div>
-        <div className="relative">
-          <span onClick={handleThemeDropdownOpen} className="cursor-pointer">
-            {theme}
-          </span>
-          <div
-            className={` ${
-              isThemeDropdownOpen ? "flex" : "hidden"
-            } absolute top-6 left-0 flex-col bg-gray-950 py-5 space-y-2`}
-          >
-            <span
-              onClick={() => handleThemeToggle("system")}
-              className="border-b border-gray-700 px-5 py-2 cursor-pointer"
-            >
-              System
-            </span>
-            <span
-              onClick={() => handleThemeToggle("light")}
-              className="border-b border-gray-700 px-5 py-2 cursor-pointer"
-            >
-              Light
-            </span>
-            <span
-              onClick={() => handleThemeToggle("dark")}
-              className="px-5 cursor-pointer"
-            >
-              Dark
-            </span>
+            <h4 className="text-sm text-text-secondary">Dhaka, Bangladesh</h4>
           </div>
         </div>
       </div>
       {/* middle */}
       <div className="mt-4">
-        <p className="text-text-muted">
+        <p className="text-text-secondary">
           I’m a passionate Full Stack Developer who loves turning ideas into
           real, functional web applications. I work with both frontend and
           backend technologies to build fast, secure, and user-friendly
@@ -84,7 +42,7 @@ const Header = () => {
       {/* bottom */}
       {/* contacts actions btn */}
       <div className="flex items-center gap-5 mt-6">
-        <Link className="flex items-center bg-bg-inverse text-text-inverse py-2 px-5 rounded-lg gap-2 text-base font-medium">
+        <Link className="flex items-center bg-[#Fff] text-text-reverse py-2 px-5 rounded-lg gap-2 text-base font-medium">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -159,7 +117,6 @@ const Header = () => {
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
           </svg>
         </Link>
-        <h1 className="text-blue-500">NEW TEXT</h1>
       </div>
     </div>
   );

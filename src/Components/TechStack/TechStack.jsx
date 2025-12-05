@@ -10,6 +10,8 @@ const TechStack = () => {
     "MongoDB",
     "Firebase",
     "React.js",
+    "HTML",
+    "CSS",
     "Tailwind CSS",
     "Git",
     "GitHub",

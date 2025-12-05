@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import AuthorImage from "../../assets/fullstack-developer.jpg";
-import About from "../About/About";
+import About from "./About/About";
 
 const Header = () => {
   return (
@@ -27,6 +27,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <About />
       {/* contacts actions btn */}
       <div className="flex items-center gap-5 mt-6">
         <Link className="flex items-center bg-bg-surface text-text-reverse py-2 px-5 rounded-lg gap-2 text-base font-medium">
@@ -105,7 +106,6 @@ const Header = () => {
           </svg>
         </Link>
       </div>
-      <About />
     </div>
   );
 };

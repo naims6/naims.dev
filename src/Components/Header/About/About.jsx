@@ -2,8 +2,8 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="mt-10">
-      <h1 className="text-xl mb-2 font-medium">About</h1>
+    <div className="mt-8">
+      {/* <h1 className="text-xl mb-2 font-medium">About</h1> */}
       <p className="text-text-secondary">
         I’m a passionate Full Stack Developer who loves turning ideas into real,
         functional web applications. I work with both frontend and backend

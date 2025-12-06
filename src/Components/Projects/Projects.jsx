@@ -1,6 +1,7 @@
 import React from "react";
 import ToyBazzar from "../../assets/projects/toybazzar.png";
 import BookHaven from "../../assets/projects/thebookhaven.png";
+import { Link } from "react-router";
 
 const Projects = () => {
   const projects = [
@@ -31,12 +32,14 @@ const Projects = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-5">
         {projects.map((p) => (
           <div className="border border-gray-600/25 rounded-xl p-2.5 shadow-sm">
-            <figure className="rounded-xl bg-gray-700">
-              <img
-                className="w-full h-[230px] rounded-xl object-cover"
-                src={p.img}
-                alt={p.name}
-              />
+            <figure className="rounded-xl bg-gray-700 overflow-hidden">
+              <Link target="_blank" to={p.githubReposiory}>
+                <img
+                  className="w-full h-[230px] rounded-xl object-cover hover:scale-102 transition-all duration-300 cursor-pointer"
+                  src={p.img}
+                  alt={p.name}
+                />
+              </Link>
             </figure>
             {/* name, github and live link */}
             <div className="mt-3 flex justify-between items-center">

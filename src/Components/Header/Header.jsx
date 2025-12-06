@@ -30,7 +30,11 @@ const Header = () => {
       <About />
       {/* contacts actions btn */}
       <div className="flex items-center gap-5 mt-6">
-        <Link className="flex items-center bg-bg-surface text-text-reverse py-2 px-5 rounded-lg gap-2 text-base font-medium">
+        <Link
+          to="https://drive.google.com/file/d/1YjTwO_uVQg7fA4MqmYm1NsF-7-8Br7ug/view?usp=sharing"
+          target="_blank"
+          className="flex items-center bg-bg-surface text-text-reverse py-2 px-5 rounded-lg gap-2 text-base font-medium"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -51,7 +55,7 @@ const Header = () => {
           <span className="tracking-wide">Resume</span>
         </Link>
         {/* linked in  */}
-        <Link>
+        <Link to="https://www.linkedin.com/in/naims6/" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -70,7 +74,7 @@ const Header = () => {
           </svg>
         </Link>
         {/* github */}
-        <Link>
+        <Link to="https://github.com/naims6" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -88,7 +92,7 @@ const Header = () => {
           </svg>
         </Link>
         {/* email */}
-        <Link>
+        <Link to="mailto:naim.sorker06@gmail.com" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

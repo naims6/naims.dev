@@ -5,10 +5,12 @@ import Projects from "../../Components/Projects/Projects.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
 import Education from "../../Components/Education/Education.jsx";
 import Experience from "../../Components/Experience/Experience.jsx";
+import Navbar from "../../Components/Navbar/Navbar.jsx";
 
 const Home = () => {
   return (
-    <div className="container2 mt-20">
+    <div className="container2">
+      <Navbar />
       <Header />
       <TechStack />
       <Projects />

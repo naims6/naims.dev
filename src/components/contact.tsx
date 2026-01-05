@@ -18,7 +18,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="mt-12 mb-6">
+    <div className="mt-12 mb-2">
       <h1 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3 mb-5">
         Get in Touch
       </h1>

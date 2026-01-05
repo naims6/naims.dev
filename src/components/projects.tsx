@@ -95,8 +95,8 @@ export default function Projects() {
         "Responsive e-commerce interface built with React",
         "Robust RESTful API with Express and MongoDB"
       ],
-      githubRepository: "https://github.com/naims6/Toy-Bazaar.git",
-      liveLink: "https://toy-bazaar-fc704.web.app/",
+      githubRepository: "https://github.com/naims6/Innovate-X.git",
+      liveLink: "https://innovate-x6.vercel.app/",
       tech: ["React.js","Node.js","Tailwind CSS", "Express.js", "MongoDB", "Firebase", "Stripe"],
     },
     {
@@ -113,7 +113,7 @@ export default function Projects() {
         "Built with Next.js for server-side rendering performance",
         "Modern UI components powered by Shadcn/ui"
       ],
-      githubRepository: "https://github.com/naims6",
+      githubRepository: "https://github.com/naims6/Hero-Kidz.git",
       liveLink: "#",
       tech: ["Next.js", "TypeScript", "NextAuth","Tailwind CSS", "Shadcn/ui"],
     },
@@ -138,9 +138,9 @@ export default function Projects() {
     {
       id: 6,
       img: "/assets/projects/toybazzar.png",
-      name: "Weather App",
+      name: "Toy Bazaar",
       description:
-        "Real-time weather application using OpenWeatherMap API with location-based forecasting.",
+        "E-commerce website for buying and selling toys.",
       features: [
         "Real-time weather updates using OpenWeatherMap API",
         "Location-based forecasting for current user position",

@@ -168,9 +168,6 @@ export default function Projects() {
   }
 
 
-
-// ... imports remain the same, adding BlurFade ...
-
   return (
     <div className="mt-12">
       <BlurFade delay={0.2} inView>
@@ -233,7 +230,7 @@ export default function Projects() {
                             </DialogDescription>
                           </DialogHeader>
                           <div className="grid gap-4 py-4">
-                            <div className="relative h-32 w-full max-w-xs mx-auto overflow-hidden rounded-md bg-muted shadow-inner">
+                            <div className="relative h-32 w-full max-w-[230px] overflow-hidden rounded-md bg-muted shadow-inner">
                               <Image
                                 src={p.img}
                                 alt={p.name}

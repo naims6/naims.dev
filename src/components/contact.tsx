@@ -88,16 +88,16 @@ export default function Contact() {
   return (
     <div className="mt-12 mb-2">
       <BlurFade delay={0.2} inView>
-        <h1 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3 mb-5">
+        <h1 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3">
           Get in Touch
         </h1>
       </BlurFade>
       <BlurFade delay={0.25} inView>
-        <Card className="bg-gradient-to-br from-background to-muted/50 border-input shadow-md text-center py-8">
+        <Card className="bg-linear-to-br from-background/50 to-muted/50 backdrop-blur-2xl border-input shadow-md text-center py-8">
           <CardHeader>
-            <CardTitle className="text-3xl font-bold tracking-tight mb-2">Let's Work Together!</CardTitle>
+            <CardTitle className="text-3xl font-bold tracking-tight mb-2">Let&apos;s Work Together!</CardTitle>
             <CardDescription className="text-base max-w-lg mx-auto">
-              I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+              I&apos;m currently looking for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col items-center gap-4">
@@ -113,7 +113,7 @@ export default function Contact() {
                       <DialogHeader>
                         <DialogTitle>Say Hello!</DialogTitle>
                         <DialogDescription>
-                           Send me a message and I'll get back to you as soon as possible.
+                           Send me a message and I&apos;ll get back to you as soon as possible.
                         </DialogDescription>
                       </DialogHeader>
                       {isSuccess ? (
@@ -123,7 +123,7 @@ export default function Contact() {
                           </div>
                           <h3 className="text-xl font-semibold">Message Sent!</h3>
                           <p className="text-center text-muted-foreground px-4">
-                            Thank you for reaching out! I've received your message and will respond as soon as I can.
+                            Thank you for reaching out! I&apos;ve received your message and will respond as soon as I can.
                           </p>
                           <Button variant="outline" onClick={() => setIsSuccess(false)} className="mt-4">
                             Send Another

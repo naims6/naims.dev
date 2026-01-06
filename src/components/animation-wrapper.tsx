@@ -1,34 +1,51 @@
 "use client"
+import { useRef } from "react"
+import { motion, useInView, Variants } from "framer-motion"
 
-import { motion } from "framer-motion"
-
-export default function AnimationWrapper({ children, className }: { children: React.ReactNode, className?: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 0 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  )
+interface BlurFadeProps {
+  children: React.ReactNode
+  className?: string
+  variant?: {
+    hidden: { y: number }
+    visible: { y: number }
+  }
+  duration?: number
+  delay?: number
+  yOffset?: number
+  inView?: boolean
+  inViewMargin?: string
+  blur?: string
 }
 
-export function StaggerContainer({ children, className }: { children: React.ReactNode, className?: string }) {
+export function BlurFade({
+  children,
+  className,
+  variant,
+  duration = 0.4,
+  delay = 0,
+  yOffset = 6,
+  inView = false,
+  inViewMargin = "-50px",
+  blur = "6px",
+}: BlurFadeProps) {
+  const ref = useRef(null)
+  const inViewResult = useInView(ref, { once: true, margin: inViewMargin as any })
+  const isInView = !inView || inViewResult
+  const defaultVariants: Variants = {
+    hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
+    visible: { y: -yOffset, opacity: 1, filter: `blur(0px)` },
+  }
+  const combinedVariants = variant || defaultVariants
   return (
     <motion.div
+      ref={ref}
       initial="hidden"
-      animate="visible"
-      viewport={{ once: true }}
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.15
-          }
-        }
+      animate={isInView ? "visible" : "hidden"}
+      variants={combinedVariants}
+      transition={{
+        delay: 0.04 + delay,
+        duration,
+        ease: "easeOut",
       }}
       className={className}
     >
@@ -37,17 +54,84 @@ export function StaggerContainer({ children, className }: { children: React.Reac
   )
 }
 
-export function FadeInItem({ children, className }: { children: React.ReactNode, className?: string }) {
+interface BlurFadeTextProps {
+  text: string
+  className?: string
+  variant?: {
+    hidden: { y: number }
+    visible: { y: number }
+  }
+  duration?: number
+  characterDelay?: number
+  delay?: number
+  yOffset?: number
+  animateByCharacter?: boolean
+}
+
+export function BlurFadeText({
+  text,
+  className,
+  variant,
+  duration = 0.3,
+  characterDelay = 0.03,
+  delay = 0,
+  yOffset = 8,
+  animateByCharacter = false,
+}: BlurFadeTextProps) {
+  const defaultVariants: Variants = {
+    hidden: { y: yOffset, opacity: 0, filter: "blur(8px)" },
+    visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
+  }
+  const combinedVariants = variant || defaultVariants
+  
+  // Use a ref and useInView to trigger animation only when visible
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-10%" })
+
   return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 0 },
-        visible: { opacity: 1, y: 0 }
-      }}
-      transition={{ duration: 0.5 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    <div ref={ref} className={`flex flex-wrap ${className}`}>
+      {/* If animating by character, we need to split twice or handle spaces carefully. 
+          Simplest for "by character" is just split string. 
+          For "by word" (default usually better for long text) split by space. 
+      */}
+      {animateByCharacter ? (
+         text.split("").map((char, i) => (
+          <motion.span
+            key={i}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={combinedVariants}
+            transition={{
+              duration,
+              delay: delay + i * characterDelay,
+              ease: "easeOut",
+            }}
+            className="inline-block"
+            style={{ width: char === " " ? "0.2em" : "auto" }} // Preserve space width
+          >
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+         ))
+      ) : (
+        // Animate by word
+        text.split(" ").map((word, i) => (
+          <motion.span
+            key={i}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={combinedVariants}
+            transition={{
+              duration,
+              delay: delay + i * (characterDelay * 2), // words need more delay spacing
+              ease: "easeOut",
+            }}
+            className="inline-block mr-[0.25em]"
+          >
+            {word}
+          </motion.span>
+        ))
+      )}
+    </div>
   )
 }
+

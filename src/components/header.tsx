@@ -3,38 +3,48 @@ import Image from "next/image"
 import { FileUser, Github, Linkedin, Mail, MapPin } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { BlurFade, BlurFadeText } from "@/components/animation-wrapper"
 import About from "./about"
 
 export default function Header() {
   return (
-    <div>
-      <div className="flex justify-between">
+    <section>
+      <div className="flex justify-between items-center">
         <div className="flex gap-4">
           {/* image part */}
-          <div className="w-22 h-22 rounded-full overflow-hidden shadow-lg">
-            <Image
-              className="w-[88px] h-[88px] rounded-full object-cover cursor-pointer transform hover:scale-105 transition-all duration-300 -translate-y-0.5"
-              src="/assets/fullstack-developer.jpg"
-              alt="Full Stack Developer Image"
-              width={88}
-              height={88}
-            />
-          </div>
+          <BlurFade delay={0.1} inView>
+            <div className="w-22 h-22 rounded-full overflow-hidden shadow-lg">
+              <Image
+                className="w-[88px] h-[88px] rounded-full object-cover cursor-pointer transform hover:scale-105 transition-all duration-300 -translate-y-0.5"
+                src="/assets/fullstack-developer.jpg"
+                alt="Full Stack Developer Image"
+                width={88}
+                height={88}
+              />
+            </div>
+          </BlurFade>
           {/* details part name, title, location*/}
           <div>
-            <h1 className="text-2xl font-semibold tracking-tighter">
-              Naim Sorker
-            </h1>
-            <h3 className="text-lg font-medium text-muted-foreground">
-              Full-Stack Developer
-            </h3>
-            <h4 className="text-sm text-muted-foreground flex items-center"><MapPin className="mr-1" size={12} />Dhaka, Bangladesh</h4>
+            <div className="text-2xl font-semibold tracking-tighter">
+              <BlurFadeText text="Naim Sorker" delay={0.2} />
+            </div>
+            <BlurFade delay={0.3} inView>
+               <h3 className="text-lg font-medium text-muted-foreground">
+                Full-Stack Developer
+              </h3>
+            </BlurFade>
+           
+            <BlurFade delay={0.35} inView>
+              <h4 className="text-sm text-muted-foreground flex items-center"><MapPin className="mr-1" size={12} />Dhaka, Bangladesh</h4>
+            </BlurFade>
           </div>
         </div>
       </div>
       <About />
       {/* contacts actions btn */}
       <div className="flex items-center gap-2 mt-6">
+        <BlurFade delay={0.4} inView>
         <Button asChild className="!px-4">
           <Link
             href="https://drive.google.com/file/d/1p_0m4OvHnpnqmW5MNSQfF8_TuBDPgbML/view?usp=sharing"
@@ -45,25 +55,44 @@ export default function Header() {
             <span className="tracking-wide">Resume</span>
           </Link>
         </Button>
+        </BlurFade>
+
         {/* linked in  */}
+        <BlurFade delay={0.45} inView>
         <Button variant="ghost" size="icon" asChild>
           <Link href="https://www.linkedin.com/in/naims6/" target="_blank">
             <Linkedin className="h-5 w-5 hover:text-foreground transition-colors" />
           </Link>
         </Button>
+        </BlurFade>
+
         {/* github */}
+        <BlurFade delay={0.5} inView>
         <Button variant="ghost" size="icon" asChild>
           <Link href="https://github.com/naims6" target="_blank">
             <Github className="h-5 w-5 hover:text-foreground transition-colors" />
           </Link>
         </Button>
+        </BlurFade>
+
         {/* email */}
-        <Button variant="ghost" size="icon" asChild>
-          <Link href="mailto:naim.sorker06@gmail.com" target="_blank">
-            <Mail className="h-5 w-5 hover:text-foreground transition-colors" />
-          </Link>
-        </Button>
+        <BlurFade delay={0.55} inView>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" asChild>
+                  <Link href="mailto:naim.sorker06@gmail.com" target="_blank">
+                    <Mail className="h-5 w-5 hover:text-foreground transition-colors" />
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>naim.sorker06@gmail.com</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </BlurFade>
       </div>
-    </div>
+    </section>
   )
 }

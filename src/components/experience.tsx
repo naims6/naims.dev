@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { BlurFade } from "@/components/animation-wrapper"
 
 export default function Experience() {
   const experiences = [
@@ -19,25 +20,37 @@ export default function Experience() {
     },
   ]
 
+
+// ... imports ...
+
   return (
     <div className="mt-12">
-      <h1 className="font-medium text-xl mb-5 border-l-4 border-primary pl-3 mb-5">
-        Experience
-      </h1>
+      <BlurFade delay={0.2} inView>
+        <h1 className="font-medium text-xl mb-5 border-l-4 border-primary pl-3 mb-5">
+          Experience
+        </h1>
+      </BlurFade>
       <div className="flex flex-col gap-4">
         {experiences.map((exp, index) => (
-          <div key={index} className="flex gap-4">
-            <div className="min-w-[100px] text-sm text-muted-foreground pt-1">
-              {exp.year}
+          <BlurFade 
+            key={index} 
+            delay={0.25 + index * 0.1} 
+            inView
+            yOffset={8}
+          >
+            <div className="flex gap-4">
+              <div className="min-w-[100px] text-sm text-muted-foreground pt-1">
+                {exp.year}
+              </div>
+              <div className="pb-6 border-l pl-6 relative last:pb-0">
+                 <div className="absolute w-3 h-3 bg-primary rounded-full -left-[6.5px] top-[6px]" />
+                 <h3 className="font-medium leading-none mb-2">{exp.title}</h3>
+                 <p className="text-sm text-muted-foreground">
+                    {exp.description}
+                 </p>
+              </div>
             </div>
-            <div className="pb-6 border-l pl-6 relative last:pb-0">
-               <div className="absolute w-3 h-3 bg-primary rounded-full -left-[6.5px] top-[6px]" />
-               <h3 className="font-medium leading-none mb-2">{exp.title}</h3>
-               <p className="text-sm text-muted-foreground">
-                  {exp.description}
-               </p>
-            </div>
-          </div>
+          </BlurFade>
         ))}
       </div>
     </div>

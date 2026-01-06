@@ -80,7 +80,7 @@ export default function Projects() {
         "Backend powered by Node.js and Firebase"
       ],
       githubRepository: "https://github.com/naims6/CareNow.git",
-      liveLink: "https://thebookhaven-c1738.web.app/",
+      liveLink: "https://carenowbd.vercel.app/",
       tech: ["Next.js","TypeScript","Tailwind CSS", "NextAuth","MongoDB","Shadcn/ui"],
     },
     {

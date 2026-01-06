@@ -5,13 +5,13 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { 
   SiNextdotjs, SiReact, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiTailwindcss, SiShadcnui,
-  SiNodedotjs, SiExpress, SiMongodb, SiFirebase, SiPostgresql,
+  SiNodedotjs, SiExpress, SiMongodb, SiFirebase,
   SiGit, SiGithub, SiVercel, SiFigma,
   SiBootstrap,
   SiLinux,
-  SiN26
+  SiN26,
+  SiPostman
 } from "react-icons/si"
-import { VscVscode } from "react-icons/vsc"
 import { Monitor, Server, Database, Wrench } from "lucide-react"
 
 import { BlurFade } from "@/components/animation-wrapper"
@@ -60,6 +60,7 @@ export default function TechStack() {
         { name: "GitHub", icon: <SiGithub className="mr-1" /> },
         { name: "Figma", icon: <SiFigma className="mr-1 text-[#F24E1E]" /> },
         { name: "Vercel", icon: <SiVercel className="mr-1" /> },
+        { name: "Postname", icon: <SiPostman className="mr-1 text-[#F24E1E]" /> },
         { name: "Linux", icon: <SiLinux className="mr-1 text-[#F24E1E]" /> },
       ],
     },

@@ -3,6 +3,7 @@ import Image from "next/image"
 import { FileUser, Github, Linkedin, Mail, MapPin } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { BlurFade, BlurFadeText } from "@/components/animation-wrapper"
 import About from "./about"
 
@@ -76,11 +77,20 @@ export default function Header() {
 
         {/* email */}
         <BlurFade delay={0.55} inView>
-        <Button variant="ghost" size="icon" asChild>
-          <Link href="mailto:naim.sorker06@gmail.com" target="_blank">
-            <Mail className="h-5 w-5 hover:text-foreground transition-colors" />
-          </Link>
-        </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" asChild>
+                  <Link href="mailto:naim.sorker06@gmail.com" target="_blank">
+                    <Mail className="h-5 w-5 hover:text-foreground transition-colors" />
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>naim.sorker06@gmail.com</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </BlurFade>
       </div>
     </section>

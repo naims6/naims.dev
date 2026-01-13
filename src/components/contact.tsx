@@ -36,8 +36,8 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     // Validate message word count
     const wordCount = data.message.trim().split(/\s+/).length
-    if (wordCount < 10) {
-      toast.error("Message must be at least 10 words long.", {
+    if (wordCount < 5) {
+      toast.error("Message must be at least 5 words long.", {
         style: {
            border: '1px solid #713200',
            padding: '16px',
@@ -161,7 +161,7 @@ export default function Contact() {
                              {errors.from_email && <span className="text-xs text-red-500 text-left flex items-center gap-1"><AlertCircle className="w-3 h-3"/> {errors.from_email.message}</span>}
                           </div>
                           <div className="grid gap-2">
-                            <Label htmlFor="message" className="text-left">Message <span className="text-xs text-muted-foreground font-normal">(min 10 words)</span></Label>
+                            <Label htmlFor="message" className="text-left">Message <span className="text-xs text-muted-foreground font-normal">(min 5 words)</span></Label>
                             <Textarea 
                               id="message" 
                               placeholder="Type your message here..." 

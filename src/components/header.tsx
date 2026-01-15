@@ -45,9 +45,9 @@ export default function Header() {
       {/* contacts actions btn */}
       <div className="flex items-center gap-2 mt-6">
         <BlurFade delay={0.4} inView>
-        <Button asChild className="!px-4">
+        <Button asChild className="px-4!">
           <Link
-            href="https://drive.google.com/file/d/1p_0m4OvHnpnqmW5MNSQfF8_TuBDPgbML/view?usp=sharing"
+            href="https://drive.google.com/file/d/17ddZZoizrm1hG_hBnAUgl7DT0nThFWRh/view?usp=sharing"
             target="_blank"
             className="flex items-center gap-2"
           >

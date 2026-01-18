@@ -1,27 +1,32 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { useTheme } from "next-themes"
-import { Moon, Sun } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import * as React from "react";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { BlurFade } from "@/components/animation-wrapper"
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { BlurFade } from "@/components/animation-wrapper";
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
 
   // Avoid hydration mismatch
   React.useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   // Professional Theme Toggle Component
   const ThemeToggle = () => (
@@ -65,39 +70,38 @@ export default function Navbar() {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  );
 
   if (!mounted) {
     return (
       <div className="my-10 flex items-center justify-between">
-         <div className="">
-            <span className="text-2xl cursor-pointer font-bold tracking-tighter sr-only">naims.dev</span>
-         </div>
+        <div className="">
+          <span className="text-2xl cursor-pointer font-bold tracking-tighter sr-only">
+            naims.dev
+          </span>
+        </div>
       </div>
-    )
+    );
   }
 
   return (
     <nav className="my-10 flex items-center justify-between relative z-50">
       {/* left  */}
       <BlurFade delay={0} inView yOffset={0} blur="2px">
-        <Link href="/" className="text-2xl cursor-pointer font-bold tracking-tighter hover:text-primary transition-colors duration-300">
+        <Link
+          href="/"
+          className="text-2xl cursor-pointer font-bold tracking-tighter hover:text-primary transition-colors duration-300"
+        >
           naims.dev
         </Link>
       </BlurFade>
-      
+
       {/* right  */}
       <div className="flex items-center gap-5">
-        <BlurFade delay={0.1} inView yOffset={0} blur="2px">
-          <h2 className="flex items-center gap-2 text-sm font-medium text-muted-foreground/80 hover:text-foreground transition-colors">
-            <span className="text-[12px] animate-pulse">🚀</span> Available for work
-          </h2>
-        </BlurFade>
-
         <BlurFade delay={0.2} inView yOffset={0} blur="2px">
           <ThemeToggle />
         </BlurFade>
       </div>
     </nav>
-  )
+  );
 }

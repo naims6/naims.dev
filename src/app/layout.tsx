@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "react-hot-toast";
 import ThemeAwareLightRays from "@/components/bg/LightRays";
+import Fireflies from "@/components/bg/Fireflies";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,26 +17,47 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Naim Sorker | Full Stack Developer",
+  title: {
+    default: "Naim Sorker | Full Stack Developer",
+    template: "%s | Naim Sorker",
+  },
   description:
-    "Portfolio of Naim, a passionate Full Stack Developer specializing in Next.js, TypeScript, React, and modern web technologies. Explore my projects and skills.",
+    "Full-Stack Developer (MERN) specializing in building clean, scalable, and user-friendly web applications using Next.js, TypeScript, and Node.js.",
   keywords: [
     "Next.js",
     "TypeScript",
     "React",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
     "Full Stack Developer",
     "Portfolio",
     "Web Development",
-    "JavaScript",
-    "TypeScript",
+    "Software Engineer",
+    "Naim Sorker",
   ],
+  authors: [{ name: "Naim Sorker", url: "https://github.com/naims6" }],
+  creator: "Naim Sorker",
+  publisher: "Naim Sorker",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: "Naim Sorker | Full Stack Developer",
     description:
-      "Explorer my projects and skills. Specialized in Next.js, React, and modern web technologies.",
+      "Full-Stack Developer specializing in Next.js, React, and modern web technologies. Focus on clean code and user-centric design.",
+    url: "https://naims.dev",
+    siteName: "Naim Sorker Portfolio",
     type: "website",
     locale: "en_US",
-    siteName: "Naim Sorker",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Naim Sorker | Full Stack Developer",
+    description:
+      "Full-Stack Developer specializing in Next.js, React, and modern web technologies.",
+    creator: "@naims6",
   },
 };
 
@@ -50,6 +72,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
         <div className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
+          <Fireflies />
           <ThemeAwareLightRays
             raysOrigin="top-center"
             raysSpeed={1.1}

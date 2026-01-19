@@ -142,3 +142,16 @@
   mix-blend-mode: screen;
   opacity: 0.2;
 }
+
+
+/* selection color of website any text */
+::selection {
+  background-color: white;
+  color: black;
+}
+
+/* Firefox */
+::-moz-selection {
+  background-color: white;
+  color: black;
+}

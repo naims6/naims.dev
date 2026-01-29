@@ -21,8 +21,11 @@ import {
   SiPostman,
   SiJsonwebtokens,
   SiNetlify,
+  SiMongoose,
+  SiBetterstack,
 } from "react-icons/si";
 import { Monitor, Server, Database, Wrench } from "lucide-react";
+import { LuNetwork } from "react-icons/lu";
 
 export const techStack = [
   {
@@ -67,6 +70,10 @@ export const techStack = [
         name: "Firebase Auth..",
         icon: <SiFirebase className="mr-1 text-[#FFCA28]" />,
       },
+      {
+        name: "Better Auth",
+        icon: <LuNetwork className="mr-1" />,
+      },
     ],
   },
   {
@@ -75,8 +82,8 @@ export const techStack = [
     skills: [
       { name: "MongoDB", icon: <SiMongodb className="mr-1 text-[#47A248]" /> },
       {
-        name: "Firebase",
-        icon: <SiFirebase className="mr-1 text-[#FFCA28]" />,
+        name: "Mongoose",
+        icon: <SiMongoose className="mr-1 text-[#880000]" />,
       },
     ],
   },
@@ -91,7 +98,7 @@ export const techStack = [
       { name: "Netlify", icon: <SiNetlify className="mr-1 text-[#00C7B7]" /> },
       {
         name: "JWT",
-        icon: <SiJsonwebtokens className="mr-1 text-[#000000]" />,
+        icon: <SiJsonwebtokens className="mr-1" />,
       },
       { name: "Postman", icon: <SiPostman className="mr-1 text-[#FF6C37]" /> },
       { name: "Linux", icon: <SiLinux className="mr-1 text-[#FCC624]" /> },

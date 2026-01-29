@@ -36,7 +36,7 @@ export default function TechStack() {
                     {category.skills.map((skill) => (
                       <Badge
                         key={skill.name}
-                        variant="secondary"
+                        variant="outline"
                         className="font-normal flex items-center"
                       >
                         {skill.icon}

@@ -2,13 +2,27 @@ import { BlurFade } from "./animation-wrapper";
 
 export default function About() {
   return (
-    <div className="mt-8">
+    <div className="space-y-4">
       <BlurFade delay={0.25} inView>
-        <p className="text-muted-foreground lg:text-justify">
-            <b className="text-primary/80">About Me :</b> I’m a Full Stack Developer (MERN), with a strong focus on building clean, scalable, and user-friendly web applications. I work with <b className="text-primary/70">TypeScript</b>, <b className="text-primary/70">React</b>, <b className="text-primary/70">Node.js</b>, <b className="text-primary/70">Express.js</b>, <b className="text-primary/70">MongoDB</b>, and <b className="text-primary/70">Next.js</b> to turn ideas into reliable, real-world products.
-          I enjoy solving problems, learning new technologies, and continuously improving my skills as a developer. My goal is to create fast, maintainable, and impactful applications that provide a great user experience and deliver real value.
+        <p className="text-xl lg:text-2xl font-black text-foreground leading-[1.15]">
+          Building{" "}
+          <span className="relative inline-block">
+            <span className="text-primary italic">scalable</span>
+            <span className="absolute -bottom-1 left-0 w-full h-1 bg-primary/20 rounded-full" />
+          </span>{" "}
+          digital products while keeping the user experience simple and smooth.
+        </p>
+      </BlurFade>
+      <BlurFade delay={0.4} inView>
+        <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+          I'm a Full Stack Developer specializing in the{" "}
+          <span className="font-bold text-foreground italic">MERN stack</span>{" "}
+          and <span className="font-bold text-foreground italic">Next.js</span>.
+          I enjoy turning designs into real, working applications by writing
+          clean code and focusing on performance, usability, and a smooth user
+          experience.
         </p>
       </BlurFade>
     </div>
-  )
+  );
 }

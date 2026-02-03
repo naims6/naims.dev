@@ -26,7 +26,7 @@ export default function Header() {
       <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-16">
         {/* Left Side: Name and Intro */}
         <div className="w-full lg:w-[60%] space-y-8">
-          <div className="space-y-4">
+          <div className="space-y-3">
             <BlurFade delay={0.1} inView>
               <h1 className="text-5xl lg:text-7xl font-black tracking-tight leading-none text-foreground">
                 <BlurFadeText text="Naim Sorker" delay={0.2} />
@@ -131,10 +131,10 @@ export default function Header() {
                           variant="outline"
                           size="icon"
                           asChild
-                          className="w-16 h-16 rounded-2xl bg-background/50 backdrop-blur-md hover:bg-primary/10 hover:text-primary border-muted/40 hover:border-primary/30 transition-all duration-500 hover:-translate-y-1.5 shadow-xl"
+                          className="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-background/50 backdrop-blur-md hover:bg-primary/10 hover:text-primary border-muted/40 hover:border-primary/30 transition-all duration-500 hover:-translate-y-1.5 shadow-xl"
                         >
                           <Link href={social.href} target="_blank">
-                            <social.icon className="h-7 w-7" />
+                            <social.icon className="h-5 w-5 lg:h-7 lg:w-7" />
                           </Link>
                         </Button>
                       </TooltipTrigger>

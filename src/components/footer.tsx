@@ -7,7 +7,7 @@ export default function Footer() {
         <p className="text-sm text-muted-foreground font-medium text-center">
           © {new Date().getFullYear()}{" "}
           <Link
-            href="https://www.facebook.com/naim.sorker06"
+            href="https://www.facebook.com/naim.sorker6"
             target="_blank"
             className="text-foreground hover:text-primary transition-colors font-bold underline decoration-primary/30 underline-offset-4"
           >

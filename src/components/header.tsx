@@ -119,7 +119,7 @@ export default function Header() {
                 },
                 {
                   icon: Facebook,
-                  href: "https://www.facebook.com/naim.sorker06",
+                  href: "https://www.facebook.com/naim.sorker6",
                   label: "Facebook",
                 },
               ].map((social, idx) => (

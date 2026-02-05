@@ -119,7 +119,7 @@ export default function Header() {
                 },
                 {
                   icon: SiDiscord,
-                  href: "https://discord.com/users/naimsorker6",
+                  href: "https://discord.gg/naimsorker6",
                   label: "Discord",
                 },
                 {

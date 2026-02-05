@@ -127,6 +127,9 @@ export default function ChatWidget() {
     localStorage.setItem("chat_user", JSON.stringify(newUser));
     setUser(newUser);
     toast.success(`Welcome, ${nameInput}!`);
+    setTimeout(() => {
+      messageInputRef.current?.focus();
+    }, 300);
   };
 
   const sendMessage = async (e: React.FormEvent) => {
@@ -157,28 +160,32 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div
+      className={`fixed z-50 flex flex-col items-end transition-all duration-300 ${isOpen ? "inset-0 sm:inset-auto sm:bottom-6 sm:right-6" : "bottom-6 right-6"}`}
+    >
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="mb-4 relative"
+            className="relative w-full h-full sm:h-auto sm:w-auto"
           >
-            <Card className="w-80 sm:w-96 h-[500px] flex flex-col shadow-2xl border-primary/20 bg-card/95 backdrop-blur-md overflow-hidden">
-              <div className="p-4 bg-primary text-primary-foreground flex justify-between items-center">
+            <Card className="w-full h-full sm:w-96 sm:h-[500px] flex flex-col shadow-2xl border-primary/20 bg-card/95 backdrop-blur-md overflow-hidden rounded-none sm:rounded-2xl">
+              <div className="p-4 sm:p-4 bg-primary text-primary-foreground flex justify-between items-center shrink-0">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="font-semibold">Live Chat</span>
+                  <span className="font-semibold text-lg sm:text-base">
+                    Live Chat
+                  </span>
                 </div>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/10"
+                  className="h-10 w-10 sm:h-8 sm:w-8 text-primary-foreground hover:bg-primary-foreground/10"
                   onClick={() => setIsOpen(false)}
                 >
-                  <Minus className="h-5 w-5" />
+                  <X className="h-6 w-6 sm:h-5 sm:w-5" />
                 </Button>
               </div>
 

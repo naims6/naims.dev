@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, User, Mail, Minus } from "lucide-react";
+import { MessageCircle, X, Send, User, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,7 +12,7 @@ import { toast } from "react-hot-toast";
 interface Message {
   _id?: string;
   senderName: string;
-  senderEmail: string;
+  sessionId: string;
   content: string;
   isAdmin: boolean;
   timestamp: string;
@@ -25,26 +25,41 @@ export default function ChatWidget() {
   if (pathname?.startsWith("/admin")) {
     return null;
   }
-  const [user, setUser] = useState<{ name: string; email: string } | null>(
+
+  const [user, setUser] = useState<{ name: string; sessionId: string } | null>(
     null,
   );
   const [nameInput, setNameInput] = useState("");
-  const [emailInput, setEmailInput] = useState("");
   const [nameError, setNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [nameTouched, setNameTouched] = useState(false);
-  const [emailTouched, setEmailTouched] = useState(false);
   const [showCTA, setShowCTA] = useState(true);
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const messageInputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-focus logic
+  useEffect(() => {
+    if (user && isOpen && messageInputRef.current) {
+      setTimeout(() => {
+        messageInputRef.current?.focus();
+      }, 100);
+    }
+  }, [user, isOpen]);
 
   // Load user from localStorage
   useEffect(() => {
     const savedUser = localStorage.getItem("chat_user");
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      const parsed = JSON.parse(savedUser);
+      // If it's a legacy user object without sessionId, clear it
+      if (!parsed.sessionId) {
+        localStorage.removeItem("chat_user");
+        setUser(null);
+      } else {
+        setUser(parsed);
+      }
     }
   }, []);
 
@@ -52,19 +67,17 @@ export default function ChatWidget() {
   useEffect(() => {
     if (user && isOpen) {
       fetchMessages();
-      const interval = setInterval(fetchMessages, 5000); // Polling every 5s
+      const interval = setInterval(fetchMessages, 5000);
       return () => clearInterval(interval);
     }
   }, [user, isOpen]);
 
-  // Scroll to bottom when messages update
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
 
-  // Scroll listener for CTA
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -77,14 +90,6 @@ export default function ChatWidget() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const validateEmail = (email: string) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      );
-  };
-
   useEffect(() => {
     if (nameInput && nameInput.length < 2) {
       setNameError("Name must be at least 2 characters");
@@ -93,19 +98,11 @@ export default function ChatWidget() {
     }
   }, [nameInput]);
 
-  useEffect(() => {
-    if (emailInput && !validateEmail(emailInput)) {
-      setEmailError("Please enter a valid email address");
-    } else {
-      setEmailError("");
-    }
-  }, [emailInput]);
-
   const fetchMessages = async () => {
-    if (!user) return;
+    if (!user?.sessionId) return;
     try {
       const res = await fetch(
-        `/api/chat/messages?email=${encodeURIComponent(user.email)}`,
+        `/api/chat/messages?sessionId=${encodeURIComponent(user.sessionId)}`,
       );
       const data = await res.json();
       if (Array.isArray(data)) {
@@ -119,13 +116,14 @@ export default function ChatWidget() {
   const handleOnboarding = (e: React.FormEvent) => {
     e.preventDefault();
     setNameTouched(true);
-    setEmailTouched(true);
 
-    if (!nameInput || !emailInput || nameError || emailError) {
+    if (!nameInput || nameError) {
       toast.error("Please provide valid information");
       return;
     }
-    const newUser = { name: nameInput, email: emailInput };
+
+    const sessionId = crypto.randomUUID();
+    const newUser = { name: nameInput, sessionId };
     localStorage.setItem("chat_user", JSON.stringify(newUser));
     setUser(newUser);
     toast.success(`Welcome, ${nameInput}!`);
@@ -142,7 +140,7 @@ export default function ChatWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           senderName: user.name,
-          senderEmail: user.email,
+          sessionId: user.sessionId,
           content: messageInput,
         }),
       });
@@ -160,7 +158,6 @@ export default function ChatWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      {/* if chat is open */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -170,7 +167,6 @@ export default function ChatWidget() {
             className="mb-4 relative"
           >
             <Card className="w-80 sm:w-96 h-[500px] flex flex-col shadow-2xl border-primary/20 bg-card/95 backdrop-blur-md overflow-hidden">
-              {/* Header */}
               <div className="p-4 bg-primary text-primary-foreground flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
@@ -186,10 +182,8 @@ export default function ChatWidget() {
                 </Button>
               </div>
 
-              {/* Body */}
               <div className="flex-1 overflow-hidden">
                 {!user ? (
-                  /* Onboarding */
                   <div className="p-6 h-full flex flex-col justify-center gap-4">
                     <div className="text-center mb-4">
                       <h2 className="text-lg font-bold">Get Started</h2>
@@ -215,40 +209,16 @@ export default function ChatWidget() {
                           </p>
                         )}
                       </div>
-                      <div className="space-y-1">
-                        <div className="relative">
-                          <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                          <Input
-                            type="email"
-                            placeholder="Your Email"
-                            className={`pl-9 ${emailError && emailTouched ? "border-destructive focus-visible:ring-destructive" : ""}`}
-                            value={emailInput}
-                            onChange={(e) => setEmailInput(e.target.value)}
-                            onBlur={() => setEmailTouched(true)}
-                          />
-                        </div>
-                        {emailError && emailTouched && (
-                          <p className="text-[10px] text-destructive ml-1">
-                            {emailError}
-                          </p>
-                        )}
-                      </div>
                       <Button
                         type="submit"
                         className="w-full"
-                        disabled={
-                          !nameInput ||
-                          !emailInput ||
-                          !!nameError ||
-                          !!emailError
-                        }
+                        disabled={!nameInput || !!nameError}
                       >
                         Start Chatting
                       </Button>
                     </form>
                   </div>
                 ) : (
-                  /* Messaging */
                   <div className="h-full flex flex-col p-4">
                     <div
                       ref={scrollRef}
@@ -268,11 +238,7 @@ export default function ChatWidget() {
                           className={`flex ${msg.isAdmin ? "justify-start" : "justify-end"}`}
                         >
                           <div
-                            className={`max-w-[80%] p-3 rounded-2xl text-sm ${
-                              msg.isAdmin
-                                ? "bg-muted text-foreground rounded-tl-none"
-                                : "bg-primary text-primary-foreground rounded-tr-none shadow-md"
-                            }`}
+                            className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.isAdmin ? "bg-muted text-foreground rounded-tl-none" : "bg-primary text-primary-foreground rounded-tr-none shadow-md"}`}
                           >
                             {msg.content}
                             <div
@@ -287,12 +253,12 @@ export default function ChatWidget() {
                         </div>
                       ))}
                     </div>
-
                     <form
                       onSubmit={sendMessage}
                       className="mt-4 flex gap-2 border-t pt-4"
                     >
                       <Input
+                        ref={messageInputRef}
                         placeholder="Type a message..."
                         value={messageInput}
                         onChange={(e) => setMessageInput(e.target.value)}
@@ -313,7 +279,6 @@ export default function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* cta live chat with me */}
       <AnimatePresence>
         {!isOpen && showCTA && (
           <motion.div
@@ -329,7 +294,6 @@ export default function ChatWidget() {
               </span>
               Live Chat with Me
             </div>
-            {/* Triangle indicator */}
             <div className="absolute right-4 -bottom-2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-primary" />
           </motion.div>
         )}

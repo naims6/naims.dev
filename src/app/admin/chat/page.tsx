@@ -12,6 +12,7 @@ interface Message {
   _id: string;
   senderName: string;
   senderEmail: string;
+  sessionId: string;
   content: string;
   isAdmin: boolean;
   timestamp: string;
@@ -21,7 +22,7 @@ export default function AdminChat() {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [secretInput, setSecretInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [selectedUserEmail, setSelectedUserEmail] = useState<string | null>(
+  const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
     null,
   );
   const [replyInput, setReplyInput] = useState("");
@@ -47,7 +48,7 @@ export default function AdminChat() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, selectedUserEmail]);
+  }, [messages, selectedSessionId]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +75,7 @@ export default function AdminChat() {
 
   const sendReply = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!replyInput.trim() || !selectedUserEmail) return;
+    if (!replyInput.trim() || !selectedSessionId) return;
 
     setLoading(true);
     try {
@@ -83,7 +84,7 @@ export default function AdminChat() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           senderName: "Admin",
-          senderEmail: selectedUserEmail,
+          sessionId: selectedSessionId,
           content: replyInput,
           isAdmin: true,
         }),
@@ -101,19 +102,23 @@ export default function AdminChat() {
   };
 
   const users = Array.from(
-    new Set(messages.filter((m) => !m.isAdmin).map((m) => m.senderEmail)),
-  ).map((email) => {
-    const userMessages = messages.filter((m) => m.senderEmail === email);
-    return {
-      email,
-      name: userMessages[0].senderName,
-      lastMessage: userMessages[userMessages.length - 1].content,
-      lastTime: userMessages[userMessages.length - 1].timestamp,
-    };
-  });
+    new Set(messages.filter((m) => !m.isAdmin).map((m) => m.sessionId)),
+  )
+    .map((sid) => {
+      const userMessages = messages.filter((m) => m.sessionId === sid);
+      return {
+        sessionId: sid,
+        name: userMessages[0]?.senderName || "Unknown User",
+        lastMessage: userMessages[userMessages.length - 1].content,
+        lastTime: userMessages[userMessages.length - 1].timestamp,
+      };
+    })
+    .sort(
+      (a, b) => new Date(b.lastTime).getTime() - new Date(a.lastTime).getTime(),
+    );
 
   const selectedUserMessages = messages.filter(
-    (m) => m.senderEmail === selectedUserEmail,
+    (m) => m.sessionId === selectedSessionId,
   );
 
   if (!isAuthorized) {
@@ -170,9 +175,9 @@ export default function AdminChat() {
             )}
             {users.map((user) => (
               <div
-                key={user.email}
-                onClick={() => setSelectedUserEmail(user.email)}
-                className={`p-4 border-b cursor-pointer transition-colors hover:bg-primary/5 ${selectedUserEmail === user.email ? "bg-primary/10" : ""}`}
+                key={user.sessionId}
+                onClick={() => setSelectedSessionId(user.sessionId)}
+                className={`p-4 border-b cursor-pointer transition-colors hover:bg-primary/5 ${selectedSessionId === user.sessionId ? "bg-primary/10" : ""}`}
               >
                 <div className="flex justify-between items-start mb-1">
                   <span className="font-semibold text-sm truncate">
@@ -194,15 +199,15 @@ export default function AdminChat() {
         </Card>
 
         <Card className="md:col-span-2 flex flex-col bg-card/50 backdrop-blur-sm overflow-hidden">
-          {selectedUserEmail ? (
+          {selectedSessionId ? (
             <>
               <CardHeader className="border-b p-4 flex flex-row items-center justify-between">
                 <div>
                   <CardTitle className="text-base">
-                    {users.find((u) => u.email === selectedUserEmail)?.name}
+                    {users.find((u) => u.sessionId === selectedSessionId)?.name}
                   </CardTitle>
-                  <p className="text-xs text-muted-foreground">
-                    {selectedUserEmail}
+                  <p className="text-[10px] text-muted-foreground">
+                    Session ID: {selectedSessionId.slice(0, 8)}...
                   </p>
                 </div>
                 <Badge variant="outline">Live</Badge>

@@ -8,7 +8,7 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp, SiDiscord } from "react-icons/si";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -116,6 +116,11 @@ export default function Header() {
                   icon: SiWhatsapp,
                   href: "https://wa.me/+8801908390036",
                   label: "+8801908390036",
+                },
+                {
+                  icon: SiDiscord,
+                  href: "https://discord.com/users/naimsorker6",
+                  label: "Discord",
                 },
                 {
                   icon: Facebook,

@@ -5,20 +5,18 @@ import Message from "@/lib/models/Message";
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
-    const email = searchParams.get("email");
+    const sessionId = searchParams.get("sessionId");
 
     await dbConnect();
 
-    // If email is provided, fetch messages for that user (both client and admin replies)
-    // If no email (admin view), we might want to fetch all or grouped by user
-    // For now, let's just fetch by email for the client side
-    if (!email) {
-      // Admin might call this without email to see all messages (simplified)
+    // If sessionId is provided, fetch messages for that user
+    if (!sessionId) {
+      // Admin view: fetch all messages for processing
       const messages = await Message.find().sort({ timestamp: 1 });
       return NextResponse.json(messages);
     }
 
-    const messages = await Message.find({ senderEmail: email }).sort({
+    const messages = await Message.find({ sessionId }).sort({
       timestamp: 1,
     });
     return NextResponse.json(messages);
@@ -31,9 +29,9 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { senderName, senderEmail, content, isAdmin } = body;
+    const { senderName, sessionId, content, isAdmin, senderEmail } = body;
 
-    if (!senderName || !senderEmail || !content) {
+    if (!senderName || !sessionId || !content) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 },
@@ -44,7 +42,8 @@ export async function POST(req: Request) {
 
     const newMessage = await Message.create({
       senderName,
-      senderEmail,
+      sessionId,
+      senderEmail: senderEmail || "",
       content,
       isAdmin: isAdmin || false,
     });

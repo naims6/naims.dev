@@ -74,7 +74,7 @@ export default function Navbar() {
 
   if (!mounted) {
     return (
-      <div className="my-10 flex items-center justify-between">
+      <div className="my-6 flex items-center justify-between">
         <div className="">
           <span className="text-2xl cursor-pointer font-bold tracking-tighter sr-only">
             naims.dev
@@ -85,7 +85,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="my-10 flex items-center justify-between relative z-50">
+    <nav className="my-6 flex items-center justify-between relative z-50">
       {/* left  */}
       <BlurFade delay={0} inView yOffset={0} blur="2px">
         <Link

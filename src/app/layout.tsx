@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "react-hot-toast";
 import ThemeAwareLightRays from "@/components/bg/LightRays";
 import SpaceBackground from "@/components/bg/SpaceBackground";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -93,6 +94,7 @@ export default function RootLayout({
         >
           {children}
           <Toaster position="bottom-right" reverseOrder={false} />
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>

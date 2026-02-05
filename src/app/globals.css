@@ -143,15 +143,14 @@
   opacity: 0.2;
 }
 
-
 /* selection color of website any text */
 ::selection {
-  background-color: white;
-  color: black;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
 }
 
 /* Firefox */
 ::-moz-selection {
-  background-color: white;
-  color: black;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
 }

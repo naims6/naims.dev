@@ -65,7 +65,7 @@ export const projects = [
     ],
     githubRepository: "https://github.com/naims6/job-application-tracker.git",
     liveLink: "https://job-application6.vercel.app/",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Better Auth", "MongoDB", "Shadcn/ui"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Better Auth", "MongoDB", "Mongoose"],
   },
   {
     id: 3,

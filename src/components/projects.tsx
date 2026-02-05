@@ -21,6 +21,7 @@ import {
   SiSocketdotio,
   SiFramer,
   SiMui,
+  SiMongoose,
 } from "react-icons/si";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -87,6 +88,8 @@ export default function Projects() {
         return <SiExpress className="mr-1" />;
       case "MongoDB":
         return <SiMongodb className="mr-1 text-[#47A248]" />;
+      case "Mongoose":
+        return <SiMongoose className="mr-1 text-[#800020]" />;
       case "Firebase":
         return <SiFirebase className="mr-1 text-[#FFCA28]" />;
       case "Socket.io":

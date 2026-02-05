@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "react-hot-toast";
 import ThemeAwareLightRays from "@/components/bg/LightRays";
-import Fireflies from "@/components/bg/Fireflies";
+import SpaceBackground from "@/components/bg/SpaceBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,7 +72,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
         <div className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
-          <Fireflies />
+          <SpaceBackground />
           <ThemeAwareLightRays
             raysOrigin="top-center"
             raysSpeed={1.1}

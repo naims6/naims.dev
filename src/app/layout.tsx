@@ -18,49 +18,89 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://naims-dev.vercel.app"),
+
   title: {
     default: "Naim Sorker | Full Stack Developer",
     template: "%s | Naim Sorker",
   },
+
   description:
-    "Full-Stack Developer (MERN) specializing in building clean, scalable, and user-friendly web applications using Next.js, TypeScript, and Node.js.",
+    "Naim Sorker is a Full Stack Developer (MERN) specializing in building fast, scalable, and user-friendly web applications using Next.js, TypeScript, React, and Node.js.",
+
   keywords: [
-    "Next.js",
-    "TypeScript",
-    "React",
-    "Node.js",
-    "Express.js",
-    "MongoDB",
-    "Full Stack Developer",
-    "Portfolio",
-    "Web Development",
-    "Software Engineer",
     "Naim Sorker",
+    "Naim Sorker Full Stack Developer",
+    "MERN Stack Developer",
+    "Next.js Developer",
+    "React Developer",
+    "JavaScript Developer",
+    "TypeScript Developer",
+    "Web Developer Portfolio",
+    "Frontend Developer",
+    "Backend Developer",
   ],
-  authors: [{ name: "Naim Sorker", url: "https://github.com/naims6" }],
+
+  authors: [
+    {
+      name: "Naim Sorker",
+      url: "https://naims-dev.vercel.app",
+    },
+  ],
+
   creator: "Naim Sorker",
   publisher: "Naim Sorker",
+  applicationName: "Naim Sorker Portfolio",
+  category: "Technology",
+
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
   },
+
+  alternates: {
+    canonical: "https://naims-dev.vercel.app",
+  },
+
   openGraph: {
     title: "Naim Sorker | Full Stack Developer",
     description:
-      "Full-Stack Developer specializing in Next.js, React, and modern web technologies. Focus on clean code and user-centric design.",
-    url: "https://naims.dev",
-    siteName: "Naim Sorker Portfolio",
+      "Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies. Passionate about clean code and great user experiences.",
+    url: "https://naims-dev.vercel.app",
+    siteName: "Naim Sorker – Full Stack Developer",
+    images: [
+      {
+        url: "/public/assets/naims6_profile.png",
+        width: 1200,
+        height: 630,
+        alt: "Naim Sorker – Full Stack Developer Portfolio",
+      },
+    ],
     type: "website",
     locale: "en_US",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Naim Sorker | Full Stack Developer",
     description:
-      "Full-Stack Developer specializing in Next.js, React, and modern web technologies.",
-    creator: "@naims6",
+      "Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies.",
+    creator: "@naimsorker", 
+    images: ["/assets/naims6_profile.png"],
+  },
+
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
   },
 };
+
 
 export default function RootLayout({
   children,

@@ -20,6 +20,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://naims-dev.vercel.app"),
 
+  verification: {
+    google: "60soApdEaXJwnlo2xCuKIE86sxUgxnRHE_nqk3GIUEE",
+  },
+
   title: {
     default: "Naim Sorker | Full Stack Developer",
     template: "%s | Naim Sorker",
@@ -32,13 +36,10 @@ export const metadata: Metadata = {
     "Naim Sorker",
     "Naim Sorker Full Stack Developer",
     "MERN Stack Developer",
-    "Next.js Developer",
-    "React Developer",
-    "JavaScript Developer",
-    "TypeScript Developer",
     "Web Developer Portfolio",
     "Frontend Developer",
     "Backend Developer",
+    "Nayem Sorkar",
   ],
 
   authors: [
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
     siteName: "Naim Sorker – Full Stack Developer",
     images: [
       {
-        url: "/public/assets/naims6_profile.png",
+        url: "/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Naim Sorker – Full Stack Developer Portfolio",
@@ -90,8 +91,8 @@ export const metadata: Metadata = {
     title: "Naim Sorker | Full Stack Developer",
     description:
       "Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies.",
-    creator: "@naimsorker", 
-    images: ["/assets/naims6_profile.png"],
+    creator: "@naimsorker",
+    images: ["/assets/og-image.png"],
   },
 
   formatDetection: {
@@ -100,7 +101,6 @@ export const metadata: Metadata = {
     telephone: false,
   },
 };
-
 
 export default function RootLayout({
   children,

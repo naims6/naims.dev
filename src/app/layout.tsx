@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import ThemeAwareLightRays from "@/components/bg/LightRays";
 import SpaceBackground from "@/components/bg/SpaceBackground";
 import ChatWidget from "@/components/chat/ChatWidget";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,26 +21,22 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://naims-dev.vercel.app"),
 
-  verification: {
-    google: "60soApdEaXJwnlo2xCuKIE86sxUgxnRHE_nqk3GIUEE",
-  },
-
   title: {
     default: "Naim Sorker | Full Stack Developer",
     template: "%s | Naim Sorker",
   },
 
   description:
-    "Naim Sorker is a Full Stack Developer (MERN) specializing in building fast, scalable, and user-friendly web applications using Next.js, TypeScript, React, and Node.js.",
+    "Naim Sorker is a Full Stack Developer (MERN) specializing in building fast, scalable and user-friendly web applications using Next.js, React, TypeScript and Node.js.",
 
   keywords: [
     "Naim Sorker",
     "Naim Sorker Full Stack Developer",
+    "Naim Sorker Portfolio",
     "MERN Stack Developer",
-    "Web Developer Portfolio",
-    "Frontend Developer",
-    "Backend Developer",
-    "Nayem Sorkar",
+    "Next.js Developer",
+    "React Developer",
+    "Full Stack Developer Bangladesh",
   ],
 
   authors: [
@@ -51,8 +48,7 @@ export const metadata: Metadata = {
 
   creator: "Naim Sorker",
   publisher: "Naim Sorker",
-  applicationName: "Naim Sorker Portfolio",
-  category: "Technology",
+  applicationName: "Naim Sorker",
 
   robots: {
     index: true,
@@ -61,6 +57,8 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       "max-image-preview": "large",
+      "max-video-preview": -1,
+      "max-snippet": -1,
     },
   },
 
@@ -71,28 +69,32 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Naim Sorker | Full Stack Developer",
     description:
-      "Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies. Passionate about clean code and great user experiences.",
+      "Full Stack Developer specializing in Next.js, React, TypeScript and modern web technologies.",
     url: "https://naims-dev.vercel.app",
-    siteName: "Naim Sorker – Full Stack Developer",
-    images: [
-      {
-        url: "/assets/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Naim Sorker – Full Stack Developer Portfolio",
-      },
-    ],
+    siteName: "Naim Sorker",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "https://naims-dev.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Naim Sorker - Full Stack Developer Portfolio",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
     title: "Naim Sorker | Full Stack Developer",
     description:
-      "Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies.",
+      "Full Stack Developer specializing in Next.js, React and TypeScript.",
     creator: "@naimsorker",
-    images: ["/assets/og-image.png"],
+    images: ["https://naims-dev.vercel.app/og-image.png"],
+  },
+
+  verification: {
+    google: "60soApdEaXJwnlo2xCuKIE86sxUgxnRHE_nqk3GIUEE",
   },
 
   formatDetection: {
@@ -109,6 +111,39 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Script
+      id="website-schema"
+      type="application/ld+json"
+      strategy="afterInteractive"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Naim Sorker", 
+          url: "https://naims-dev.vercel.app", 
+        }),
+      }}
+    />
+
+    {/* Person Structured Data - Helps ranking for your name */}
+    <Script
+      id="person-schema"
+      type="application/ld+json"
+      strategy="afterInteractive"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Naim Sorker",
+          url: "https://naims-dev.vercel.app",
+          jobTitle: "Full Stack Developer",
+          sameAs: [
+            "https://github.com/naims6", 
+            "https://linkedin.com/in/naims6", 
+          ],
+        }),
+      }}
+    />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >

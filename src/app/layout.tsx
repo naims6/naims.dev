@@ -7,6 +7,7 @@ import ThemeAwareLightRays from "@/components/bg/LightRays";
 import SpaceBackground from "@/components/bg/SpaceBackground";
 import ChatWidget from "@/components/chat/ChatWidget";
 import Script from "next/script";
+import MousePencilEffect from "@/components/bg/MousePencilEffect";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -112,38 +113,38 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <Script
-      id="website-schema"
-      type="application/ld+json"
-      strategy="afterInteractive"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "Naim Sorker", 
-          url: "https://naims-dev.vercel.app", 
-        }),
-      }}
-    />
+        id="website-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Naim Sorker",
+            url: "https://naims-dev.vercel.app",
+          }),
+        }}
+      />
 
-    {/* Person Structured Data - Helps ranking for your name */}
-    <Script
-      id="person-schema"
-      type="application/ld+json"
-      strategy="afterInteractive"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: "Naim Sorker",
-          url: "https://naims-dev.vercel.app",
-          jobTitle: "Full Stack Developer",
-          sameAs: [
-            "https://github.com/naims6", 
-            "https://linkedin.com/in/naims6", 
-          ],
-        }),
-      }}
-    />
+      {/* Person Structured Data - Helps ranking for your name */}
+      <Script
+        id="person-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Naim Sorker",
+            url: "https://naims-dev.vercel.app",
+            jobTitle: "Full Stack Developer",
+            sameAs: [
+              "https://github.com/naims6",
+              "https://linkedin.com/in/naims6",
+            ],
+          }),
+        }}
+      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
@@ -157,7 +158,7 @@ export default function RootLayout({
             followMouse={true}
             mouseInfluence={0.1}
             noiseAmount={0.1}
-            distortion={0.04}
+            distortion={0.08}
             className="custom-rays"
           />
         </div>
@@ -167,6 +168,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <MousePencilEffect />
           {children}
           <Toaster position="bottom-right" reverseOrder={false} />
           <ChatWidget />

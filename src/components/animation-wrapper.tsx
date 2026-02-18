@@ -1,20 +1,20 @@
-"use client"
-import { useRef } from "react"
-import { motion, useInView, Variants } from "framer-motion"
+"use client";
+import { useRef } from "react";
+import { motion, useInView, Variants } from "framer-motion";
 
 interface BlurFadeProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
   variant?: {
-    hidden: { y: number }
-    visible: { y: number }
-  }
-  duration?: number
-  delay?: number
-  yOffset?: number
-  inView?: boolean
-  inViewMargin?: string
-  blur?: string
+    hidden: { y: number };
+    visible: { y: number };
+  };
+  duration?: number;
+  delay?: number;
+  yOffset?: number;
+  inView?: boolean;
+  inViewMargin?: string;
+  blur?: string;
 }
 
 export function BlurFade({
@@ -28,14 +28,17 @@ export function BlurFade({
   inViewMargin = "-50px",
   blur = "6px",
 }: BlurFadeProps) {
-  const ref = useRef(null)
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin as any })
-  const isInView = !inView || inViewResult
+  const ref = useRef(null);
+  const inViewResult = useInView(ref, {
+    once: true,
+    margin: inViewMargin as any,
+  });
+  const isInView = !inView || inViewResult;
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
     visible: { y: -yOffset, opacity: 1, filter: `blur(0px)` },
-  }
-  const combinedVariants = variant || defaultVariants
+  };
+  const combinedVariants = variant || defaultVariants;
   return (
     <motion.div
       ref={ref}
@@ -51,21 +54,21 @@ export function BlurFade({
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
 interface BlurFadeTextProps {
-  text: string
-  className?: string
+  text: string;
+  className?: string;
   variant?: {
-    hidden: { y: number }
-    visible: { y: number }
-  }
-  duration?: number
-  characterDelay?: number
-  delay?: number
-  yOffset?: number
-  animateByCharacter?: boolean
+    hidden: { y: number };
+    visible: { y: number };
+  };
+  duration?: number;
+  characterDelay?: number;
+  delay?: number;
+  yOffset?: number;
+  animateByCharacter?: boolean;
 }
 
 export function BlurFadeText({
@@ -81,12 +84,12 @@ export function BlurFadeText({
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: "blur(8px)" },
     visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
-  }
-  const combinedVariants = variant || defaultVariants
-  
+  };
+  const combinedVariants = variant || defaultVariants;
+
   // Use a ref and useInView to trigger animation only when visible
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-10%" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
     <div ref={ref} className={`flex flex-wrap ${className}`}>
@@ -94,44 +97,41 @@ export function BlurFadeText({
           Simplest for "by character" is just split string. 
           For "by word" (default usually better for long text) split by space. 
       */}
-      {animateByCharacter ? (
-         text.split("").map((char, i) => (
-          <motion.span
-            key={i}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={combinedVariants}
-            transition={{
-              duration,
-              delay: delay + i * characterDelay,
-              ease: "easeOut",
-            }}
-            className="inline-block"
-            style={{ width: char === " " ? "0.2em" : "auto" }} // Preserve space width
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-         ))
-      ) : (
-        // Animate by word
-        text.split(" ").map((word, i) => (
-          <motion.span
-            key={i}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={combinedVariants}
-            transition={{
-              duration,
-              delay: delay + i * (characterDelay * 2), // words need more delay spacing
-              ease: "easeOut",
-            }}
-            className="inline-block mr-[0.25em]"
-          >
-            {word}
-          </motion.span>
-        ))
-      )}
+      {animateByCharacter
+        ? text.split("").map((char, i) => (
+            <motion.span
+              key={i}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={combinedVariants}
+              transition={{
+                duration,
+                delay: delay + i * characterDelay,
+                ease: "easeOut",
+              }}
+              className="inline-block"
+              style={{ width: char === " " ? "0.2em" : "auto" }} // Preserve space width
+            >
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          ))
+        : // Animate by word
+          text.split(" ").map((word, i) => (
+            <motion.span
+              key={i}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={combinedVariants}
+              transition={{
+                duration,
+                delay: delay + i * (characterDelay * 2), // words need more delay spacing
+                ease: "easeOut",
+              }}
+              className="inline-block mr-[0.25em]"
+            >
+              {word}
+            </motion.span>
+          ))}
     </div>
-  )
+  );
 }
-

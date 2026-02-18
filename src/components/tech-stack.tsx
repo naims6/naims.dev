@@ -24,9 +24,9 @@ export default function TechStack() {
   return (
     <div className="mt-12">
       <BlurFade delay={0.2} inView>
-        <h1 className="text-xl font-medium mb-4 border-l-4 border-primary pl-3">
+        <h2 className="text-xl font-medium mb-4 border-l-4 border-primary pl-3">
           Current Tech Stack
-        </h1>
+        </h2>
       </BlurFade>
       <div className="grid gap-4 md:grid-cols-2 mt-5">
         {techStack.map((category, index) => (

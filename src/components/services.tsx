@@ -9,9 +9,9 @@ export default function Services() {
   return (
     <section className="mt-12" id="services">
       <BlurFade delay={0.2} inView>
-        <h1 className="text-xl font-medium mb-4 border-l-4 border-primary pl-3">
+        <h2 className="text-xl font-medium mb-4 border-l-4 border-primary pl-3">
           Services & Specializations
-        </h1>
+        </h2>
       </BlurFade>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6">
         {services.map((service, index) => (

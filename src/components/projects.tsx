@@ -124,9 +124,9 @@ export default function Projects() {
   return (
     <div className="mt-12 overflow-hidden">
       <BlurFade delay={0.2} inView>
-        <h1 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3">
+        <h2 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3">
           Recent Projects
-        </h1>
+        </h2>
       </BlurFade>
 
       {/* Desktop/Tablet View: Swiper Carousel */}

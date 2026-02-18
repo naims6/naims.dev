@@ -28,16 +28,20 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Naim Sorker is a Full Stack Developer (MERN) specializing in building fast, scalable and user-friendly web applications using Next.js, React, TypeScript and Node.js.",
+    "Naim Sorker is a professional Full Stack Developer (MERN) based in Bangladesh. Specializing in Next.js, React, TypeScript, and Node.js to build high-performance, scalable, and user-friendly web applications.",
 
   keywords: [
     "Naim Sorker",
+    "Naim Sorker Developer",
     "Naim Sorker Full Stack Developer",
     "Naim Sorker Portfolio",
-    "MERN Stack Developer",
-    "Next.js Developer",
-    "React Developer",
+    "Naim Sorker Bangladesh",
+    "Best MERN Stack Developer in Bangladesh Naim Sorker",
+    "Next.js Developer Bangladesh",
+    "React Developer Dhaka",
     "Full Stack Developer Bangladesh",
+    "Web Developer Naim Sorker",
+    "Creative Web Developer Portfolio Naim Sorker",
   ],
 
   authors: [
@@ -136,12 +140,28 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "Person",
             name: "Naim Sorker",
+            alternateName: "naims6",
             url: "https://naims-dev.vercel.app",
+            image: "https://naims-dev.vercel.app/assets/naims6_profile.png",
             jobTitle: "Full Stack Developer",
+            worksFor: {
+              "@type": "Organization",
+              name: "Freelance",
+            },
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Tangail",
+              addressRegion: "Dhaka",
+              addressCountry: "Bangladesh",
+            },
             sameAs: [
               "https://github.com/naims6",
               "https://linkedin.com/in/naims6",
+              "https://www.facebook.com/naim.sorker6",
+              "https://wa.me/+8801908390036",
             ],
+            description:
+              "Full Stack Developer specializing in MERN stack and Next.js.",
           }),
         }}
       />

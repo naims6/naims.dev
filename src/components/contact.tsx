@@ -107,9 +107,9 @@ export default function Contact() {
   return (
     <div className="mt-12 mb-2">
       <BlurFade delay={0.2} inView>
-        <h1 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3">
+        <h2 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3">
           Get in Touch
-        </h1>
+        </h2>
       </BlurFade>
       <BlurFade delay={0.25} inView>
         <Card className="bg-linear-to-br from-background/50 to-muted/50 backdrop-blur-2xl border-input shadow-md text-center py-8">

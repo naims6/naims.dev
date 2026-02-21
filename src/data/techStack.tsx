@@ -23,6 +23,8 @@ import {
   SiNetlify,
   SiMongoose,
   SiBetterstack,
+  SiFramer,
+  SiRedux,
 } from "react-icons/si";
 import { Monitor, Server, Database, Wrench } from "lucide-react";
 import { LuNetwork } from "react-icons/lu";
@@ -33,28 +35,28 @@ export const techStack = [
     icon: <Monitor className="w-4 h-4 mr-2" />,
     skills: [
       {
-        name: "Next.js",
-        icon: <SiNextdotjs className="mr-1" />,
-        color: "#000000",
-        description: "The React framework for production.",
-      },
-      {
         name: "React.js",
         icon: <SiReact className="mr-1 text-[#61DAFB]" />,
         color: "#61DAFB",
         description: "A JavaScript library for building user interfaces.",
       },
       {
-        name: "TypeScript",
-        icon: <SiTypescript className="mr-1 text-[#3178C6]" />,
-        color: "#3178C6",
-        description: "Typed superset of JavaScript.",
+        name: "Next.js",
+        icon: <SiNextdotjs className="mr-1" />,
+        color: "#000000",
+        description: "The React framework for production.",
       },
       {
         name: "JavaScript",
         icon: <SiJavascript className="mr-1 text-[#F7DF1E]" />,
         color: "#F7DF1E",
         description: "Dynamic scripting language for web.",
+      },
+      {
+        name: "TypeScript",
+        icon: <SiTypescript className="mr-1 text-[#3178C6]" />,
+        color: "#3178C6",
+        description: "Typed superset of JavaScript.",
       },
       {
         name: "HTML",
@@ -83,6 +85,18 @@ export const techStack = [
       {
         name: "Shadcn/ui",
         icon: <SiShadcnui className="mr-1" />,
+        color: "#000000",
+        description: "Re-usable components built with Radix UI.",
+      },
+      {
+        name: "Framer Motion",
+        icon: <SiFramer className="mr-1" />,
+        color: "#000000",
+        description: "Re-usable components built with Radix UI.",
+      },
+      {
+        name: "Redux Toolkit",
+        icon: <SiRedux className="mr-1" />,
         color: "#000000",
         description: "Re-usable components built with Radix UI.",
       },
@@ -128,6 +142,7 @@ export const techStack = [
         color: "#3B82F6",
         description: "Advanced authentication solution.",
       },
+      
     ],
   },
   {

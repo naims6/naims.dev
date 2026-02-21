@@ -52,22 +52,6 @@ export const projects = [
   },
 
   {
-    id: 7,
-    img: "/assets/projects/job-application-tracker.png",
-    name: "Job Application Tracker",
-    description: `A modern, intuitive web application to help you organize and track your job applications throughout your job search journey.`,
-    features: [
-      "Visual Kanban Boards: Organize your job applications with drag-and-drop columns (Applied, Interview, Offer, etc.)",
-      "Application Management: Keep track of company names, positions, application dates, and status",
-      "User Authentication: Secure sign-up and sign-in with Better Auth",
-      "Responsive Design: Works seamlessly on desktop and mobile devices",
-      "Free to Use: No credit card required, free forever",
-    ],
-    githubRepository: "https://github.com/naims6/job-application-tracker.git",
-    liveLink: "https://job-application6.vercel.app/",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Better Auth", "MongoDB", "Mongoose"],
-  },
-  {
     id: 3,
     img: "/assets/projects/thebookhaven.png",
     name: "The Book Haven",
@@ -82,6 +66,29 @@ export const projects = [
     githubRepository: "https://github.com/naims6/The-Book-Haven.git",
     liveLink: "https://the-book-haven-dusky.vercel.app/",
     tech: ["React.js", "Firebase", "Node.js", "Express.js", "MongoDB"],
+  },
+  {
+    id: 7,
+    img: "/assets/projects/job-application-tracker.png",
+    name: "Job Application Tracker",
+    description: `A modern, intuitive web application to help you organize and track your job applications throughout your job search journey.`,
+    features: [
+      "Visual Kanban Boards: Organize your job applications with drag-and-drop columns (Applied, Interview, Offer, etc.)",
+      "Application Management: Keep track of company names, positions, application dates, and status",
+      "User Authentication: Secure sign-up and sign-in with Better Auth",
+      "Responsive Design: Works seamlessly on desktop and mobile devices",
+      "Free to Use: No credit card required, free forever",
+    ],
+    githubRepository: "https://github.com/naims6/job-application-tracker.git",
+    liveLink: "https://job-application6.vercel.app/",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Better Auth",
+      "MongoDB",
+      "Mongoose",
+    ],
   },
   {
     id: 4,

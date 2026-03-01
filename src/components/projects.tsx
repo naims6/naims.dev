@@ -249,13 +249,31 @@ function ProjectCard({
             />
           </Link>
         </figure>
-        <CardContent className="flex-1 px-3 pb-3">
-          <div className="flex justify-between items-start mb-2 pt-2">
-            <h2 className="font-bold text-lg hover:underline truncate pr-2 text-foreground">
+        <CardContent className="flex flex-col flex-1 px-3 pb-2">
+          <div className="flex justify-between items-start mb-2 pt-1">
+            <h2 className="font-bold text-lg hover:underline truncate pr-1 text-foreground flex-1">
               <Link href={p.liveLink} target="_blank">
                 {p.name}
               </Link>
             </h2>
+          </div>
+          <p className="text-sm text-muted-foreground line-clamp-2 mb-4 italic">
+            {p.description}
+          </p>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {p.tech.map((t: string) => (
+              <Badge
+                key={t}
+                variant="outline"
+                className="text-[10px] font-medium uppercase tracking-tighter flex items-center px-2 py-0.5 rounded-lg border-muted/50 bg-muted/20"
+              >
+                {getTechIcon(t)}
+                {t}
+              </Badge>
+            ))}
+          </div>
+
+          <div className="mt-auto pt-2 border-t border-muted/30 flex items-center justify-between">
             <TooltipProvider>
               <div className="flex gap-1 shrink-0">
                 <Dialog>
@@ -351,6 +369,18 @@ function ProjectCard({
                             <ExternalLink className="mr-2 h-5 w-5" /> Live Demo
                           </Link>
                         </Button>
+                        {p.githubBackend && (
+                          <Button
+                            variant="outline"
+                            size="lg"
+                            className="flex-1 rounded-2xl py-6 font-bold"
+                            asChild
+                          >
+                            <Link href={p.githubBackend} target="_blank">
+                              <Github className="mr-2 h-5 w-5" /> Backend
+                            </Link>
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </DialogContent>
@@ -370,9 +400,35 @@ function ProjectCard({
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>View Source</p>
+                    <p>{p.githubBackend ? "Frontend Source" : "View Source"}</p>
                   </TooltipContent>
                 </Tooltip>
+
+                {p.githubBackend && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                        asChild
+                      >
+                        <Link href={p.githubBackend} target="_blank">
+                          <div className="relative">
+                            <Github className="h-4 w-4" />
+                            <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            </span>
+                          </div>
+                        </Link>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Backend Source</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
 
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -393,21 +449,6 @@ function ProjectCard({
                 </Tooltip>
               </div>
             </TooltipProvider>
-          </div>
-          <p className="text-sm text-muted-foreground line-clamp-2 mb-4 italic">
-            {p.description}
-          </p>
-          <div className="flex flex-wrap gap-1.5 mt-auto">
-            {p.tech.map((t: string) => (
-              <Badge
-                key={t}
-                variant="outline"
-                className="text-[10px] font-medium uppercase tracking-tighter flex items-center px-2 py-0.5 rounded-lg border-muted/50 bg-muted/20"
-              >
-                {getTechIcon(t)}
-                {t}
-              </Badge>
-            ))}
           </div>
         </CardContent>
       </Card>

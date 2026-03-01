@@ -49,6 +49,7 @@ export const projects = [
       "Firebase",
       "Stripe",
     ],
+    githubBackend: "https://github.com/naims6/Innovate-X-Server.git",
   },
 
   {
@@ -64,6 +65,7 @@ export const projects = [
       "Firebase-based secure user authentication",
     ],
     githubRepository: "https://github.com/naims6/The-Book-Haven.git",
+    githubBackend: "https://github.com/naims6/Book-Haven-Server.git",
     liveLink: "https://the-book-haven-dusky.vercel.app/",
     tech: ["React.js", "Firebase", "Node.js", "Express.js", "MongoDB"],
   },

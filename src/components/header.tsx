@@ -117,16 +117,7 @@ export default function Header() {
                   href: "https://wa.me/+8801908390036",
                   label: "+8801908390036",
                 },
-                {
-                  icon: SiDiscord,
-                  href: "https://discord.gg/naimsorker6",
-                  label: "Discord",
-                },
-                {
-                  icon: Facebook,
-                  href: "https://www.facebook.com/naim.sorker6",
-                  label: "Facebook",
-                },
+               
               ].map((social, idx) => (
                 <BlurFade key={social.label} delay={0.45 + idx * 0.05} inView>
                   <TooltipProvider>

@@ -23,7 +23,6 @@ import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { cn } from "@/lib/utils";
 
 type ContactFormData = {
   from_name: string;
@@ -79,17 +78,17 @@ export default function Contact() {
     {
       icon: <Mail className="w-5 h-5" />,
       title: "Email",
-      value: "amdadislam733@gmail.com",
+      value: "naim.sorker06@gmail.com",
     },
     {
       icon: <Phone className="w-5 h-5" />,
       title: "Phone",
-      value: "+880 1540-138209",
+      value: "+880 1908-390036",
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Location",
-      value: "Dhaka, Bangladesh",
+      value: "Tangail, Dhaka, Bangladesh",
     },
   ];
 
@@ -99,75 +98,81 @@ export default function Contact() {
       icon: <Linkedin className="w-5 h-5" />,
       href: "https://linkedin.com/in/naims6",
     },
-    { icon: <Facebook className="w-5 h-5" />, href: "https://facebook.com" },
-    { icon: <Twitter className="w-5 h-5" />, href: "https://twitter.com" },
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      href: "https://facebook.com/naim.sorker6",
+    },
     {
       icon: <FaWhatsapp className="w-5 h-5" />,
-      href: "https://wa.me/8801540138209",
+      href: "https://wa.me/01908390036",
     },
   ];
 
   return (
-    <section className="mt-20 mb-20" id="contact">
+    <section className="mt-20 mb-10" id="contact">
       <BlurFade delay={0.2} inView>
         <h2 className="text-xl font-medium mb-10 border-l-4 border-primary pl-3">
           Get in Touch
         </h2>
       </BlurFade>
 
-      <div className="grid md:grid-cols-2 gap-10 items-start">
-        {/* Left Side: Contact Info */}
-        <div className="space-y-10">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold tracking-tight text-foreground/90">
-              Contact Information
-            </h3>
+      <div className="grid md:grid-cols-2 gap-10 items-stretch">
+        {/* Left Side: Contact Info Card */}
+        <BlurFade delay={0.2} inView className="flex flex-col h-full">
+          <div className="flex-1 space-y-10 p-8 md:p-10 rounded-4xl  backdrop-blur-2xl border border-white/40 dark:border-white/10 overflow-hidden relative shadow-xl h-full flex flex-col justify-between">
+            <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent pointer-events-none" />
 
-            <div className="space-y-4">
-              {contactInfo.map((info, i) => (
-                <BlurFade key={info.title} delay={0.25 + i * 0.1} inView>
-                  <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white/30 dark:bg-black/20 backdrop-blur-xl border border-white/40 dark:border-white/5 hover:border-primary/50 transition-all duration-300 shadow-sm">
-                    <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                      {info.icon}
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-foreground/90 uppercase tracking-wider">
-                        {info.title}
-                      </p>
-                      <p className="text-sm text-muted-foreground font-medium">
-                        {info.value}
-                      </p>
-                    </div>
-                  </div>
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-
-          <BlurFade delay={0.6} inView>
-            <div className="space-y-6">
-              <h3 className="text-xl font-bold tracking-tight text-primary">
-                Follow Me
+            <div className="space-y-8 relative z-10">
+              <h3 className="text-2xl font-bold tracking-tight text-foreground/90">
+                Contact Information
               </h3>
-              <div className="flex gap-4">
-                {socialLinks.map((link, i) => (
-                  <Link
-                    key={i}
-                    href={link.href}
-                    target="_blank"
-                    className="p-3.5 rounded-xl bg-white/30 dark:bg-black/20 backdrop-blur-xl border border-white/40 dark:border-white/5 hover:border-primary/50 hover:text-primary transition-all duration-300 shadow-sm"
-                  >
-                    {link.icon}
-                  </Link>
+
+              <div className="space-y-4">
+                {contactInfo.map((info, i) => (
+                  <BlurFade key={info.title} delay={0.25 + i * 0.1} inView>
+                    <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm">
+                      <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                        {info.icon}
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-foreground/90 uppercase tracking-wider">
+                          {info.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground font-medium">
+                          {info.value}
+                        </p>
+                      </div>
+                    </div>
+                  </BlurFade>
                 ))}
               </div>
             </div>
-          </BlurFade>
-        </div>
 
-        {/* Right Side: Message Form */}
-        <BlurFade delay={0.4} inView>
-          <div className="p-8 md:p-10 rounded-4xl bg-white/30 dark:bg-zinc-900/40 backdrop-blur-2xl border border-white/40 dark:border-white/10 overflow-hidden relative shadow-xl">
+            <BlurFade delay={0.6} inView className="relative z-10">
+              <div className="space-y-6 pt-6 border-t border-white/10">
+                <h3 className="text-xl font-bold tracking-tight text-primary">
+                  Follow Me
+                </h3>
+                <div className="flex gap-4">
+                  {socialLinks.map((link, i) => (
+                    <Link
+                      key={i}
+                      href={link.href}
+                      target="_blank"
+                      className="p-3.5 rounded-xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 hover:text-primary transition-all duration-300 shadow-sm"
+                    >
+                      {link.icon}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </BlurFade>
+          </div>
+        </BlurFade>
+
+        {/* Right Side: Message Form Card */}
+        <BlurFade delay={0.4} inView className="flex flex-col h-full">
+          <div className="flex-1 p-8 md:p-10 rounded-4xl  backdrop-blur-2xl border border-white/40 dark:border-white/10 overflow-hidden relative shadow-xl h-full">
             <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent pointer-events-none" />
 
             <h3 className="text-2xl font-bold mb-8 relative z-10 text-foreground/90 tracking-tight">
@@ -176,7 +181,7 @@ export default function Contact() {
 
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="space-y-6 relative z-10"
+              className="space-y-6 relative z-10 flex-1 flex flex-col"
             >
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2.5">
@@ -190,7 +195,7 @@ export default function Contact() {
                     id="from_name"
                     placeholder="Your Full Name"
                     {...register("from_name", { required: "Name is required" })}
-                    className="bg-zinc-100/50 dark:bg-black/20 border-white/20 dark:border-white/5 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 h-12 rounded-xl transition-all"
+                    className="bg-zinc-100/50 dark:bg-white/5 border-white/20 dark:border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 h-12 rounded-xl transition-all"
                   />
                   {errors.from_name && (
                     <p className="text-[10px] font-bold text-destructive flex items-center gap-1 mt-1 ml-1 uppercase tracking-tighter">
@@ -217,7 +222,7 @@ export default function Contact() {
                         message: "Invalid email",
                       },
                     })}
-                    className="bg-zinc-100/50 dark:bg-black/20 border-white/20 dark:border-white/5 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 h-12 rounded-xl transition-all"
+                    className="bg-zinc-100/50 dark:bg-white/5 border-white/20 dark:border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 h-12 rounded-xl transition-all"
                   />
                   {errors.from_email && (
                     <p className="text-[10px] font-bold text-destructive flex items-center gap-1 mt-1 ml-1 uppercase tracking-tighter">
@@ -228,7 +233,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="space-y-2.5">
+              <div className="space-y-2.5 flex-1 flex flex-col">
                 <Label
                   htmlFor="message"
                   className="text-sm font-bold text-muted-foreground uppercase tracking-wider ml-1"
@@ -238,9 +243,8 @@ export default function Contact() {
                 <Textarea
                   id="message"
                   placeholder="Tell me about your project, requirements..."
-                  rows={6}
                   {...register("message", { required: "Message is required" })}
-                  className="bg-zinc-100/50 dark:bg-black/20 border-white/20 dark:border-white/5 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 rounded-2xl resize-none transition-all"
+                  className="bg-zinc-100/50 dark:bg-white/5 border-white/20 dark:border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 rounded-2xl resize-none transition-all flex-1 min-h-[150px]"
                 />
                 {errors.message && (
                   <p className="text-[10px] font-bold text-destructive flex items-center gap-1 mt-1 ml-1 uppercase tracking-tighter">

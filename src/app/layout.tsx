@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "react-hot-toast";
 import ThemeAwareLightRays from "@/components/bg/LightRays";
-import SpaceBackground from "@/components/bg/SpaceBackground";
 import ChatWidget from "@/components/chat/ChatWidget";
 import Script from "next/script";
 import MousePencilEffect from "@/components/bg/MousePencilEffect";
@@ -169,7 +168,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
         <div className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
-          <SpaceBackground />
           <ThemeAwareLightRays
             raysOrigin="top-center"
             raysSpeed={1.1}

@@ -237,7 +237,7 @@ function ProjectCard({
       transition={{ type: "spring", stiffness: 300 }}
       className="h-full"
     >
-      <Card className="overflow-hidden flex flex-col h-full hover:shadow-md transition-shadow pb-2">
+      <Card className="overflow-hidden flex flex-col h-full bg-white/30 dark:bg-white/5 backdrop-blur-xl border-white/40 dark:border-white/10 hover:shadow-xl transition-all pb-2 rounded-2xl">
         <figure className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden">
           <Link href={p.githubRepository} target="_blank">
             <Image

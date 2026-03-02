@@ -23,7 +23,6 @@ export default function Experience() {
     },
   ];
 
-
   return (
     <div className="mt-12">
       <BlurFade delay={0.2} inView>
@@ -39,11 +38,15 @@ export default function Experience() {
                 {exp.year}
               </div>
               <div className="pb-6 border-l pl-6 relative last:pb-0">
-                <div className="absolute w-3 h-3 bg-primary rounded-full -left-[6.5px] top-[6px]" />
-                <h3 className="font-medium leading-none mb-2">{exp.title}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {exp.description}
-                </p>
+                <div className="absolute w-3 h-3 bg-primary rounded-full -left-[6.5px] top-[14px] shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
+                <div className="p-4 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-sm">
+                  <h3 className="font-bold leading-none mb-2 text-foreground/90">
+                    {exp.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-medium italic">
+                    {exp.description}
+                  </p>
+                </div>
               </div>
             </div>
           </BlurFade>

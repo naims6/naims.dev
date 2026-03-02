@@ -50,6 +50,7 @@ import {
 } from "@/components/ui/tooltip";
 import { BlurFade } from "./animation-wrapper";
 import { projects } from "@/data/projects";
+import { SectionHeader } from "./section-header";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination as SwiperPagination } from "swiper/modules";
@@ -122,12 +123,11 @@ export default function Projects() {
   };
 
   return (
-    <div className="mt-12 overflow-hidden">
-      <BlurFade delay={0.2} inView>
-        <h2 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3">
-          Recent Projects
-        </h2>
-      </BlurFade>
+    <div className="mt-20 overflow-hidden">
+      <SectionHeader
+        title="Recent Projects"
+        className="px-4 max-w-6xl mx-auto"
+      />
 
       {/* Desktop/Tablet View: Swiper Carousel */}
       <div className="hidden md:block mt-5 relative">
@@ -148,7 +148,7 @@ export default function Projects() {
           grabCursor={true}
           className="pb-6"
         >
-          {projects.map((p, index) => (
+          {projects.map((p: any, index: number) => (
             <SwiperSlide key={p.id} className="h-auto">
               <BlurFade
                 delay={0.25 + (index % itemsPerPage) * 0.1}
@@ -164,7 +164,7 @@ export default function Projects() {
 
       {/* Mobile View: Static Grid */}
       <div className="md:hidden grid grid-cols-1 gap-6 mt-5">
-        {mobileCurrentProjects.map((p, index) => (
+        {mobileCurrentProjects.map((p: any, index: number) => (
           <BlurFade
             key={p.id}
             delay={0.25 + index * 0.1}

@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BlurFade } from "@/components/animation-wrapper";
+import { SectionHeader } from "./section-header";
 
 export default function Experience() {
   const experiences = [
@@ -24,12 +25,8 @@ export default function Experience() {
   ];
 
   return (
-    <div className="mt-12">
-      <BlurFade delay={0.2} inView>
-        <h2 className="font-medium text-xl mb-5 border-l-4 border-primary pl-3">
-          Experience
-        </h2>
-      </BlurFade>
+    <div className="mt-20">
+      <SectionHeader title="Experience" />
       <div className="flex flex-col gap-4">
         {experiences.map((exp, index) => (
           <BlurFade key={index} delay={0.25 + index * 0.1} inView yOffset={8}>

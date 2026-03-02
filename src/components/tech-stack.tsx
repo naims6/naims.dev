@@ -2,18 +2,15 @@
 import { motion } from "framer-motion";
 import { techStack } from "@/data/techStack";
 import { BlurFade } from "@/components/animation-wrapper";
+import { SectionHeader } from "./section-header";
 import { cn } from "@/lib/utils";
 
 export default function TechStack() {
   return (
-    <section className="mt-12" id="tech-stack">
-      <BlurFade delay={0.2} inView>
-        <h2 className="text-xl font-medium mb-4 border-l-4 border-primary pl-3">
-          Technical Skills
-        </h2>
-      </BlurFade>
+    <section className="mt-20" id="tech-stack">
+      <SectionHeader title="Technical Skills" />
       <div className="w-full max-w-7xl mx-auto space-y-10 mt-6">
-        {techStack.map((category: any, catIndex) => (
+        {techStack.map((category: any, catIndex: number) => (
           <div key={category.name} className="space-y-6">
             <BlurFade delay={0.1 * catIndex} inView>
               <div className="flex items-center gap-3">

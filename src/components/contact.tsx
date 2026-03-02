@@ -23,6 +23,7 @@ import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { SectionHeader } from "./section-header";
 
 type ContactFormData = {
   from_name: string;
@@ -109,12 +110,8 @@ export default function Contact() {
   ];
 
   return (
-    <section className="mt-20 mb-10" id="contact">
-      <BlurFade delay={0.2} inView>
-        <h2 className="text-xl font-medium mb-10 border-l-4 border-primary pl-3">
-          Get in Touch
-        </h2>
-      </BlurFade>
+    <section className="mt-20" id="contact">
+      <SectionHeader title="Get in Touch" className="px-4" />
 
       <div className="grid md:grid-cols-2 gap-10 items-stretch">
         {/* Left Side: Contact Info Card */}

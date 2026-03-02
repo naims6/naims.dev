@@ -71,33 +71,15 @@ export const techStack = [
         description: "Cascading Style Sheets.",
       },
       {
-        name: "Bootstrap",
-        icon: <SiBootstrap className="mr-1 text-[#7952B3]" />,
-        color: "#7952B3",
-        description: "Fast, responsive CSS framework.",
-      },
-      {
         name: "Tailwind CSS",
         icon: <SiTailwindcss className="mr-1 text-[#06B6D4]" />,
         color: "#06B6D4",
         description: "Utility-first CSS framework.",
       },
       {
-        name: "Shadcn/ui",
-        icon: <SiShadcnui className="mr-1" />,
-        color: "#000000",
-        description: "Re-usable components built with Radix UI.",
-      },
-      {
-        name: "Framer Motion",
-        icon: <SiFramer className="mr-1" />,
-        color: "#000000",
-        description: "Re-usable components built with Radix UI.",
-      },
-      {
-        name: "Redux Toolkit",
+        name: "Redux",
         icon: <SiRedux className="mr-1" />,
-        color: "#000000",
+        color: "#764ABC",
         description: "Re-usable components built with Radix UI.",
       },
     ],
@@ -120,7 +102,7 @@ export const techStack = [
       },
       {
         name: "REST APIs",
-        icon: null,
+        icon: <LuNetwork className="mr-1" />,
         color: "#4CAF50",
         description: "Representational State Transfer API design.",
       },
@@ -142,13 +124,6 @@ export const techStack = [
         color: "#3B82F6",
         description: "Advanced authentication solution.",
       },
-      
-    ],
-  },
-  {
-    name: "Database",
-    icon: <Database className="w-4 h-4 mr-2" />,
-    skills: [
       {
         name: "MongoDB",
         icon: <SiMongodb className="mr-1 text-[#47A248]" />,
@@ -164,7 +139,7 @@ export const techStack = [
     ],
   },
   {
-    name: "Tools & Others",
+    name: "Tools",
     icon: <Wrench className="w-4 h-4 mr-2" />,
     skills: [
       {
@@ -176,7 +151,7 @@ export const techStack = [
       {
         name: "GitHub",
         icon: <SiGithub className="mr-1" />,
-        color: "#181717",
+        color: "#000000",
         description: "Platform for hosting and collaboration.",
       },
       {

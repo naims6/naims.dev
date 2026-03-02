@@ -6,6 +6,7 @@ import { Award, Shield, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { BlurFade } from "./animation-wrapper";
 import { achievements } from "@/data/achievements";
+import { SectionHeader } from "./section-header";
 
 const iconMap: Record<string, React.ElementType> = {
   Award: Award,
@@ -14,12 +15,8 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function Achievements() {
   return (
-    <div className="mt-12">
-      <BlurFade delay={0.2} inView>
-        <h2 className="font-medium text-xl mb-5 border-l-4 border-primary pl-3">
-          Achievements & Certificates
-        </h2>
-      </BlurFade>
+    <div className="mt-20">
+      <SectionHeader title="Achievements & Certificates" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {achievements.map((achievement, index) => {
           const Icon = iconMap[achievement.iconName] || Award;

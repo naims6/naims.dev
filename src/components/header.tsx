@@ -1,14 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Facebook,
-  FileUser,
-  Github,
-  Linkedin,
-  Mail,
-  MapPin,
-} from "lucide-react";
-import { SiWhatsapp, SiDiscord } from "react-icons/si";
+import { FileUser, Github, Mail, MapPin } from "lucide-react";
+import { SiWhatsapp, SiLinkedin } from "react-icons/si";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,10 +12,11 @@ import {
 } from "@/components/ui/tooltip";
 import { BlurFade, BlurFadeText } from "@/components/animation-wrapper";
 import About from "./about";
+import { TechMarquee } from "./tech-marquee";
 
 export default function Header() {
   return (
-    <section className="py-6 lg:py-20">
+    <section className="py-6 lg:py-10 min-h-[750px] mt-5 lg:mt-10">
       <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-16">
         {/* Left Side: Name and Intro */}
         <div className="w-full lg:w-[60%] space-y-8">
@@ -34,7 +28,7 @@ export default function Header() {
             </BlurFade>
             <BlurFade delay={0.3} inView>
               <h2 className="text-2xl lg:text-3xl font-bold text-primary tracking-tight">
-               Junior Full-Stack Developer
+                Full-Stack Developer
               </h2>
             </BlurFade>
           </div>
@@ -98,7 +92,7 @@ export default function Header() {
             <div className="flex items-center gap-3">
               {[
                 {
-                  icon: Linkedin,
+                  icon: SiLinkedin,
                   href: "https://www.linkedin.com/in/naims6/",
                   label: "LinkedIn",
                 },
@@ -117,7 +111,6 @@ export default function Header() {
                   href: "https://wa.me/+8801908390036",
                   label: "+8801908390036",
                 },
-               
               ].map((social, idx) => (
                 <BlurFade key={social.label} delay={0.45 + idx * 0.05} inView>
                   <TooltipProvider>
@@ -147,6 +140,21 @@ export default function Header() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Tech Marquee Bottom Section */}
+      <div className="mt-16 pt-10">
+        <BlurFade delay={0.6} inView>
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center gap-4 px-4">
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary whitespace-nowrap">
+                Core Technologies
+              </span>
+              <div className="h-px bg-linear-to-r from-primary/20 via-primary/10 to-transparent flex-1" />
+            </div>
+            <TechMarquee />
+          </div>
+        </BlurFade>
       </div>
     </section>
   );

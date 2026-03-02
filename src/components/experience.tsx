@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BlurFade } from "@/components/animation-wrapper";
+import { SectionHeader } from "./section-header";
 
 export default function Experience() {
   const experiences = [
@@ -23,14 +24,9 @@ export default function Experience() {
     },
   ];
 
-
   return (
-    <div className="mt-12">
-      <BlurFade delay={0.2} inView>
-        <h2 className="font-medium text-xl mb-5 border-l-4 border-primary pl-3">
-          Experience
-        </h2>
-      </BlurFade>
+    <div className="mt-20">
+      <SectionHeader title="Experience" />
       <div className="flex flex-col gap-4">
         {experiences.map((exp, index) => (
           <BlurFade key={index} delay={0.25 + index * 0.1} inView yOffset={8}>
@@ -39,11 +35,15 @@ export default function Experience() {
                 {exp.year}
               </div>
               <div className="pb-6 border-l pl-6 relative last:pb-0">
-                <div className="absolute w-3 h-3 bg-primary rounded-full -left-[6.5px] top-[6px]" />
-                <h3 className="font-medium leading-none mb-2">{exp.title}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {exp.description}
-                </p>
+                <div className="absolute w-3 h-3 bg-primary rounded-full -left-[6.5px] top-[14px] shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
+                <div className="p-4 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-sm">
+                  <h3 className="font-bold leading-none mb-2 text-foreground/90">
+                    {exp.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-medium italic">
+                    {exp.description}
+                  </p>
+                </div>
               </div>
             </div>
           </BlurFade>

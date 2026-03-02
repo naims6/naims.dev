@@ -4,15 +4,12 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { services } from "@/data/services";
 import { BlurFade } from "@/components/animation-wrapper";
+import { SectionHeader } from "./section-header";
 
 export default function Services() {
   return (
-    <section className="mt-12" id="services">
-      <BlurFade delay={0.2} inView>
-        <h2 className="text-xl font-medium mb-4 border-l-4 border-primary pl-3">
-          Services & Specializations
-        </h2>
-      </BlurFade>
+    <section className="mt-6" id="services">
+      <SectionHeader title="Services & Specializations" />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6">
         {services.map((service, index) => (
           <BlurFade

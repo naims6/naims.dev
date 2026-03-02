@@ -1,30 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Mail, Check, Loader2, AlertCircle } from "lucide-react";
+import {
+  Mail,
+  Check,
+  Loader2,
+  AlertCircle,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Facebook,
+  Twitter,
+} from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,6 +23,7 @@ import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { SectionHeader } from "./section-header";
 
 type ContactFormData = {
   from_name: string;
@@ -41,9 +32,7 @@ type ContactFormData = {
 };
 
 export default function Contact() {
-  const [copied, setCopied] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const email = "naim.sorker06@gmail.com";
 
   const {
     register,
@@ -53,20 +42,9 @@ export default function Contact() {
   } = useForm<ContactFormData>();
 
   const onSubmit = async (data: ContactFormData) => {
-    // Validate message word count
     const wordCount = data.message.trim().split(/\s+/).length;
     if (wordCount < 5) {
-      toast.error("Message must be at least 5 words long.", {
-        style: {
-          border: "1px solid #713200",
-          padding: "16px",
-          color: "#713200",
-        },
-        iconTheme: {
-          primary: "#713200",
-          secondary: "#FFFAEE",
-        },
-      });
+      toast.error("Message must be at least 5 words long.");
       return;
     }
 
@@ -74,7 +52,6 @@ export default function Contact() {
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-    // Fallback if keys are not set (for safety)
     if (!serviceId || !templateId || !publicKey) {
       toast.error("Email service is not configured correctly.");
       return;
@@ -91,215 +68,207 @@ export default function Contact() {
       setIsSuccess(true);
       toast.success("Message sent successfully!");
       reset();
+      setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
       console.error(error);
       toast.error("Failed to send message. Please try again.");
     }
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-    toast.success("Email copied to clipboard!");
-  };
+  const contactInfo = [
+    {
+      icon: <Mail className="w-5 h-5" />,
+      title: "Email",
+      value: "naim.sorker06@gmail.com",
+    },
+    {
+      icon: <Phone className="w-5 h-5" />,
+      title: "Phone",
+      value: "+880 1908-390036",
+    },
+    {
+      icon: <MapPin className="w-5 h-5" />,
+      title: "Location",
+      value: "Tangail, Dhaka, Bangladesh",
+    },
+  ];
+
+  const socialLinks = [
+    { icon: <Github className="w-5 h-5" />, href: "https://github.com/naims6" },
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      href: "https://linkedin.com/in/naims6",
+    },
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      href: "https://facebook.com/naim.sorker6",
+    },
+    {
+      icon: <FaWhatsapp className="w-5 h-5" />,
+      href: "https://wa.me/01908390036",
+    },
+  ];
 
   return (
-    <div className="mt-12 mb-2">
-      <BlurFade delay={0.2} inView>
-        <h2 className="text-xl font-medium mb-5 border-l-4 border-primary pl-3">
-          Get in Touch
-        </h2>
-      </BlurFade>
-      <BlurFade delay={0.25} inView>
-        <Card className="bg-linear-to-br from-background/50 to-muted/50 backdrop-blur-2xl border-input shadow-md text-center py-8">
-          <CardHeader>
-            <CardTitle className="text-3xl font-bold tracking-tight mb-2">
-              Let&apos;s Work Together!
-            </CardTitle>
-            <CardDescription className="text-base max-w-lg mx-auto">
-              I&apos;m currently looking for new opportunities. Whether you have
-              a question or just want to say hi, I&apos;ll try my best to get
-              back to you!
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col items-center gap-4">
-            <div className="flex items-center gap-2 mt-2">
-              <Dialog onOpenChange={(open) => !open && setIsSuccess(false)}>
-                <DialogTrigger asChild>
-                  <Button
-                    size="lg"
-                    className="gap-2 text-base font-medium px-8"
-                  >
-                    <Mail className="w-5 h-5" />
-                    Say Hello
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>Say Hello!</DialogTitle>
-                    <DialogDescription>
-                      Send me a message and I&apos;ll get back to you as soon as
-                      possible.
-                    </DialogDescription>
-                  </DialogHeader>
-                  {isSuccess ? (
-                    <div className="flex flex-col items-center justify-center py-10 space-y-4 animate-in fade-in zoom-in duration-300">
-                      <div className="rounded-full bg-green-100 p-3 dark:bg-green-900/30">
-                        <Check className="h-8 w-8 text-green-600 dark:text-green-400" />
-                      </div>
-                      <h3 className="text-xl font-semibold">Message Sent!</h3>
-                      <p className="text-center text-muted-foreground px-4">
-                        Thank you for reaching out! I&apos;ve received your
-                        message and will respond as soon as I can.
-                      </p>
-                      <Button
-                        variant="outline"
-                        onClick={() => setIsSuccess(false)}
-                        className="mt-4"
-                      >
-                        Send Another
-                      </Button>
-                    </div>
-                  ) : (
-                    <form
-                      onSubmit={handleSubmit(onSubmit)}
-                      className="grid gap-4 py-4"
-                    >
-                      <div className="grid gap-2">
-                        <Label htmlFor="from_name" className="text-left">
-                          Name
-                        </Label>
-                        <Input
-                          id="from_name"
-                          placeholder="Your name"
-                          {...register("from_name", {
-                            required: "Name is required",
-                          })}
-                          disabled={isSubmitting}
-                          className={errors.from_name ? "border-red-500" : ""}
-                        />
-                        {errors.from_name && (
-                          <span className="text-xs text-red-500 text-left flex items-center gap-1">
-                            <AlertCircle className="w-3 h-3" />{" "}
-                            {errors.from_name.message}
-                          </span>
-                        )}
-                      </div>
-                      <div className="grid gap-2">
-                        <Label htmlFor="from_email" className="text-left">
-                          Email
-                        </Label>
-                        <Input
-                          id="from_email"
-                          type="email"
-                          placeholder="Your email"
-                          {...register("from_email", {
-                            required: "Email is required",
-                            pattern: {
-                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                              message: "Invalid email address",
-                            },
-                          })}
-                          disabled={isSubmitting}
-                          className={errors.from_email ? "border-red-500" : ""}
-                        />
-                        {errors.from_email && (
-                          <span className="text-xs text-red-500 text-left flex items-center gap-1">
-                            <AlertCircle className="w-3 h-3" />{" "}
-                            {errors.from_email.message}
-                          </span>
-                        )}
-                      </div>
-                      <div className="grid gap-2">
-                        <Label htmlFor="message" className="text-left">
-                          Message{" "}
-                          <span className="text-xs text-muted-foreground font-normal">
-                            (min 5 words)
-                          </span>
-                        </Label>
-                        <Textarea
-                          id="message"
-                          placeholder="Type your message here..."
-                          {...register("message", {
-                            required: "Message is required",
-                          })}
-                          disabled={isSubmitting}
-                          className={errors.message ? "border-red-500" : ""}
-                        />
-                        {errors.message && (
-                          <span className="text-xs text-red-500 text-left flex items-center gap-1">
-                            <AlertCircle className="w-3 h-3" />{" "}
-                            {errors.message.message}
-                          </span>
-                        )}
-                      </div>
-                      <DialogFooter>
-                        <Button
-                          type="submit"
-                          className="w-full"
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                              Sending...
-                            </>
-                          ) : (
-                            "Send Message"
-                          )}
-                        </Button>
-                      </DialogFooter>
-                    </form>
-                  )}
-                </DialogContent>
-              </Dialog>
+    <section className="mt-20" id="contact">
+      <SectionHeader title="Get in Touch" className="px-4" />
 
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="w-12 px-0"
-                      onClick={handleCopy}
-                    >
-                      {copied ? (
-                        <Check className="w-5 h-5 text-green-500" />
-                      ) : (
-                        <Copy className="w-5 h-5" />
-                      )}
-                      <span className="sr-only">Copy email</span>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{copied ? "Copied!" : "Copy email"}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+      <div className="grid md:grid-cols-2 gap-10 items-stretch">
+        {/* Left Side: Contact Info Card */}
+        <BlurFade delay={0.2} inView className="flex flex-col h-full">
+          <div className="flex-1 space-y-10 p-8 md:p-10 rounded-4xl  backdrop-blur-2xl border border-white/40 dark:border-white/10 overflow-hidden relative shadow-xl h-full flex flex-col justify-between">
+            <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent pointer-events-none" />
+
+            <div className="space-y-8 relative z-10">
+              <h3 className="text-2xl font-bold tracking-tight text-foreground/90">
+                Contact Information
+              </h3>
+
+              <div className="space-y-4">
+                {contactInfo.map((info, i) => (
+                  <BlurFade key={info.title} delay={0.25 + i * 0.1} inView>
+                    <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm">
+                      <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                        {info.icon}
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-foreground/90 uppercase tracking-wider">
+                          {info.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground font-medium">
+                          {info.value}
+                        </p>
+                      </div>
+                    </div>
+                  </BlurFade>
+                ))}
+              </div>
             </div>
 
-            <p className="text-sm text-muted-foreground mt-4">
-              Or find me on{" "}
-              <Link
-                href="https://www.linkedin.com/in/naims6/"
-                target="_blank"
-                className="text-foreground font-medium"
+            <BlurFade delay={0.6} inView className="relative z-10">
+              <div className="space-y-6 pt-6 border-t border-white/10">
+                <h3 className="text-xl font-bold tracking-tight text-primary">
+                  Follow Me
+                </h3>
+                <div className="flex gap-4">
+                  {socialLinks.map((link, i) => (
+                    <Link
+                      key={i}
+                      href={link.href}
+                      target="_blank"
+                      className="p-3.5 rounded-xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 hover:text-primary transition-all duration-300 shadow-sm"
+                    >
+                      {link.icon}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </BlurFade>
+          </div>
+        </BlurFade>
+
+        {/* Right Side: Message Form Card */}
+        <BlurFade delay={0.4} inView className="flex flex-col h-full">
+          <div className="flex-1 p-8 md:p-10 rounded-4xl  backdrop-blur-2xl border border-white/40 dark:border-white/10 overflow-hidden relative shadow-xl h-full">
+            <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent pointer-events-none" />
+
+            <h3 className="text-2xl font-bold mb-8 relative z-10 text-foreground/90 tracking-tight">
+              Send Message
+            </h3>
+
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="space-y-6 relative z-10 flex-1 flex flex-col"
+            >
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-2.5">
+                  <Label
+                    htmlFor="from_name"
+                    className="text-sm font-bold text-muted-foreground uppercase tracking-wider ml-1"
+                  >
+                    Full Name
+                  </Label>
+                  <Input
+                    id="from_name"
+                    placeholder="Your Full Name"
+                    {...register("from_name", { required: "Name is required" })}
+                    className="bg-zinc-100/50 dark:bg-white/5 border-white/20 dark:border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 h-12 rounded-xl transition-all"
+                  />
+                  {errors.from_name && (
+                    <p className="text-[10px] font-bold text-destructive flex items-center gap-1 mt-1 ml-1 uppercase tracking-tighter">
+                      <AlertCircle className="w-3 h-3" />{" "}
+                      {errors.from_name.message}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-2.5">
+                  <Label
+                    htmlFor="from_email"
+                    className="text-sm font-bold text-muted-foreground uppercase tracking-wider ml-1"
+                  >
+                    Email Address
+                  </Label>
+                  <Input
+                    id="from_email"
+                    type="email"
+                    placeholder="your email"
+                    {...register("from_email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: "Invalid email",
+                      },
+                    })}
+                    className="bg-zinc-100/50 dark:bg-white/5 border-white/20 dark:border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 h-12 rounded-xl transition-all"
+                  />
+                  {errors.from_email && (
+                    <p className="text-[10px] font-bold text-destructive flex items-center gap-1 mt-1 ml-1 uppercase tracking-tighter">
+                      <AlertCircle className="w-3 h-3" />{" "}
+                      {errors.from_email.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="space-y-2.5 flex-1 flex flex-col">
+                <Label
+                  htmlFor="message"
+                  className="text-sm font-bold text-muted-foreground uppercase tracking-wider ml-1"
+                >
+                  Message
+                </Label>
+                <Textarea
+                  id="message"
+                  placeholder="Tell me about your project, requirements..."
+                  {...register("message", { required: "Message is required" })}
+                  className="bg-zinc-100/50 dark:bg-white/5 border-white/20 dark:border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 rounded-2xl resize-none transition-all flex-1 min-h-[150px]"
+                />
+                {errors.message && (
+                  <p className="text-[10px] font-bold text-destructive flex items-center gap-1 mt-1 ml-1 uppercase tracking-tighter">
+                    <AlertCircle className="w-3 h-3" /> {errors.message.message}
+                  </p>
+                )}
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-14 text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 shadow-lg shadow-primary/20 rounded-xl"
               >
-                LinkedIn
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="https://github.com/naims6"
-                target="_blank"
-                className="text-foreground font-medium"
-              >
-                GitHub
-              </Link>
-            </p>
-          </CardContent>
-        </Card>
-      </BlurFade>
-    </div>
+                {isSubmitting ? (
+                  <Loader2 className="w-6 h-6 animate-spin text-primary-foreground" />
+                ) : isSuccess ? (
+                  <div className="flex items-center gap-2">
+                    <Check className="w-6 h-6" /> Sent Successfully
+                  </div>
+                ) : (
+                  "Send Message"
+                )}
+              </Button>
+            </form>
+          </div>
+        </BlurFade>
+      </div>
+    </section>
   );
 }

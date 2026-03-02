@@ -25,6 +25,8 @@ import {
   SiBetterstack,
   SiFramer,
   SiRedux,
+  SiPostgresql,
+  SiPrisma,
 } from "react-icons/si";
 import { Monitor, Server, Database, Wrench } from "lucide-react";
 import { LuNetwork } from "react-icons/lu";
@@ -32,8 +34,26 @@ import { LuNetwork } from "react-icons/lu";
 export const techStack = [
   {
     name: "Frontend",
-    icon: <Monitor className="w-4 h-4 mr-2" />,
+    // icon: <Monitor className="w-4 h-4 mr-2" />,
     skills: [
+      {
+        name: "HTML",
+        icon: <SiHtml5 className="mr-1 text-[#E34F26]" />,
+        color: "#E34F26",
+        description: "Markup language for the web.",
+      },
+      {
+        name: "CSS",
+        icon: <SiCss3 className="mr-1 text-[#1572B6]" />,
+        color: "#1572B6",
+        description: "Cascading Style Sheets.",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: <SiTailwindcss className="mr-1 text-[#06B6D4]" />,
+        color: "#06B6D4",
+        description: "Utility-first CSS framework.",
+      },
       {
         name: "React.js",
         icon: <SiReact className="mr-1 text-[#61DAFB]" />,
@@ -59,24 +79,6 @@ export const techStack = [
         description: "Typed superset of JavaScript.",
       },
       {
-        name: "HTML",
-        icon: <SiHtml5 className="mr-1 text-[#E34F26]" />,
-        color: "#E34F26",
-        description: "Markup language for the web.",
-      },
-      {
-        name: "CSS",
-        icon: <SiCss3 className="mr-1 text-[#1572B6]" />,
-        color: "#1572B6",
-        description: "Cascading Style Sheets.",
-      },
-      {
-        name: "Tailwind CSS",
-        icon: <SiTailwindcss className="mr-1 text-[#06B6D4]" />,
-        color: "#06B6D4",
-        description: "Utility-first CSS framework.",
-      },
-      {
         name: "Redux",
         icon: <SiRedux className="mr-1" />,
         color: "#764ABC",
@@ -86,7 +88,7 @@ export const techStack = [
   },
   {
     name: "Backend",
-    icon: <Server className="w-4 h-4 mr-2" />,
+    // icon: <Server className="w-4 h-4 mr-2" />,
     skills: [
       {
         name: "Node.js",
@@ -100,30 +102,7 @@ export const techStack = [
         color: "#000000",
         description: "Web application framework for Node.js.",
       },
-      {
-        name: "REST APIs",
-        icon: <LuNetwork className="mr-1" />,
-        color: "#4CAF50",
-        description: "Representational State Transfer API design.",
-      },
-      {
-        name: "NextAuth.js",
-        icon: <SiN26 className="mr-1 text-[#F24E1E]" />,
-        color: "#F24E1E",
-        description: "Authentication for Next.js applications.",
-      },
-      {
-        name: "Firebase Auth..",
-        icon: <SiFirebase className="mr-1 text-[#FFCA28]" />,
-        color: "#FFCA28",
-        description: "Authentication and backend services.",
-      },
-      {
-        name: "Better Auth",
-        icon: <LuNetwork className="mr-1" />,
-        color: "#3B82F6",
-        description: "Advanced authentication solution.",
-      },
+
       {
         name: "MongoDB",
         icon: <SiMongodb className="mr-1 text-[#47A248]" />,
@@ -131,16 +110,40 @@ export const techStack = [
         description: "NoSQL document database.",
       },
       {
+        name: "PostgreSQL",
+        icon: <SiPostgresql className="mr-1 text-[#336791]" />,
+        color: "#336791",
+        description: "Relational database management system.",
+      },
+      {
         name: "Mongoose",
         icon: <SiMongoose className="mr-1 text-[#880000]" />,
         color: "#880000",
         description: "MongoDB object modeling for Node.js.",
       },
+      {
+        name: "Prisma",
+        icon: <SiPrisma className="mr-1 text-[#336791]" />,
+        color: "#336791",
+        description: "Database toolkit for Node.js.",
+      },
+      {
+        name: "REST APIs",
+        icon: <LuNetwork className="mr-1" />,
+        color: "#4CAF50",
+        description: "Representational State Transfer API design.",
+      },
+      {
+        name: "Firebase",
+        icon: <SiFirebase className="mr-1 text-[#FFCA28]" />,
+        color: "#FFCA28",
+        description: "Authentication and backend services.",
+      },
     ],
   },
   {
-    name: "Tools",
-    icon: <Wrench className="w-4 h-4 mr-2" />,
+    name: "Others",
+    // icon: <Wrench className="w-4 h-4 mr-2" />,
     skills: [
       {
         name: "Git",

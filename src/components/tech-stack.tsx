@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { techStack } from "@/data/techStack";
 import { BlurFade } from "@/components/animation-wrapper";
+import { cn } from "@/lib/utils";
 
 export default function TechStack() {
   return (
@@ -12,13 +13,15 @@ export default function TechStack() {
         </h2>
       </BlurFade>
       <div className="w-full max-w-7xl mx-auto space-y-10 mt-6">
-        {techStack.map((category, catIndex) => (
+        {techStack.map((category: any, catIndex) => (
           <div key={category.name} className="space-y-6">
             <BlurFade delay={0.1 * catIndex} inView>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                  {category.icon}
-                </div>
+                {category.icon && (
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    {category.icon}
+                  </div>
+                )}
                 <h3 className="text-lg font-semibold tracking-tight text-foreground/90">
                   {category.name}
                 </h3>
@@ -36,8 +39,22 @@ export default function TechStack() {
                   <motion.div
                     whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="group relative flex flex-col items-center justify-center p-4 rounded-2xl bg-white/30 dark:bg-zinc-900/40 hover:bg-white/50 dark:hover:bg-zinc-900/60 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/40 transition-all duration-300 aspect-square shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] overflow-hidden"
+                    className={cn(
+                      "group relative flex flex-col items-center justify-center p-4 rounded-2xl backdrop-blur-xl border transition-all duration-300 aspect-square overflow-hidden",
+                      skill.featured
+                        ? "bg-primary/5 dark:bg-primary/10 border-primary/40 shadow-[0_0_20px_rgba(var(--primary),0.15)] ring-1 ring-primary/20"
+                        : "bg-white/30 dark:bg-zinc-900/40 border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.4)]",
+                    )}
                   >
+                    {skill.featured && (
+                      <div className="absolute top-2 right-2 flex items-center gap-1">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                        <span className="text-[8px] font-bold text-primary uppercase tracking-tighter">
+                          Core
+                        </span>
+                      </div>
+                    )}
+
                     <div className="absolute inset-0 bg-linear-to-br from-white/20 to-transparent dark:from-white/5 dark:to-transparent opacity-50 pointer-events-none" />
 
                     <div

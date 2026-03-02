@@ -8,7 +8,7 @@ import { SectionHeader } from "./section-header";
 
 export default function Services() {
   return (
-    <section className="mt-20" id="services">
+    <section className="mt-6" id="services">
       <SectionHeader title="Services & Specializations" />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6">
         {services.map((service, index) => (

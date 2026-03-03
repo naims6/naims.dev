@@ -10,7 +10,6 @@ const Experience = dynamic(() => import("@/components/experience"));
 const Achievements = dynamic(() => import("@/components/achievements"));
 const Contact = dynamic(() => import("@/components/contact"));
 const Footer = dynamic(() => import("@/components/footer"));
-const ScrollToTop = dynamic(() => import("@/components/scroll-to-top"));
 
 export default function Home() {
   return (
@@ -24,7 +23,6 @@ export default function Home() {
       <Achievements />
       <Contact />
       <Footer />
-      <ScrollToTop />
     </main>
   );
 }

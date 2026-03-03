@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export default function TechStack() {
   return (
-    <section className="mt-20" id="tech-stack">
+    <section className="mt-20 scroll-mt-28" id="tech-stack">
       <SectionHeader title="Technical Skills" />
       <div className="w-full max-w-7xl mx-auto space-y-10 mt-6">
         {techStack.map((category: any, catIndex: number) => (
@@ -38,9 +38,7 @@ export default function TechStack() {
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
                     className={cn(
                       "group relative flex flex-col items-center justify-center p-4 rounded-2xl backdrop-blur-xl border transition-all duration-300 aspect-square overflow-hidden",
-                      skill.featured
-                        ? "bg-primary/5 dark:bg-primary/10 border-primary/40 shadow-[0_0_20px_rgba(var(--primary),0.15)] ring-1 ring-primary/20"
-                        : "bg-white/30 dark:bg-white/5 border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.4)]",
+                      "bg-white/30 dark:bg-white/5 border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:border-primary/50",
                     )}
                   >
                     {skill.featured && (

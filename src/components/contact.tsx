@@ -105,18 +105,18 @@ export default function Contact() {
     },
     {
       icon: <FaWhatsapp className="w-5 h-5" />,
-      href: "https://wa.me/01908390036",
+      href: "https://wa.me/+8801908390036",
     },
   ];
 
   return (
-    <section className="mt-20" id="contact">
+    <section className="mt-20 scroll-mt-28" id="contact">
       <SectionHeader title="Get in Touch" className="px-4" />
 
       <div className="grid md:grid-cols-2 gap-10 items-stretch">
         {/* Left Side: Contact Info Card */}
         <BlurFade delay={0.2} inView className="flex flex-col h-full">
-          <div className="flex-1 space-y-10 p-8 md:p-10 rounded-4xl  backdrop-blur-2xl border border-white/40 dark:border-white/10 overflow-hidden relative shadow-xl h-full flex flex-col justify-between">
+          <div className="flex-1 space-y-10 p-8 md:p-10 rounded-3xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] overflow-hidden relative h-full flex flex-col justify-between transition-all duration-300">
             <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent pointer-events-none" />
 
             <div className="space-y-8 relative z-10">
@@ -127,7 +127,7 @@ export default function Contact() {
               <div className="space-y-4">
                 {contactInfo.map((info, i) => (
                   <BlurFade key={info.title} delay={0.25 + i * 0.1} inView>
-                    <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm">
+                    <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm">
                       <div className="p-3 rounded-xl bg-primary/10 text-primary">
                         {info.icon}
                       </div>
@@ -156,7 +156,7 @@ export default function Contact() {
                       key={i}
                       href={link.href}
                       target="_blank"
-                      className="p-3.5 rounded-xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 hover:text-primary transition-all duration-300 shadow-sm"
+                      className="p-3.5 rounded-xl bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 hover:text-primary transition-all duration-300 shadow-sm"
                     >
                       {link.icon}
                     </Link>
@@ -169,7 +169,7 @@ export default function Contact() {
 
         {/* Right Side: Message Form Card */}
         <BlurFade delay={0.4} inView className="flex flex-col h-full">
-          <div className="flex-1 p-8 md:p-10 rounded-4xl  backdrop-blur-2xl border border-white/40 dark:border-white/10 overflow-hidden relative shadow-xl h-full">
+          <div className="flex-1 p-8 md:p-10 rounded-3xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] overflow-hidden relative h-full transition-all duration-300">
             <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent pointer-events-none" />
 
             <h3 className="text-2xl font-bold mb-8 relative z-10 text-foreground/90 tracking-tight">
@@ -252,8 +252,10 @@ export default function Contact() {
 
               <Button
                 type="submit"
+                variant="primary"
+                size="lg"
                 disabled={isSubmitting}
-                className="w-full h-14 text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 shadow-lg shadow-primary/20 rounded-xl"
+                className="w-full"
               >
                 {isSubmitting ? (
                   <Loader2 className="w-6 h-6 animate-spin text-primary-foreground" />

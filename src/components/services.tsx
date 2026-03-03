@@ -23,7 +23,7 @@ export default function Services() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="h-full"
             >
-              <Card className="h-full shadow-sm border-muted-foreground/10 bg-card/50 backdrop-blur-sm group overflow-hidden relative">
+              <Card className="h-full bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] group overflow-hidden relative rounded-2xl transition-all duration-300 hover:border-primary/50">
                 {/* Space Vibe Glow on Hover */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"

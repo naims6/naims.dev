@@ -101,10 +101,10 @@ export default function Projects() {
 
       <SectionHeader
         title="Featured Projects"
-        className="px-4 max-w-6xl mx-auto mb-12"
+        className="max-w-6xl mx-auto mb-12"
       />
 
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayProjects.map((p: any, index: number) => (
             <BlurFade key={p.id} delay={0.1 * index} inView className="h-full">
@@ -115,11 +115,7 @@ export default function Projects() {
 
         <div className="mt-12 flex justify-center">
           <Link href="/projects">
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-transparent border-border hover:bg-accent text-muted-foreground hover:text-foreground rounded-xl px-10 py-7 text-base font-semibold transition-all group"
-            >
+            <Button variant="secondary" size="lg" className="group">
               View All Projects
               <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>

@@ -35,7 +35,7 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="h-full"
     >
-      <Card className="overflow-hidden flex flex-col h-full bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] p-1 hover:border-primary/50 transition-all duration-300 rounded-2xl group">
+      <Card className="overflow-hidden flex flex-col h-full bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] p-0 hover:border-primary/50 transition-all duration-300 rounded-2xl group">
         {/* Project Image Container */}
         <div className="p-3">
           <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-muted/20">
@@ -86,73 +86,13 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
           </div>
 
           <div className="mt-auto pt-6 flex items-center justify-between gap-3">
-            {/* View Details Dialog */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button className="bg-[#00a3ff] hover:bg-[#0082cc] text-white rounded-xl px-5 py-4 h-auto font-semibold text-xs transition-all shadow-lg shadow-blue-500/20 group/btn">
-                  View Details
-                  <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-2xl bg-background border-border text-foreground rounded-3xl overflow-hidden">
-                <DialogHeader>
-                  <DialogTitle className="text-3xl font-bold mb-4">
-                    {p.name}
-                  </DialogTitle>
-                  <DialogDescription className="text-muted-foreground text-base leading-relaxed">
-                    {p.description}
-                  </DialogDescription>
-                </DialogHeader>
-
-                <div className="space-y-6 mt-4">
-                  <div className="relative aspect-video rounded-2xl overflow-hidden border border-border">
-                    <Image
-                      src={p.img}
-                      alt={p.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-sm font-semibold uppercase tracking-wider text-[#00a3ff]">
-                      Key Features
-                    </h4>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      {p.features?.map((f: string, i: number) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-sm text-muted-foreground"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#00a3ff] mt-1.5 shrink-0" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="flex flex-wrap gap-4 pt-4">
-                    <Button
-                      asChild
-                      className="bg-[#00a3ff] hover:bg-[#0082cc] text-white rounded-xl flex-1 py-6"
-                    >
-                      <Link href={p.liveLink} target="_blank">
-                        <ExternalLink className="mr-2 w-4 h-4" /> Live Demo
-                      </Link>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      asChild
-                      className="border-border hover:bg-accent text-foreground rounded-xl flex-1 py-6"
-                    >
-                      <Link href={p.githubRepository} target="_blank">
-                        <Github className="mr-2 w-4 h-4" /> Source Code
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </DialogContent>
-            </Dialog>
+            {/* View Details Link */}
+            <Button asChild variant="primary" size="sm" className="group/btn">
+              <Link href={`/projects/${p.id}`}>
+                View Details
+                <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
 
             {/* Quick Links */}
             <div className="flex items-center gap-5">

@@ -91,11 +91,7 @@ export default function AllProjectsPage() {
           </div>
           <div className="mt-12 flex justify-center">
             <Link href="/">
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-transparent border-border hover:bg-accent text-muted-foreground hover:text-foreground rounded-xl px-10 py-7 text-base font-semibold transition-all group"
-              >
+              <Button variant="secondary" size="lg" className="group">
                 <ArrowLeft className="mr-2 w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                 Return Home
               </Button>

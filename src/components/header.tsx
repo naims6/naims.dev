@@ -76,7 +76,9 @@ export default function Header() {
             <BlurFade delay={0.4} inView>
               <Button
                 asChild
-                className="w-full lg:w-auto px-14 py-8 rounded-3xl shadow-2xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-2 transition-all duration-500 bg-primary text-primary-foreground text-xl font-black group"
+                variant="primary"
+                size="lg"
+                className="w-full lg:w-auto"
               >
                 <Link
                   href="https://drive.google.com/file/d/17ddZZoizrm1hG_hBnAUgl7DT0nThFWRh/view?usp=sharing"
@@ -117,10 +119,10 @@ export default function Header() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Button
-                          variant="outline"
+                          variant="secondary"
                           size="icon"
                           asChild
-                          className="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-background/50 backdrop-blur-md hover:bg-primary/10 hover:text-primary border-muted/40 hover:border-primary/30 transition-all duration-500 hover:-translate-y-1.5 shadow-xl"
+                          className="w-12 h-12 lg:w-16 lg:h-16 shadow-xl"
                         >
                           <Link href={social.href} target="_blank">
                             <social.icon className="h-5 w-5 lg:h-7 lg:w-7" />

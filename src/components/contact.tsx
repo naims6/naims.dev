@@ -252,8 +252,10 @@ export default function Contact() {
 
               <Button
                 type="submit"
+                variant="primary"
+                size="lg"
                 disabled={isSubmitting}
-                className="w-full h-14 text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 shadow-lg shadow-primary/20 rounded-xl"
+                className="w-full"
               >
                 {isSubmitting ? (
                   <Loader2 className="w-6 h-6 animate-spin text-primary-foreground" />

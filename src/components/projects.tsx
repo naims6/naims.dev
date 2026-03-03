@@ -96,7 +96,7 @@ export default function Projects() {
   const displayProjects = projects.slice(0, 3);
 
   return (
-    <section className="mt-20 relative">
+    <section className="mt-20 relative scroll-mt-28" id="projects">
       <div className="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
 
       <SectionHeader

@@ -25,7 +25,7 @@ export default function Experience() {
   ];
 
   return (
-    <div className="mt-20">
+    <div className="mt-20 scroll-mt-28" id="experience">
       <SectionHeader title="Experience" />
       <div className="flex flex-col gap-4">
         {experiences.map((exp, index) => (

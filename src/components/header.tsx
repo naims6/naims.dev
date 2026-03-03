@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FileUser, Github, Mail, MapPin } from "lucide-react";
-import { SiWhatsapp, SiLinkedin } from "react-icons/si";
+import { FileUser, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -94,7 +94,7 @@ export default function Header() {
             <div className="flex items-center gap-3">
               {[
                 {
-                  icon: SiLinkedin,
+                  icon: Linkedin,
                   href: "https://www.linkedin.com/in/naims6/",
                   label: "LinkedIn",
                 },

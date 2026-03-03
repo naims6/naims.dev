@@ -110,7 +110,7 @@ export default function Contact() {
   ];
 
   return (
-    <section className="mt-20" id="contact">
+    <section className="mt-20 scroll-mt-28" id="contact">
       <SectionHeader title="Get in Touch" className="px-4" />
 
       <div className="grid md:grid-cols-2 gap-10 items-stretch">

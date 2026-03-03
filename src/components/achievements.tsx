@@ -19,7 +19,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function Achievements() {
   return (
-    <div className="mt-20">
+    <div className="mt-20 scroll-mt-28" id="achievements">
       <SectionHeader title="Achievements & Certificates" className="mb-12" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {achievements.map((achievement, index) => {

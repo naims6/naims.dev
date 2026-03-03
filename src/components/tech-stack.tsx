@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export default function TechStack() {
   return (
-    <section className="mt-20" id="tech-stack">
+    <section className="mt-20 scroll-mt-28" id="tech-stack">
       <SectionHeader title="Technical Skills" />
       <div className="w-full max-w-7xl mx-auto space-y-10 mt-6">
         {techStack.map((category: any, catIndex: number) => (

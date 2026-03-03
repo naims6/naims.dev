@@ -36,7 +36,7 @@ export default function Experience() {
               </div>
               <div className="pb-6 border-l pl-6 relative last:pb-0">
                 <div className="absolute w-3 h-3 bg-primary rounded-full -left-[6.5px] top-[14px] shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
-                <div className="p-4 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-sm">
+                <div className="p-4 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
                   <h3 className="font-bold leading-none mb-2 text-foreground/90">
                     {exp.title}
                   </h3>

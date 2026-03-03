@@ -28,7 +28,7 @@ export default function Achievements() {
               yOffset={8}
             >
               <Link href={achievement.link} target="_blank">
-                <Card className="hover:shadow-md transition-shadow group cursor-pointer h-full">
+                <Card className="bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] transition-all duration-300 hover:border-primary/50 group cursor-pointer h-full rounded-2xl">
                   <CardContent className="p-4 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className="p-2 bg-primary/10 rounded-lg text-primary">

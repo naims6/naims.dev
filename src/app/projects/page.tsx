@@ -71,11 +71,11 @@ export default function AllProjectsPage() {
     <main className="flex flex-col min-h-screen mx-auto px-4 max-w-6xl">
       <Navbar />
 
-      <section className="mt-20 mb-32 relative">
+      <section className="mt-12 mb-20 relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none z-0" />
 
         <div className="relative z-10">
-          <SectionHeader title="All My Projects" className="mb-16" />
+          <SectionHeader title="All My Projects" className="mb-12" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((p: any, index: number) => (
@@ -89,12 +89,12 @@ export default function AllProjectsPage() {
               </BlurFade>
             ))}
           </div>
-          <div className="mt-20 flex justify-center">
+          <div className="mt-12 flex justify-center">
             <Link href="/">
               <Button
                 variant="outline"
                 size="lg"
-                className="bg-transparent border-white/10 hover:bg-white/5 text-gray-300 hover:text-white rounded-xl px-10 py-7 text-base font-semibold transition-all group"
+                className="bg-transparent border-border hover:bg-accent text-muted-foreground hover:text-foreground rounded-xl px-10 py-7 text-base font-semibold transition-all group"
               >
                 <ArrowLeft className="mr-2 w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                 Return Home

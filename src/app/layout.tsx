@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "react-hot-toast";
 import ThemeAwareLightRays from "@/components/bg/LightRays";
-import ChatWidget from "@/components/chat/ChatWidget";
+import ChatWidget from "@/components/chat/ChatWidgetWrapper";
 import Script from "next/script";
 import MousePencilEffect from "@/components/bg/MousePencilEffect";
 

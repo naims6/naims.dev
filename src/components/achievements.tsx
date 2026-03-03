@@ -4,11 +4,13 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Award, Shield, ExternalLink, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { BlurFade } from "./animation-wrapper";
 import { achievements } from "@/data/achievements";
 import { SectionHeader } from "./section-header";
 import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 
 const iconMap: Record<string, React.ElementType> = {
   Award: Award,
@@ -19,7 +21,7 @@ export default function Achievements() {
   return (
     <div className="mt-20">
       <SectionHeader title="Achievements & Certificates" className="mb-12" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {achievements.map((achievement, index) => {
           const Icon = iconMap[achievement.iconName] || Award;
           return (
@@ -31,11 +33,27 @@ export default function Achievements() {
             >
               <Card className="group overflow-hidden flex flex-col h-full bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] transition-all duration-300 hover:border-primary/50 rounded-2xl">
                 {/* Certificate Image Preview */}
-                <div className="p-1.5">
+                <div className="p-1.5 relative">
+                  {achievement.status && achievement.status !== "completed" && (
+                    <div className="absolute top-4 right-4 z-20">
+                      <Badge
+                        variant="secondary"
+                        className="bg-primary/20 text-primary border-primary/20 backdrop-blur-md px-3 py-1 text-[10px] uppercase tracking-wider font-bold"
+                      >
+                        {achievement.status === "upcoming"
+                          ? "Upcoming"
+                          : "On-board"}
+                      </Badge>
+                    </div>
+                  )}
                   <figure className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted/20">
                     <Link href={achievement.link} target="_blank">
                       <Image
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className={cn(
+                          "object-cover transition-transform duration-500 group-hover:scale-110",
+                          achievement.status === "upcoming" &&
+                            "opacity-60 grayscale-[0.5]",
+                        )}
                         src={achievement.image}
                         alt={achievement.title}
                         fill
@@ -73,7 +91,11 @@ export default function Achievements() {
                       className="w-full bg-white/50 dark:bg-white/5 border-white/20 dark:border-white/10 hover:bg-primary text-foreground/80 dark:text-gray-300 hover:text-primary-foreground hover:border-primary rounded-xl py-3.5 transition-all duration-300 font-semibold text-[11px] h-auto group/btn"
                     >
                       <Link href={achievement.link} target="_blank">
-                        View Certificate
+                        {achievement.status === "upcoming"
+                          ? "Onboarding Path"
+                          : achievement.status === "on-board"
+                            ? "Course Details"
+                            : "View Certificate"}
                         <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-0.5 transition-transform" />
                       </Link>
                     </Button>

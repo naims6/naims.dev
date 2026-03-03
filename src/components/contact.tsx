@@ -105,7 +105,7 @@ export default function Contact() {
     },
     {
       icon: <FaWhatsapp className="w-5 h-5" />,
-      href: "https://wa.me/01908390036",
+      href: "https://wa.me/+8801908390036",
     },
   ];
 

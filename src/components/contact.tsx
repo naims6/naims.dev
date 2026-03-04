@@ -11,7 +11,6 @@ import {
   Github,
   Linkedin,
   Facebook,
-  Twitter,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";

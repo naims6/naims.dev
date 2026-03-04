@@ -1,11 +1,7 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { ExternalLink, Github, Info, ChevronRight } from "lucide-react";
-
+import { ChevronRight } from "lucide-react";
 import {
   SiNextdotjs,
   SiReact,
@@ -23,31 +19,7 @@ import {
   SiMui,
   SiMongoose,
 } from "react-icons/si";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { BlurFade } from "./animation-wrapper";
 import { projects } from "@/data/projects";
 import { SectionHeader } from "./section-header";

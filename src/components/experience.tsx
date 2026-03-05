@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BlurFade } from "@/components/animation-wrapper";
 import { SectionHeader } from "./section-header";
 

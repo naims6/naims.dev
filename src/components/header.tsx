@@ -16,7 +16,7 @@ import { TechMarquee } from "./tech-marquee";
 
 export default function Header() {
   return (
-    <section className="py-6 lg:py-10 min-h-[750px] mt-5 lg:mt-10">
+    <section className="py-6 lg:py-10 min-h-[750px] mt-1 lg:mt-10">
       <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-16">
         {/* Left Side: Name and Intro */}
         <div className="w-full lg:w-[60%] space-y-8">

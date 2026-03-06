@@ -31,13 +31,15 @@ export const metadata: Metadata = {
 
   keywords: [
     "Naim Sorker",
+    "Naim Sarker",
+    "Nayem Sarker",
     "Naim Sorker Developer",
-    "Naim Sorker Full Stack Developer",
+    "Naim Sorker Full Stack Developer Portfolio",
     "Naim Sorker Portfolio",
     "Naim Sorker Bangladesh",
-    "Best MERN Stack Developer in Bangladesh Naim Sorker",
+    "Best MERN Stack Developer in Bangladesh Naim Sorker Portfolio",
     "Next.js Developer Bangladesh",
-    "React Developer Dhaka",
+    "React Developer Portfolio Dhaka, Bangladesh",
     "Full Stack Developer Bangladesh",
     "Web Developer Naim Sorker",
     "Creative Web Developer Portfolio Naim Sorker",
@@ -160,7 +162,7 @@ export default function RootLayout({
               "https://wa.me/+8801908390036",
             ],
             description:
-              "Full Stack Developer specializing in MERN stack and Next.js.",
+              "Full Stack Developer specializing in MERN stack and Next.js. Naim Sorker",
           }),
         }}
       />

@@ -21,12 +21,12 @@ export default function Header() {
         {/* Left Side: Name and Intro */}
         <div className="w-full lg:w-[60%] space-y-8">
           <div className="space-y-3">
-            <BlurFade delay={0.1} inView>
+            <BlurFade delay={0} inView>
               <h1 className="text-5xl lg:text-7xl font-black tracking-tight leading-none text-foreground">
-                <BlurFadeText text="Naim Sorker" delay={0.2} />
+               Naim Sorker
               </h1>
             </BlurFade>
-            <BlurFade delay={0.3} inView>
+            <BlurFade delay={0.1} inView>
               <h2 className="text-2xl lg:text-3xl font-bold text-primary tracking-tight">
                 Full-Stack Developer
               </h2>
@@ -37,7 +37,7 @@ export default function Header() {
             <About />
           </div>
 
-          <BlurFade delay={0.5} inView>
+          <BlurFade delay={0.2} inView>
             <div className="flex items-center gap-2 text-muted-foreground/80 font-semibold uppercase tracking-widest text-sm lg:text-base">
               <MapPin className="text-primary" size={20} />
               <span>Tangail, Dhaka, Bangladesh</span>
@@ -47,7 +47,7 @@ export default function Header() {
 
         {/* Right Side: Profile Photo and Socials */}
         <div className="w-full lg:w-[35%] flex flex-col items-center lg:items-end gap-10">
-          <BlurFade delay={0.2} inView>
+          <BlurFade delay={0.05} inView>
             <div className="relative group">
               {/* Decorative background element */}
               <div className="absolute -inset-4 bg-linear-to-tr from-primary/30 to-blue-500/20 rounded-[2.5rem] lg:rounded-[3.5rem] blur-2xl opacity-30 group-hover:opacity-80 transition duration-1000" />
@@ -60,6 +60,7 @@ export default function Header() {
                   width={256}
                   height={256}
                   priority
+                  {...({ fetchPriority: "high" } as any)}
                 />
               </div>
 
@@ -83,6 +84,7 @@ export default function Header() {
                 <Link
                   href="https://drive.google.com/file/d/17ddZZoizrm1hG_hBnAUgl7DT0nThFWRh/view?usp=sharing"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-between gap-3"
                 >
                   <FileUser className="h-7 w-7 group-hover:scale-110 transition-transform" />
@@ -124,7 +126,12 @@ export default function Header() {
                           asChild
                           className="w-12 h-12 lg:w-16 lg:h-16 shadow-xl"
                         >
-                          <Link href={social.href} target="_blank">
+                          <Link
+                            href={social.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={social.label}
+                          >
                             <social.icon className="h-5 w-5 lg:h-7 lg:w-7" />
                           </Link>
                         </Button>

@@ -41,6 +41,7 @@ export default function Footer() {
               <Link
                 href="https://www.facebook.com/naim.sorker6"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-foreground hover:text-primary transition-colors font-bold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-primary after:transition-all hover:after:w-full"
               >
                 Naim Sorker
@@ -55,6 +56,7 @@ export default function Footer() {
                 key={link.label}
                 href={link.href}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="p-2.5 rounded-xl bg-muted/30 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20 backdrop-blur-sm"
                 aria-label={link.label}
               >

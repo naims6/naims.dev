@@ -3,19 +3,20 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "react-hot-toast";
-import ThemeAwareLightRays from "@/components/bg/LightRays";
 import ChatWidget from "@/components/chat/ChatWidgetWrapper";
 import Script from "next/script";
-import MousePencilEffect from "@/components/bg/MousePencilEffect";
+import BackgroundWrapper from "@/components/bg/BackgroundWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -31,13 +32,15 @@ export const metadata: Metadata = {
 
   keywords: [
     "Naim Sorker",
+    "Naim Sarker",
+    "Nayem Sarker",
     "Naim Sorker Developer",
-    "Naim Sorker Full Stack Developer",
+    "Naim Sorker Full Stack Developer Portfolio",
     "Naim Sorker Portfolio",
     "Naim Sorker Bangladesh",
-    "Best MERN Stack Developer in Bangladesh Naim Sorker",
+    "Best MERN Stack Developer in Bangladesh Naim Sorker Portfolio",
     "Next.js Developer Bangladesh",
-    "React Developer Dhaka",
+    "React Developer Portfolio Dhaka, Bangladesh",
     "Full Stack Developer Bangladesh",
     "Web Developer Naim Sorker",
     "Creative Web Developer Portfolio Naim Sorker",
@@ -115,6 +118,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <Script
         id="website-schema"
         type="application/ld+json"
@@ -160,33 +173,20 @@ export default function RootLayout({
               "https://wa.me/+8801908390036",
             ],
             description:
-              "Full Stack Developer specializing in MERN stack and Next.js.",
+              "Full Stack Developer specializing in MERN stack and Next.js. Naim Sorker",
           }),
         }}
       />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
-        <div className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
-          <ThemeAwareLightRays
-            raysOrigin="top-center"
-            raysSpeed={1.1}
-            lightSpread={0.9}
-            rayLength={1.2}
-            followMouse={true}
-            mouseInfluence={0.1}
-            noiseAmount={0.1}
-            distortion={0.08}
-            className="custom-rays"
-          />
-        </div>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <MousePencilEffect />
+          <BackgroundWrapper />
           {children}
           <Toaster position="bottom-right" reverseOrder={false} />
           <ChatWidget />

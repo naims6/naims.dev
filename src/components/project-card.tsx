@@ -24,7 +24,12 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
         {/* Project Image Container */}
         <div className="p-3">
           <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-muted/20">
-            <Link href={p.liveLink} target="_blank">
+            <Link
+              href={p.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Live demo of ${p.name}`}
+            >
               <Image
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 src={p.img}
@@ -84,6 +89,7 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
               <Link
                 href={p.liveLink}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 <span>Live</span>
@@ -92,7 +98,9 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
               <Link
                 href={p.githubRepository}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                aria-label={`View ${p.name} on GitHub`}
               >
                 <span>Code</span>
                 <Github className="w-3.5 h-3.5" />

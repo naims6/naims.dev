@@ -6,11 +6,11 @@ import Image from "next/image";
 import { Award, Shield, ExternalLink, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
-import { BlurFade } from "./animation-wrapper";
+import { BlurFade } from "../animation-wrapper";
 import { achievements } from "@/data/achievements";
-import { SectionHeader } from "./section-header";
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
+import { SectionHeader } from "../section-header";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 const iconMap: Record<string, React.ElementType> = {
   Award: Award,

@@ -2,10 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import {
-  Moon,
-  Sun,
   Home,
   Cpu,
   Briefcase,
@@ -17,16 +14,11 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { BlurFade } from "@/components/animation-wrapper";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
+
   const [mounted, setMounted] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
@@ -35,10 +27,6 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   const navLinks = [
     { name: "Home", href: "/", icon: Home },
     { name: "Skills", href: "#tech-stack", icon: Cpu },
@@ -46,50 +34,6 @@ export default function Navbar() {
     { name: "Awards", href: "#achievements", icon: Trophy },
     { name: "Contact", href: "#contact", icon: Mail },
   ];
-
-  // Professional Theme Toggle Component
-  const ThemeToggle = () => (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full w-10 h-10 bg-background/50 hover:bg-primary/10 hover:text-primary border border-border/40 backdrop-blur-sm transition-all duration-300"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {theme === "dark" ? (
-                <motion.div
-                  key="moon"
-                  initial={{ rotate: -90, scale: 0, opacity: 0 }}
-                  animate={{ rotate: 0, scale: 1, opacity: 1 }}
-                  exit={{ rotate: 90, scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Moon className="h-[1.1rem] w-[1.1rem]" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="sun"
-                  initial={{ rotate: -90, scale: 0, opacity: 0 }}
-                  animate={{ rotate: 0, scale: 1, opacity: 1 }}
-                  exit={{ rotate: 90, scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Sun className="h-[1.1rem] w-[1.1rem]" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent align="end">
-          <p>Toggle theme</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
 
   if (!mounted) {
     return (
@@ -168,7 +112,7 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-x-4 top-24 z-50 md:hidden"
           >
-            <div className="p-4 rounded-[2rem] bg-white/80 dark:bg-black/80 backdrop-blur-3xl border border-white/40 dark:border-white/10 shadow-2xl flex flex-col gap-2">
+            <div className="p-4 rounded-4xl bg-white/80 dark:bg-black/80 backdrop-blur-3xl border border-white/40 dark:border-white/10 shadow-2xl flex flex-col gap-2">
               {navLinks.map((link, idx) => (
                 <motion.div
                   key={link.name}

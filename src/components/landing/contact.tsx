@@ -22,7 +22,7 @@ import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { SectionHeader } from "./section-header";
+import { SectionHeader } from "../section-header";
 
 type ContactFormData = {
   from_name: string;

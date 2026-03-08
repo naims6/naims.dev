@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { techStack } from "@/data/techStack";
 import { BlurFade } from "@/components/animation-wrapper";
-import { SectionHeader } from "./section-header";
+import { SectionHeader } from "../section-header";
 import { cn } from "@/lib/utils";
 
 export default function TechStack() {

@@ -1,14 +1,14 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/navbar";
-import Header from "@/components/header";
+import Header from "@/components/landing/header";
 
 // Lazy load components below the fold
-const Services = dynamic(() => import("@/components/services"));
-const TechStack = dynamic(() => import("@/components/tech-stack"));
-const Projects = dynamic(() => import("@/components/projects"));
-const Experience = dynamic(() => import("@/components/experience"));
-const Achievements = dynamic(() => import("@/components/achievements"));
-const Contact = dynamic(() => import("@/components/contact"));
+const Services = dynamic(() => import("@/components/landing/services"));
+const TechStack = dynamic(() => import("@/components/landing/tech-stack"));
+const Projects = dynamic(() => import("@/components/landing/projects"));
+const Experience = dynamic(() => import("@/components/landing/experience"));
+const Achievements = dynamic(() => import("@/components/landing/achievements"));
+const Contact = dynamic(() => import("@/components/landing/contact"));
 const Footer = dynamic(() => import("@/components/footer"));
 
 export default function Home() {

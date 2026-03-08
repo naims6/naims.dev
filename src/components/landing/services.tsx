@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { services } from "@/data/services";
 import { BlurFade } from "@/components/animation-wrapper";
-import { SectionHeader } from "./section-header";
+import { SectionHeader } from "../section-header";
 
 export default function Services() {
   return (

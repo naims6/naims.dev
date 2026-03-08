@@ -20,11 +20,11 @@ import {
   SiMongoose,
 } from "react-icons/si";
 import { Button } from "@/components/ui/button";
-import { BlurFade } from "./animation-wrapper";
+import { BlurFade } from "../animation-wrapper";
 import { projects } from "@/data/projects";
-import { SectionHeader } from "./section-header";
+import { SectionHeader } from "../section-header";
 
-import { ProjectCard } from "./project-card";
+import { ProjectCard } from "../project-card";
 
 export default function Projects() {
   const getTechIcon = (tech: string) => {

@@ -1,5 +1,5 @@
 import { BlurFade } from "@/components/animation-wrapper";
-import { SectionHeader } from "./section-header";
+import { SectionHeader } from "../section-header";
 
 export default function Experience() {
   const experiences = [

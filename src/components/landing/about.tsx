@@ -1,4 +1,4 @@
-import { BlurFade } from "./animation-wrapper";
+import { BlurFade } from "../animation-wrapper";
 
 export default function About() {
   return (

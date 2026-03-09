@@ -23,7 +23,7 @@ export default function Header() {
           <div className="space-y-3">
             <BlurFade delay={0} inView>
               <h1 className="text-5xl lg:text-7xl font-black tracking-tight leading-none text-foreground">
-               Naim Sorker
+                Naim Sorker
               </h1>
             </BlurFade>
             <BlurFade delay={0.1} inView>
@@ -50,7 +50,7 @@ export default function Header() {
           <BlurFade delay={0.05} inView>
             <div className="relative group">
               {/* Decorative background element */}
-              <div className="absolute -inset-4 bg-linear-to-tr from-primary/30 to-blue-500/20 rounded-[2.5rem] lg:rounded-[3.5rem] blur-2xl opacity-30 group-hover:opacity-80 transition duration-1000" />
+              <div className="absolute -inset-4 bg-linear-to-tr from-primary/10 to-blue-500/10 rounded-[2.5rem] lg:rounded-[3.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative w-40 h-40 lg:w-64 lg:h-64 rounded-[2.5rem] lg:rounded-[3.5rem] overflow-hidden border-8 border-background shadow-xl transition-all duration-700 group-hover:shadow-primary/20 group-hover:-translate-y-2">
                 <Image

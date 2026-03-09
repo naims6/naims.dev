@@ -72,7 +72,7 @@ export default function AllProjectsPage() {
       <Navbar />
 
       <section className="mt-12 mb-20 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none z-0" />
+        {/* Decorative gradient removed for cleaner look */}
 
         <div className="relative z-10">
           <SectionHeader title="All My Projects" className="mb-12" />

@@ -69,7 +69,7 @@ export default function Projects() {
 
   return (
     <section className="mt-20 relative scroll-mt-28" id="projects">
-      <div className="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+      {/* Decorative gradient removed for cleaner look */}
 
       <SectionHeader
         title="Featured Projects"
@@ -77,7 +77,7 @@ export default function Projects() {
       />
 
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayProjects.map((p: any, index: number) => (
             <BlurFade key={p.id} delay={0.1 * index} inView className="h-full">
               <ProjectCard project={p} getTechIcon={getTechIcon} />

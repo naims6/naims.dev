@@ -35,8 +35,8 @@ export function BlurFade({
   });
   const isInView = !inView || inViewResult;
   const defaultVariants: Variants = {
-    hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
-    visible: { y: -yOffset, opacity: 1, filter: `blur(0px)` },
+    hidden: { y: yOffset, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   };
   const combinedVariants = variant || defaultVariants;
   return (
@@ -82,8 +82,8 @@ export function BlurFadeText({
   animateByCharacter = false,
 }: BlurFadeTextProps) {
   const defaultVariants: Variants = {
-    hidden: { y: yOffset, opacity: 0, filter: "blur(8px)" },
-    visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
+    hidden: { y: yOffset, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   };
   const combinedVariants = variant || defaultVariants;
 

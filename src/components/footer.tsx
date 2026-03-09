@@ -68,7 +68,7 @@ export default function Footer() {
       </div>
 
       {/* Subtle bottom glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-24 bg-primary/5 blur-3xl -z-10 rounded-full" />
+      {/* Decorative gradient removed for cleaner look */}
     </footer>
   );
 }

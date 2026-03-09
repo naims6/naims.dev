@@ -140,7 +140,7 @@ export default function Header() {
                       </TooltipTrigger>
                       <TooltipContent
                         sideOffset={8}
-                        className="bg-primary text-primary-foreground border-none px-4 py-2 rounded-xl shadow-2xl font-black text-sm"
+                        className="hidden lg:block bg-primary text-primary-foreground border-none px-4 py-2 rounded-xl shadow-2xl font-black text-sm"
                       >
                         {social.label}
                       </TooltipContent>

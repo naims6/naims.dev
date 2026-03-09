@@ -98,7 +98,7 @@ export default function ProjectDetailPage() {
       <Navbar />
 
       <section className="mt-12 mb-20 relative px-4 sm:px-6 lg:px-8">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none z-0" />
+        {/* Decorative gradient removed for cleaner look */}
 
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Project Title */}

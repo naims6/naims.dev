@@ -178,7 +178,7 @@ html {
 
 /* Professional Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 16px;
 }
 
 ::-webkit-scrollbar-track {
@@ -186,9 +186,9 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: color-mix(in oklch, #3b82f6, transparent 60%);
+  background-color: color-mix(in oklch, #60a5fa, transparent 30%);
   border-radius: 20px;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   background-clip: content-box;
   transition: background-color 0.3s ease;
 }
@@ -200,6 +200,6 @@ html {
 
 /* Firefox scrollbar support */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in oklch, #3b82f6, transparent 60%) transparent;
+  scrollbar-width: auto;
+  scrollbar-color: color-mix(in oklch, #60a5fa, transparent 30%) transparent;
 }

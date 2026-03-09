@@ -114,7 +114,7 @@ export default function Contact() {
 
       <div className="grid md:grid-cols-2 gap-10 items-stretch">
         {/* Left Side: Contact Info Card */}
-        <BlurFade delay={0.2} inView className="flex flex-col h-full">
+        <BlurFade delay={0} inView className="flex flex-col h-full">
           <div className="flex-1 space-y-10 p-8 md:p-10 rounded-3xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] overflow-hidden relative h-full flex flex-col justify-between transition-all duration-300">
             <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent pointer-events-none" />
 
@@ -125,7 +125,7 @@ export default function Contact() {
 
               <div className="space-y-4">
                 {contactInfo.map((info, i) => (
-                  <BlurFade key={info.title} delay={0.25 + i * 0.1} inView>
+                  <BlurFade key={info.title} delay={0.1 + i * 0.05} inView>
                     <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm">
                       <div className="p-3 rounded-xl bg-primary/10 text-primary">
                         {info.icon}
@@ -144,7 +144,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <BlurFade delay={0.6} inView className="relative z-10">
+            <BlurFade delay={0.25} inView className="relative z-10">
               <div className="space-y-6 pt-6 border-t border-white/10">
                 <h3 className="text-xl font-bold tracking-tight text-primary">
                   Follow Me
@@ -167,7 +167,7 @@ export default function Contact() {
         </BlurFade>
 
         {/* Right Side: Message Form Card */}
-        <BlurFade delay={0.4} inView className="flex flex-col h-full">
+        <BlurFade delay={0.1} inView className="flex flex-col h-full">
           <div className="flex-1 p-8 md:p-10 rounded-3xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] overflow-hidden relative h-full transition-all duration-300">
             <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent pointer-events-none" />
 

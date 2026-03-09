@@ -16,18 +16,18 @@ import { TechMarquee } from "./tech-marquee";
 
 export default function Header() {
   return (
-    <section className="py-6 lg:py-10 min-h-[750px] mt-1 lg:mt-10">
-      <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-16">
+    <section className="py-6 lg:py-10 min-h-[750px] lg:mt-10">
+      <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-12 lg:gap-16">
         {/* Left Side: Name and Intro */}
         <div className="w-full lg:w-[60%] space-y-8">
           <div className="space-y-3">
             <BlurFade delay={0} inView>
-              <h1 className="text-5xl lg:text-7xl font-black tracking-tight leading-none text-foreground">
-               Naim Sorker
+              <h1 className="text-center lg:text-left text-5xl lg:text-7xl font-black tracking-tight leading-none text-foreground">
+                Naim Sorker
               </h1>
             </BlurFade>
             <BlurFade delay={0.1} inView>
-              <h2 className="text-2xl lg:text-3xl font-bold text-primary tracking-tight">
+              <h2 className="text-center lg:text-left text-2xl lg:text-3xl font-bold text-primary tracking-tight">
                 Full-Stack Developer
               </h2>
             </BlurFade>
@@ -46,15 +46,17 @@ export default function Header() {
         </div>
 
         {/* Right Side: Profile Photo and Socials */}
-        <div className="w-full lg:w-[35%] flex flex-col items-center lg:items-end gap-10">
+        <div className="w-full lg:w-[35%] flex flex-col items-center lg:items-end gap-10 relative z-10">
           <BlurFade delay={0.05} inView>
-            <div className="relative group">
-              {/* Decorative background element */}
-              <div className="absolute -inset-4 bg-linear-to-tr from-primary/30 to-blue-500/20 rounded-[2.5rem] lg:rounded-[3.5rem] blur-2xl opacity-30 group-hover:opacity-80 transition duration-1000" />
+            <div className="relative group p-1">
+              {/* Subtle professional gradient border background */}
+              <div className="absolute inset-0 bg-linear-to-tr from-primary/30 via-primary/10 to-transparent rounded-[2.8rem] lg:rounded-[3.8rem] opacity-0 group-hover:opacity-100 blur-xl transition-all duration-1000" />
+              <div className="absolute inset-0 bg-linear-to-tr from-primary/20 via-primary/5 to-transparent rounded-[2.8rem] lg:rounded-[3.8rem] opacity-0 group-hover:opacity-60 transition-all duration-1000" />
 
-              <div className="relative w-40 h-40 lg:w-64 lg:h-64 rounded-[2.5rem] lg:rounded-[3.5rem] overflow-hidden border-8 border-background shadow-xl transition-all duration-700 group-hover:shadow-primary/20 group-hover:-translate-y-2">
+              {/* Image Container */}
+              <div className="relative w-40 h-40 lg:w-64 lg:h-64 rounded-[2.5rem] lg:rounded-[3.5rem] overflow-hidden border-2 border-primary/10 bg-background backdrop-blur-sm shadow-lg transition-all duration-1000 group-hover:shadow-xl group-hover:shadow-primary/20 group-hover:-translate-y-1">
                 <Image
-                  className="w-full h-full object-cover cursor-pointer transform hover:scale-110 transition-transform duration-1000 ease-out border border-gray-50/30"
+                  className="w-full h-full object-cover cursor-pointer transition-all duration-1000 ease-out group-hover:scale-105"
                   src="/assets/naims6_profile.png"
                   alt="Naim Sorker"
                   width={256}
@@ -65,9 +67,9 @@ export default function Header() {
               </div>
 
               {/* Status indicator */}
-              <div className="absolute bottom-4 right-4 lg:bottom-10 lg:right-10 flex h-6 w-6">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60"></span>
-                <span className="relative inline-flex rounded-full h-6 w-6 bg-green-500 border-4 border-background shadow-md"></span>
+              <div className="absolute bottom-4 right-4 lg:bottom-8 lg:right-8 flex h-5 w-5 lg:h-6 lg:w-6 z-20">
+                <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-40"></span>
+                <span className="relative inline-flex rounded-full h-5 w-5 lg:h-6 lg:w-6 bg-green-500 border-2 border-background shadow-sm"></span>
               </div>
             </div>
           </BlurFade>
@@ -138,7 +140,7 @@ export default function Header() {
                       </TooltipTrigger>
                       <TooltipContent
                         sideOffset={8}
-                        className="bg-primary text-primary-foreground border-none px-4 py-2 rounded-xl shadow-2xl font-black text-sm"
+                        className="hidden lg:block bg-primary text-primary-foreground border-none px-4 py-2 rounded-xl shadow-2xl font-black text-sm"
                       >
                         {social.label}
                       </TooltipContent>

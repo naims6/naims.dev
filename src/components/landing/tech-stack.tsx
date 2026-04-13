@@ -26,12 +26,13 @@ export default function TechStack() {
               </div>
             </BlurFade>
 
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+            <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4">
               {category.skills.map((skill: any, index: number) => (
                 <BlurFade
                   key={skill.name}
                   delay={0.1 * catIndex + 0.05 * index}
                   inView
+                  className={cn(index >= 8 && "hidden md:block")}
                 >
                   <motion.div
                     whileHover={{ y: -4, scale: 1.02 }}
@@ -41,15 +42,6 @@ export default function TechStack() {
                       "bg-white/30 dark:bg-white/5 border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:border-primary/50",
                     )}
                   >
-                    {skill.featured && (
-                      <div className="absolute top-2 right-2 flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                        <span className="text-[8px] font-bold text-primary uppercase tracking-tighter">
-                          Core
-                        </span>
-                      </div>
-                    )}
-
                     <div className="absolute inset-0 bg-linear-to-br from-white/20 to-transparent dark:from-white/5 dark:to-transparent opacity-50 pointer-events-none" />
 
                     <div

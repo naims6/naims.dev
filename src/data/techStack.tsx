@@ -1,3 +1,4 @@
+import { Wrench } from "lucide-react";
 import {
   SiNextdotjs,
   SiReact,
@@ -15,21 +16,18 @@ import {
   SiGithub,
   SiVercel,
   SiFigma,
-  SiBootstrap,
   SiLinux,
-  SiN26,
   SiPostman,
   SiJsonwebtokens,
   SiNetlify,
   SiMongoose,
-  SiBetterstack,
-  SiFramer,
   SiRedux,
   SiPostgresql,
   SiPrisma,
+  SiMysql,
+  SiRedis,
+  SiEsotericsoftware,
 } from "react-icons/si";
-import { Monitor, Server, Database, Wrench } from "lucide-react";
-import { LuNetwork } from "react-icons/lu";
 
 export const techStack = [
   {
@@ -84,6 +82,12 @@ export const techStack = [
         color: "#764ABC",
         description: "Re-usable components built with Radix UI.",
       },
+      {
+        name: "Shadcn UI",
+        icon: <SiShadcnui className="mr-1" />,
+        color: "#000000",
+        description: "Re-usable components built with Radix UI.",
+      },
     ],
   },
   {
@@ -116,6 +120,18 @@ export const techStack = [
         description: "Relational database management system.",
       },
       {
+        name: "MySQL",
+        icon: <SiMysql className="mr-1 text-[#336791]" />,
+        color: "#336791",
+        description: "Relational database management system.",
+      },
+      {
+        name: "Redis",
+        icon: <SiRedis className="mr-1" />,
+        color: "#000000",
+        description: "In-memory data structure store.",
+      },
+      {
         name: "Mongoose",
         icon: <SiMongoose className="mr-1 text-[#880000]" />,
         color: "#880000",
@@ -126,12 +142,6 @@ export const techStack = [
         icon: <SiPrisma className="mr-1 text-[#336791]" />,
         color: "#336791",
         description: "Database toolkit for Node.js.",
-      },
-      {
-        name: "REST APIs",
-        icon: <LuNetwork className="mr-1" />,
-        color: "#4CAF50",
-        description: "Representational State Transfer API design.",
       },
       {
         name: "Firebase",
@@ -186,6 +196,12 @@ export const techStack = [
         icon: <SiPostman className="mr-1 text-[#FF6C37]" />,
         color: "#FF6C37",
         description: "API development and testing platform.",
+      },
+      {
+        name: "SEO",
+        icon: <SiEsotericsoftware className="mr-1" />,
+        color: "#000000",
+        description: "Search Engine Optimization.",
       },
       {
         name: "Linux",

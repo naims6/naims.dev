@@ -10,7 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { BlurFade, BlurFadeText } from "@/components/animation-wrapper";
+import { BlurFade } from "@/components/animation-wrapper";
 import About from "./about";
 import { TechMarquee } from "./tech-marquee";
 

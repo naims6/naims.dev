@@ -1,4 +1,3 @@
-import { Wrench } from "lucide-react";
 import {
   SiNextdotjs,
   SiReact,

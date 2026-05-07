@@ -15,7 +15,7 @@ const ThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full w-10 h-10 bg-background/50 hover:bg-background/80 border border-border/40 backdrop-blur-sm transition-all duration-300"
+      className="rounded-full w-10 h-10 bg-background/10 hover:bg-background/80 border border-border/40 backdrop-blur-sm transition-all duration-300"
     >
       <AnimatePresence mode="wait" initial={false}>
         {theme === "dark" ? (

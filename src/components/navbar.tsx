@@ -2,10 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Home, Cpu, Briefcase, Trophy, Mail, Menu, X } from "lucide-react";
+import { Home, Cpu, Briefcase, Trophy, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-import { Button } from "@/components/ui/button";
+import { Cross as Hamburger } from 'hamburger-react'
 import { BlurFade } from "@/components/animation-wrapper";
 import ThemeToggle from "./ThemeToggle";
 
@@ -116,10 +115,15 @@ export default function Navbar() {
             >
               <Link
                 href={link.href}
-                className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-muted-foreground/80 hover:text-primary hover:bg-primary/5 rounded-full transition-all duration-300 uppercase tracking-widest group"
+                className="relative flex items-center gap-2 px-4 py-2 text-xs font-bold text-muted-foreground/80 hover:text-white rounded-full transition-all duration-300 uppercase tracking-widest group overflow-hidden"
               >
+                {/* Animated background */}
+                <span className="absolute inset-0 bg-linear-to-r from-blue-600 via-blue-500 to-indigo-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
+                {/* Glow effect */}
+                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)]" />
+                {/* Content */}
                 <link.icon
-                  className="w-4 h-4 group-hover:scale-110 transition-transform"
+                  className="relative w-4 h-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300"
                   style={{
                     stroke: link.color.includes("purple")
                       ? "#a855f7"
@@ -132,7 +136,7 @@ export default function Navbar() {
                             : "#ef4444",
                   }}
                 />
-                <span>{link.name}</span>
+                <span className="relative">{link.name}</span>
               </Link>
             </BlurFade>
           ))}
@@ -146,18 +150,14 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="rounded-full w-10 h-10 border border-border/40 backdrop-blur-sm bg-background/50"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
-            </Button>
+            <Hamburger
+              toggled={isMobileMenuOpen}
+              toggle={setIsMobileMenuOpen}
+              size={22}
+              color="currentColor"
+              rounded
+              distance="sm"
+            />
           </div>
         </div>
       </nav>

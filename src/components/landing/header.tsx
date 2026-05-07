@@ -3,20 +3,35 @@ import Image from "next/image";
 import { FileUser, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
-import { Button } from "@/components/ui/button";
 import { BlurFade } from "@/components/animation-wrapper";
 import About from "./about";
 import { TechMarquee } from "./tech-marquee";
 
 export default function Header() {
   return (
-    <section className="py-6 lg:py-10 min-h-[750px] lg:mt-10">
+    <section className="py-6 lg:py-10 min-h-[750px] lg:mt-10 scroll-mt-28" id="home">
       <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-12 lg:gap-16">
         {/* Left Side: Name and Intro */}
-        <div className="w-full lg:w-[60%] space-y-8">
+        <div className="w-full lg:w-[60%] space-y-8 relative">
+          {/* Subtle colorful gradient background */}
+          <div className="absolute -inset-4 lg:-inset-8 bg-linear-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-3xl blur-2xl -z-10" />
+          <div className="absolute -top-8 -right-8 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-purple-400/10 rounded-full blur-3xl" />
+
           <div className="space-y-3">
             <BlurFade delay={0} inView>
-              <h1 className="text-center lg:text-left text-5xl lg:text-7xl font-black tracking-tight leading-none bg-linear-to-r from-foreground via-primary to-foreground bg-size-[200%_auto] animate-gradient-x bg-clip-text animate-fade-in-up">
+              <div className="flex justify-center lg:justify-start">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-bold uppercase tracking-wider">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                  </span>
+                  Open to Work
+                </span>
+              </div>
+            </BlurFade>
+            <BlurFade delay={0.05} inView>
+              <h1 className="text-center lg:text-left text-5xl lg:text-7xl font-black tracking-tight leading-none bg-linear-to-r from-blue-600 via-purple-600 to-pink-500 bg-size-[200%_auto] animate-gradient-x bg-clip-text animate-fade-in-up">
                 Naim Sorker
               </h1>
             </BlurFade>
@@ -42,7 +57,7 @@ export default function Header() {
         {/* Right Side: Profile Photo and Socials */}
         <div className="w-full lg:w-[35%] flex flex-col items-center lg:items-end gap-10 relative z-10">
           <BlurFade delay={0.05} inView>
-            <div className="relative group p-1 animate-float">
+            <div className="relative group p-1">
               {/* Subtle professional gradient border background */}
               <div className="absolute inset-0 bg-linear-to-tr from-primary/30 via-primary/10 to-transparent rounded-[2.8rem] lg:rounded-[3.8rem] opacity-0 group-hover:opacity-100 blur-xl transition-all duration-1000" />
               <div className="absolute inset-0 bg-linear-to-tr from-primary/20 via-primary/5 to-transparent rounded-[2.8rem] lg:rounded-[3.8rem] opacity-0 group-hover:opacity-60 transition-all duration-1000" />
@@ -71,22 +86,29 @@ export default function Header() {
           {/* Actions and Socials */}
           <div className="flex flex-col items-center lg:items-end gap-6 w-full">
             <BlurFade delay={0.4} inView>
-              <Button
-                asChild
-                variant="primary"
-                size="lg"
-                className="w-full lg:w-auto"
+              <Link
+                href="https://drive.google.com/file/d/1jTiHmFxWPJe7lIskH3HPg_m4D1C47oVr/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 ease-out rounded-2xl overflow-hidden"
               >
-                <Link
-                  href="https://drive.google.com/file/d/1jTiHmFxWPJe7lIskH3HPg_m4D1C47oVr/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-3"
-                >
-                  <FileUser className="h-7 w-7 group-hover:scale-110 transition-transform" />
-                  <span>Get Resume</span>
-                </Link>
-              </Button>
+                {/* 3D Background with gradient */}
+                <div className="absolute inset-0 bg-linear-to-br from-blue-600 via-blue-500 to-indigo-600 transition-all duration-300 group-hover:scale-105" />
+
+                {/* 3D Edge/Depth effect */}
+                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_4px_0_0_rgba(37,99,235,1),0_8px_16px_-4px_rgba(37,99,235,0.5)] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_6px_0_0_rgba(37,99,235,1),0_12px_20px_-4px_rgba(37,99,235,0.6)] transition-all duration-300 group-hover:-translate-y-1" />
+
+                {/* Shine effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                </div>
+
+                {/* Content */}
+                <span className="relative flex items-center gap-3">
+                  <FileUser className="h-6 w-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
+                  <span className="text-lg tracking-wide">Get Resume</span>
+                </span>
+              </Link>
             </BlurFade>
 
             <div className="flex items-center gap-3">
@@ -95,25 +117,29 @@ export default function Header() {
                   icon: Linkedin,
                   href: "https://www.linkedin.com/in/naims6/",
                   label: "LinkedIn",
-                  color: "from-blue-600 to-blue-500",
+                  color: "from-blue-600 via-blue-500 to-blue-400",
+                  shadowColor: "rgba(37,99,235,1)",
                 },
                 {
                   icon: Github,
                   href: "https://github.com/naims6",
                   label: "GitHub",
-                  color: "from-gray-700 to-gray-600",
+                  color: "from-gray-700 via-gray-600 to-gray-500",
+                  shadowColor: "rgba(75,85,99,1)",
                 },
                 {
                   icon: Mail,
                   href: "mailto:naim.sorker06@gmail.com",
                   label: "naim.sorker06@gmail.com",
-                  color: "from-red-500 to-red-400",
+                  color: "from-red-500 via-red-400 to-red-300",
+                  shadowColor: "rgba(239,68,68,1)",
                 },
                 {
                   icon: SiWhatsapp,
                   href: "https://wa.me/+8801908390036",
                   label: "+8801908390036",
-                  color: "from-green-500 to-green-400",
+                  color: "from-green-500 via-green-400 to-green-300",
+                  shadowColor: "rgba(34,197,94,1)",
                 },
               ].map((social, idx) => (
                 <BlurFade key={social.label} delay={0.45 + idx * 0.05} inView>
@@ -122,9 +148,25 @@ export default function Header() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className={`w-12 h-12 lg:w-16 lg:h-16 rounded-lg lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${social.color} text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300`}
+                    className="group relative w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl flex items-center justify-center overflow-hidden transition-all duration-300 hover:-translate-y-1"
                   >
-                    <social.icon className="h-5 w-5 lg:h-7 lg:w-7" />
+                    {/* 3D Background */}
+                    <div
+                      className={`absolute inset-0 bg-linear-to-br ${social.color} transition-transform duration-300 group-hover:scale-105`}
+                    />
+                    {/* 3D Shadow/Depth */}
+                    <div
+                      className="absolute inset-0 rounded-xl lg:rounded-2xl transition-all duration-300 group-hover:-translate-y-1"
+                      style={{
+                        boxShadow: `inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(0,0,0,0.2), 0 3px 0 0 ${social.shadowColor}, 0 6px 12px -3px ${social.shadowColor.replace("1)", "0.5)")}`,
+                      }}
+                    />
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                    </div>
+                    {/* Icon */}
+                    <social.icon className="relative h-5 w-5 lg:h-7 lg:w-7 text-white transition-transform duration-300 group-hover:scale-110" />
                   </Link>
                 </BlurFade>
               ))}

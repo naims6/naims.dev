@@ -24,9 +24,8 @@ import { SectionHeader } from "@/components/section-header";
 import { BlurFade } from "@/components/animation-wrapper";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import PrimaryCtaButton from "@/components/primary-cta-button";
 
 export default function AllProjectsPage() {
   const getTechIcon = (tech: string) => {
@@ -90,12 +89,10 @@ export default function AllProjectsPage() {
             ))}
           </div>
           <div className="mt-12 flex justify-center">
-            <Link href="/">
-              <Button variant="secondary" size="lg" className="group">
-                <ArrowLeft className="mr-2 w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                Return Home
-              </Button>
-            </Link>
+            <PrimaryCtaButton href="/">
+              <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
+              <span className="text-lg tracking-wide">Return Home</span>
+            </PrimaryCtaButton>
           </div>
         </div>
       </section>

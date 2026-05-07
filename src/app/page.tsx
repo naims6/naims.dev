@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/navbar";
 import Header from "@/components/landing/header";
+import SectionToolbox from "@/components/section-toolbox";
 
 // Lazy load components below the fold
 const Services = dynamic(() => import("@/components/landing/services"));
@@ -14,6 +15,7 @@ const Footer = dynamic(() => import("@/components/footer"));
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen mx-auto px-4 max-w-6xl">
+      <SectionToolbox />
       <Navbar />
       <Header />
       <Services />

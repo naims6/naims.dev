@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 interface ProjectCardProps {
@@ -80,15 +79,30 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
 
           <div className="mt-auto pt-6 flex items-center justify-between gap-3">
             {/* View Details Link */}
-            <Button asChild variant="primary" size="sm" className="group/btn">
-              <Link href={`/projects/${p.id}`}>
+            <Link
+              href={`/projects/${p.id}`}
+              className="group/btn relative inline-flex items-center justify-center gap-2 px-4 py-2.5 font-bold text-white transition-all duration-300 ease-out rounded-xl overflow-hidden"
+            >
+              {/* 3D Background with gradient */}
+              <div className="absolute inset-0 bg-linear-to-br from-blue-600 via-blue-500 to-indigo-600 transition-all duration-300 group-hover/btn:scale-105" />
+
+              {/* 3D Edge/Depth effect */}
+              <div className="absolute inset-0 rounded-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_0_0_rgba(37,99,235,1),0_6px_12px_-3px_rgba(37,99,235,0.5)] group-hover/btn:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_4px_0_0_rgba(37,99,235,1),0_8px_16px_-3px_rgba(37,99,235,0.6)] transition-all duration-300 group-hover/btn:-translate-y-0.5" />
+
+              {/* Shine effect */}
+              <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000" />
+              </div>
+
+              {/* Content */}
+              <span className="relative flex items-center gap-1.5 text-sm">
                 View Details
                 <ChevronRight
-                  className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-1 transition-transform"
+                  className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5"
                   style={{ stroke: "currentColor" }}
                 />
-              </Link>
-            </Button>
+              </span>
+            </Link>
 
             {/* Quick Links */}
             <div className="flex items-center gap-5">

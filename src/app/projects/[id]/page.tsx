@@ -4,13 +4,10 @@ import * as React from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   ExternalLink,
   Github,
   ArrowLeft,
-  ChevronLeft,
-  ChevronRight,
   CheckCircle2,
 } from "lucide-react";
 import {
@@ -35,8 +32,8 @@ import { projects } from "@/data/projects";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { BlurFade } from "@/components/animation-wrapper";
+import PrimaryCtaButton from "@/components/primary-cta-button";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -110,7 +107,7 @@ export default function ProjectDetailPage() {
 
           {/* Project Image Carousel Look */}
           <BlurFade delay={0.2}>
-            <div className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/5 dark:bg-white/5 mb-16 flex items-center justify-center">
+            <div className="relative w-full aspect-video md:aspect-21/9 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/5 dark:bg-white/5 mb-16 flex items-center justify-center">
               <div className="relative w-full h-full">
                 <Image
                   src={project.img}
@@ -187,37 +184,34 @@ export default function ProjectDetailPage() {
                 <div className="p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl space-y-6">
                   <h3 className="text-xl font-bold">Project Links</h3>
                   <div className="flex flex-col gap-4">
-                    <Button
-                      asChild
-                      variant="primary"
-                      size="lg"
+                    <PrimaryCtaButton
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-full"
                     >
-                      <Link href={project.liveLink} target="_blank">
-                        Live Demo <ExternalLink className="ml-2 w-5 h-5" />
-                      </Link>
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      asChild
-                      size="lg"
+                      <span className="text-lg tracking-wide">Live Demo</span>
+                      <ExternalLink className="w-5 h-5" />
+                    </PrimaryCtaButton>
+                    <PrimaryCtaButton
+                      href={project.githubRepository}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-full"
                     >
-                      <Link href={project.githubRepository} target="_blank">
-                        Source Code <Github className="ml-2 w-5 h-5" />
-                      </Link>
-                    </Button>
+                      <span className="text-lg tracking-wide">Source Code</span>
+                      <Github className="w-5 h-5" />
+                    </PrimaryCtaButton>
                   </div>
                 </div>
               </BlurFade>
 
               {/* Back Link */}
               <BlurFade delay={0.7}>
-                <Link href="/projects">
-                  <Button variant="secondary" className="w-full" size="lg">
-                    ← All Projects
-                  </Button>
-                </Link>
+                <PrimaryCtaButton href="/projects" className="w-full">
+                  <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
+                  <span className="text-lg tracking-wide">All Projects</span>
+                </PrimaryCtaButton>
               </BlurFade>
             </div>
           </div>

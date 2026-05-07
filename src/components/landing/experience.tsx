@@ -10,10 +10,6 @@ const experiences = [
     period: "May 2026 — Present",
     description:
       "Contributing to backend systems and APIs that power scalable digital solutions at Rise Together.",
-    responsibilities: [
-      "Developing and maintaining RESTful APIs using modern backend technologies",
-      "Collaborating with teams to design and implement new features",
-    ],
   },
 ];
 
@@ -52,26 +48,12 @@ export default function Experience() {
               <p className="text-sm text-muted-foreground leading-relaxed mb-4 italic">
                 {exp.description}
               </p>
-
-              {/* Responsibilities */}
-              <ul className="space-y-2">
-                {exp.responsibilities.map((item, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2.5 text-sm text-foreground/75"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                    <span className="leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
               {/* Location */}
               <div className="mt-4 pt-3 border-t border-white/10 dark:border-white/5 flex items-center gap-1.5 text-xs text-muted-foreground">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
-                  fill="currentColor"
+                  fill="#3b82f6"
                   className="w-3.5 h-3.5"
                 >
                   <path

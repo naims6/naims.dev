@@ -9,7 +9,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BlurFade } from "../animation-wrapper";
 import { achievements } from "@/data/achievements";
 import { SectionHeader } from "../section-header";
-import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -62,7 +61,10 @@ export default function Achievements() {
                       {/* Overlay on hover */}
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div className="bg-white/20 backdrop-blur-md rounded-full p-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                          <ExternalLink className="w-4 h-4 text-white" />
+                          <ExternalLink
+                            className="w-4 h-4"
+                            style={{ stroke: "#ffffff" }}
+                          />
                         </div>
                       </div>
                     </Link>
@@ -72,7 +74,15 @@ export default function Achievements() {
                 <CardContent className="flex flex-col flex-1 px-4 pb-4 pt-1">
                   <div className="flex items-start gap-3 mb-3">
                     <div className="p-2 rounded-xl bg-primary/10 text-primary shrink-0">
-                      <Icon size={18} />
+                      <Icon
+                        size={18}
+                        style={{
+                          stroke:
+                            achievement.iconName === "Award"
+                              ? "#a855f7"
+                              : "#3b82f6",
+                        }}
+                      />
                     </div>
                     <div>
                       <h3 className="text-[15px] font-bold text-foreground/90 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
@@ -85,20 +95,35 @@ export default function Achievements() {
                   </div>
 
                   <div className="mt-auto pt-2">
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="w-full bg-white/50 dark:bg-white/5 border-white/20 dark:border-white/10 hover:bg-primary text-foreground/80 dark:text-gray-300 hover:text-primary-foreground hover:border-primary rounded-xl py-3.5 transition-all duration-300 font-semibold text-[11px] h-auto group/btn"
+                    <Link
+                      href={achievement.link}
+                      target="_blank"
+                      className="group/btn relative w-full inline-flex items-center justify-center gap-2 px-4 py-3 font-bold text-white transition-all duration-300 ease-out rounded-xl overflow-hidden"
                     >
-                      <Link href={achievement.link} target="_blank">
+                      {/* 3D Background with gradient */}
+                      <div className="absolute inset-0 bg-linear-to-br from-blue-600 via-blue-500 to-indigo-600 transition-all duration-300 group-hover/btn:scale-105" />
+
+                      {/* 3D Edge/Depth effect */}
+                      <div className="absolute inset-0 rounded-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_3px_0_0_rgba(37,99,235,1),0_6px_12px_-3px_rgba(37,99,235,0.5)] group-hover/btn:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_4px_0_0_rgba(37,99,235,1),0_8px_16px_-3px_rgba(37,99,235,0.6)] transition-all duration-300 group-hover/btn:-translate-y-0.5" />
+
+                      {/* Shine effect */}
+                      <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500">
+                        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000" />
+                      </div>
+
+                      {/* Content */}
+                      <span className="relative flex items-center gap-2 text-sm">
                         {achievement.status === "upcoming"
                           ? "Onboarding Path"
                           : achievement.status === "on-board"
                             ? "Course Details"
                             : "View Certificate"}
-                        <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-0.5 transition-transform" />
-                      </Link>
-                    </Button>
+                        <ChevronRight
+                          className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5"
+                          style={{ stroke: "currentColor" }}
+                        />
+                      </span>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>

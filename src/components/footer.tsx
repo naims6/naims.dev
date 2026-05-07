@@ -10,13 +10,29 @@ export default function Footer() {
       icon: Linkedin,
       href: "https://www.linkedin.com/in/naims6/",
       label: "LinkedIn",
+      color: "from-blue-600 to-blue-500",
+      iconColor: "text-blue-600",
     },
-    { icon: Github, href: "https://github.com/naims6", label: "GitHub" },
-    { icon: Mail, href: "mailto:naim.sorker06@gmail.com", label: "Email" },
+    {
+      icon: Github,
+      href: "https://github.com/naims6",
+      label: "GitHub",
+      color: "from-gray-700 to-gray-600",
+      iconColor: "text-gray-700",
+    },
+    {
+      icon: Mail,
+      href: "mailto:naim.sorker06@gmail.com",
+      label: "Email",
+      color: "from-red-500 to-red-400",
+      iconColor: "text-red-500",
+    },
     {
       icon: SiWhatsapp,
       href: "https://wa.me/+8801908390036",
       label: "WhatsApp",
+      color: "from-green-500 to-green-400",
+      iconColor: "text-green-500",
     },
   ];
 
@@ -57,7 +73,7 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-muted/30 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20 backdrop-blur-sm"
+                className={`p-2.5 rounded-xl bg-gradient-to-br ${link.color} hover:shadow-lg hover:scale-110 transition-all duration-300 border border-transparent backdrop-blur-sm text-white`}
                 aria-label={link.label}
               >
                 <link.icon size={18} />

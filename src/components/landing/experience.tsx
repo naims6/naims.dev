@@ -53,7 +53,7 @@ export default function Experience() {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
-                  fill="currentColor"
+                  fill="#3b82f6"
                   className="w-3.5 h-3.5"
                 >
                   <path

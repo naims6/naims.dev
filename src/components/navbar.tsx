@@ -42,11 +42,36 @@ export default function Navbar() {
   }, [prevScrollPos]);
 
   const navLinks = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "Skills", href: "#tech-stack", icon: Cpu },
-    { name: "Projects", href: "#projects", icon: Briefcase },
-    { name: "Awards", href: "#achievements", icon: Trophy },
-    { name: "Contact", href: "#contact", icon: Mail },
+    {
+      name: "Home",
+      href: "/",
+      icon: Home,
+      color: "from-purple-500 to-purple-400",
+    },
+    {
+      name: "Skills",
+      href: "#tech-stack",
+      icon: Cpu,
+      color: "from-blue-500 to-blue-400",
+    },
+    {
+      name: "Projects",
+      href: "#projects",
+      icon: Briefcase,
+      color: "from-amber-500 to-amber-400",
+    },
+    {
+      name: "Awards",
+      href: "#achievements",
+      icon: Trophy,
+      color: "from-yellow-500 to-yellow-400",
+    },
+    {
+      name: "Contact",
+      href: "#contact",
+      icon: Mail,
+      color: "from-red-500 to-red-400",
+    },
   ];
 
   if (!mounted) {
@@ -93,7 +118,20 @@ export default function Navbar() {
                 href={link.href}
                 className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-muted-foreground/80 hover:text-primary hover:bg-primary/5 rounded-full transition-all duration-300 uppercase tracking-widest group"
               >
-                <link.icon className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                <link.icon
+                  className="w-4 h-4 group-hover:scale-110 transition-transform"
+                  style={{
+                    stroke: link.color.includes("purple")
+                      ? "#a855f7"
+                      : link.color.includes("blue")
+                        ? "#3b82f6"
+                        : link.color.includes("amber")
+                          ? "#f59e0b"
+                          : link.color.includes("yellow")
+                            ? "#eab308"
+                            : "#ef4444",
+                  }}
+                />
                 <span>{link.name}</span>
               </Link>
             </BlurFade>
@@ -146,9 +184,20 @@ export default function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center gap-4 p-4 rounded-2xl hover:bg-primary/10 hover:text-primary transition-all duration-300 font-bold uppercase tracking-widest text-sm text-muted-foreground group"
                   >
-                    <div className="p-2 rounded-xl bg-primary/5 group-hover:bg-primary/20 transition-colors">
-                      <link.icon className="w-5 h-5" />
-                    </div>
+                    <link.icon
+                      className="w-5 h-5"
+                      style={{
+                        stroke: link.color.includes("purple")
+                          ? "#a855f7"
+                          : link.color.includes("blue")
+                            ? "#3b82f6"
+                            : link.color.includes("amber")
+                              ? "#f59e0b"
+                              : link.color.includes("yellow")
+                                ? "#eab308"
+                                : "#ef4444",
+                      }}
+                    />
                     <span>{link.name}</span>
                   </Link>
                 </motion.div>

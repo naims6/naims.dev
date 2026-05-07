@@ -41,7 +41,10 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
               {/* Overlay on hover */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="bg-white/20 backdrop-blur-md rounded-full p-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  <ExternalLink className="w-5 h-5 text-white" />
+                  <ExternalLink
+                    className="w-5 h-5"
+                    style={{ stroke: "#ffffff" }}
+                  />
                 </div>
               </div>
             </Link>
@@ -80,7 +83,10 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
             <Button asChild variant="primary" size="sm" className="group/btn">
               <Link href={`/projects/${p.id}`}>
                 View Details
-                <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                <ChevronRight
+                  className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-1 transition-transform"
+                  style={{ stroke: "currentColor" }}
+                />
               </Link>
             </Button>
 
@@ -93,7 +99,10 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
                 className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 <span>Live</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink
+                  className="w-3.5 h-3.5"
+                  style={{ stroke: "#3b82f6" }}
+                />
               </Link>
               <Link
                 href={p.githubRepository}
@@ -103,7 +112,7 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
                 aria-label={`View ${p.name} on GitHub`}
               >
                 <span>Code</span>
-                <Github className="w-3.5 h-3.5" />
+                <Github className="w-3.5 h-3.5" style={{ stroke: "#6b7280" }} />
               </Link>
             </div>
           </div>

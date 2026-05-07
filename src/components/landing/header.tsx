@@ -4,12 +4,6 @@ import { FileUser, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { BlurFade } from "@/components/animation-wrapper";
 import About from "./about";
 import { TechMarquee } from "./tech-marquee";
@@ -39,7 +33,7 @@ export default function Header() {
 
           <BlurFade delay={0.2} inView>
             <div className="flex items-center gap-2 text-muted-foreground/80 font-semibold uppercase tracking-widest text-sm lg:text-base">
-              <MapPin className="text-primary" size={20} />
+              <MapPin size={20} style={{ stroke: "#3b82f6" }} />
               <span>Tangail, Dhaka, Bangladesh</span>
             </div>
           </BlurFade>
@@ -101,51 +95,37 @@ export default function Header() {
                   icon: Linkedin,
                   href: "https://www.linkedin.com/in/naims6/",
                   label: "LinkedIn",
+                  color: "from-blue-600 to-blue-500",
                 },
                 {
                   icon: Github,
                   href: "https://github.com/naims6",
                   label: "GitHub",
+                  color: "from-gray-700 to-gray-600",
                 },
                 {
                   icon: Mail,
                   href: "mailto:naim.sorker06@gmail.com",
                   label: "naim.sorker06@gmail.com",
+                  color: "from-red-500 to-red-400",
                 },
                 {
                   icon: SiWhatsapp,
                   href: "https://wa.me/+8801908390036",
                   label: "+8801908390036",
+                  color: "from-green-500 to-green-400",
                 },
               ].map((social, idx) => (
                 <BlurFade key={social.label} delay={0.45 + idx * 0.05} inView>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="secondary"
-                          size="icon"
-                          asChild
-                          className="w-12 h-12 lg:w-16 lg:h-16 shadow-xl"
-                        >
-                          <Link
-                            href={social.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={social.label}
-                          >
-                            <social.icon className="h-5 w-5 lg:h-7 lg:w-7" />
-                          </Link>
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent
-                        sideOffset={8}
-                        className="hidden lg:block bg-primary text-primary-foreground border-none px-4 py-2 rounded-xl shadow-2xl font-black text-sm"
-                      >
-                        {social.label}
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <Link
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className={`w-12 h-12 lg:w-16 lg:h-16 rounded-lg lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${social.color} text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300`}
+                  >
+                    <social.icon className="h-5 w-5 lg:h-7 lg:w-7" />
+                  </Link>
                 </BlurFade>
               ))}
             </div>

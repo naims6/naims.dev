@@ -79,32 +79,45 @@ export default function Contact() {
       icon: <Mail className="w-5 h-5" />,
       title: "Email",
       value: "naim.sorker06@gmail.com",
+      color: "from-red-500 to-red-400",
+      iconColor: "text-red-600",
     },
     {
       icon: <Phone className="w-5 h-5" />,
       title: "Phone",
       value: "+880 1908-390036",
+      color: "from-cyan-500 to-cyan-400",
+      iconColor: "text-cyan-600",
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Location",
       value: "Tangail, Dhaka, Bangladesh",
+      color: "from-orange-500 to-orange-400",
+      iconColor: "text-orange-600",
     },
   ];
 
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, href: "https://github.com/naims6" },
+    {
+      icon: <Github className="w-5 h-5" />,
+      href: "https://github.com/naims6",
+      color: "from-gray-700 to-gray-600",
+    },
     {
       icon: <Linkedin className="w-5 h-5" />,
       href: "https://linkedin.com/in/naims6",
+      color: "from-blue-600 to-blue-500",
     },
     {
       icon: <Facebook className="w-5 h-5" />,
       href: "https://facebook.com/naim.sorker6",
+      color: "from-blue-500 to-blue-400",
     },
     {
       icon: <FaWhatsapp className="w-5 h-5" />,
       href: "https://wa.me/+8801908390036",
+      color: "from-green-500 to-green-400",
     },
   ];
 
@@ -127,7 +140,9 @@ export default function Contact() {
                 {contactInfo.map((info, i) => (
                   <BlurFade key={info.title} delay={0.1 + i * 0.05} inView>
                     <div className="group flex items-center gap-4 p-5 rounded-2xl bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm">
-                      <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                      <div
+                        className={`p-3 rounded-xl bg-gradient-to-br ${info.color} text-white`}
+                      >
                         {info.icon}
                       </div>
                       <div>
@@ -155,7 +170,7 @@ export default function Contact() {
                       key={i}
                       href={link.href}
                       target="_blank"
-                      className="p-3.5 rounded-xl bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 hover:border-primary/50 hover:text-primary transition-all duration-300 shadow-sm"
+                      className={`p-3.5 rounded-xl bg-gradient-to-br ${link.color} text-white hover:shadow-lg hover:scale-110 transition-all duration-300 backdrop-blur-sm border border-transparent`}
                     >
                       {link.icon}
                     </Link>

@@ -62,7 +62,10 @@ export default function Achievements() {
                       {/* Overlay on hover */}
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div className="bg-white/20 backdrop-blur-md rounded-full p-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                          <ExternalLink className="w-4 h-4 text-white" />
+                          <ExternalLink
+                            className="w-4 h-4"
+                            style={{ stroke: "#ffffff" }}
+                          />
                         </div>
                       </div>
                     </Link>
@@ -72,7 +75,15 @@ export default function Achievements() {
                 <CardContent className="flex flex-col flex-1 px-4 pb-4 pt-1">
                   <div className="flex items-start gap-3 mb-3">
                     <div className="p-2 rounded-xl bg-primary/10 text-primary shrink-0">
-                      <Icon size={18} />
+                      <Icon
+                        size={18}
+                        style={{
+                          stroke:
+                            achievement.iconName === "Award"
+                              ? "#a855f7"
+                              : "#3b82f6",
+                        }}
+                      />
                     </div>
                     <div>
                       <h3 className="text-[15px] font-bold text-foreground/90 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
@@ -96,7 +107,10 @@ export default function Achievements() {
                           : achievement.status === "on-board"
                             ? "Course Details"
                             : "View Certificate"}
-                        <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-0.5 transition-transform" />
+                        <ChevronRight
+                          className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-0.5 transition-transform"
+                          style={{ stroke: "currentColor" }}
+                        />
                       </Link>
                     </Button>
                   </div>

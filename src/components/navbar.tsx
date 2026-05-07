@@ -2,15 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import {
-  Home,
-  Cpu,
-  Briefcase,
-  Trophy,
-  Mail,
-  Menu,
-  X,
-} from "lucide-react";
+import { Home, Cpu, Briefcase, Trophy, Mail, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
@@ -18,14 +10,36 @@ import { BlurFade } from "@/components/animation-wrapper";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
-
   const [mounted, setMounted] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(true);
+  const [prevScrollPos, setPrevScrollPos] = React.useState(0);
 
   // Avoid hydration mismatch
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Handle scroll to show/hide navbar
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+
+      // If scrolling down, hide navbar
+      if (currentScrollPos > prevScrollPos && currentScrollPos > 50) {
+        setIsVisible(false);
+      }
+      // If scrolling up, show navbar
+      else if (currentScrollPos < prevScrollPos) {
+        setIsVisible(true);
+      }
+
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
 
   const navLinks = [
     { name: "Home", href: "/", icon: Home },
@@ -45,7 +59,14 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="my-6 py-3 px-6 rounded-full flex items-center justify-between sticky top-6 z-50 bg-white/40 dark:bg-black/20 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.5)] transition-all duration-500 hover:shadow-primary/5">
+      <nav
+        className="my-6 py-3 px-6 rounded-full flex items-center justify-between sticky top-6 z-50 bg-white/40 dark:bg-black/20 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.5)] transition-all duration-300 hover:shadow-primary/5"
+        style={{
+          transform: isVisible ? "translateY(0)" : "translateY(-100%)",
+          opacity: isVisible ? 1 : 0,
+          pointerEvents: isVisible ? "auto" : "none",
+        }}
+      >
         {/* logo  */}
         <BlurFade delay={0} inView yOffset={0} blur="2px">
           <Link

@@ -61,15 +61,11 @@ export default function Header() {
         {/* Right Side: Profile Photo and Socials */}
         <div className="w-full lg:w-[35%] flex flex-col items-center lg:items-end gap-10 relative z-10">
           <BlurFade delay={0.05} inView>
-            <div className="relative group p-1">
-              {/* Subtle professional gradient border background */}
-              <div className="absolute inset-0 bg-linear-to-tr from-primary/30 via-primary/10 to-transparent rounded-[2.8rem] lg:rounded-[3.8rem] opacity-0 group-hover:opacity-100 blur-xl transition-all duration-1000" />
-              <div className="absolute inset-0 bg-linear-to-tr from-primary/20 via-primary/5 to-transparent rounded-[2.8rem] lg:rounded-[3.8rem] opacity-0 group-hover:opacity-60 transition-all duration-1000" />
-
-              {/* Image Container */}
-              <div className="profile-ring relative w-48 h-48 lg:w-60 lg:h-60 rounded-[2.5rem] lg:rounded-[3.5rem] overflow-hidden border-2 border-primary/10 bg-background backdrop-blur-sm shadow-lg transition-all duration-1000 group-hover:shadow-xl group-hover:shadow-primary/20 group-hover:-translate-y-1">
+            <div className="relative p-1">
+              {/* Profile Image Container */}
+              <div className="group relative w-48 h-48 lg:w-60 lg:h-60 rounded-2xl lg:rounded-3xl overflow-hidden border border-primary/10 bg-background shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-primary/40 cursor-pointer">
                 <Image
-                  className="w-full h-full object-cover cursor-pointer transition-all duration-1000 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   src="/assets/naims6_profile.png"
                   alt="Naim Sorker"
                   width={200}

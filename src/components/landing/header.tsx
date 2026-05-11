@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { FileUser, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
@@ -6,10 +5,15 @@ import { SiWhatsapp } from "react-icons/si";
 import { BlurFade } from "@/components/animation-wrapper";
 import About from "./about";
 import { TechMarquee } from "./tech-marquee";
+import PrimaryCtaButton from "@/components/primary-cta-button";
+import SocialButton from "@/components/social-button";
 
 export default function Header() {
   return (
-    <section className="py-6 lg:py-10 min-h-[750px] lg:mt-10 scroll-mt-28" id="home">
+    <section
+      className="py-6 lg:py-10 min-h-[750px] lg:mt-10 scroll-mt-28"
+      id="home"
+    >
       <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-12 lg:gap-16">
         {/* Left Side: Name and Intro */}
         <div className="w-full lg:w-[60%] space-y-8 relative">
@@ -86,88 +90,56 @@ export default function Header() {
           {/* Actions and Socials */}
           <div className="flex flex-col items-center lg:items-end gap-6 w-full">
             <BlurFade delay={0.4} inView>
-              <Link
+              <PrimaryCtaButton
                 href="https://drive.google.com/file/d/1jTiHmFxWPJe7lIskH3HPg_m4D1C47oVr/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 ease-out rounded-2xl overflow-hidden"
+                icon={<FileUser className="h-6 w-6" />}
               >
-                {/* 3D Background with gradient */}
-                <div className="absolute inset-0 bg-linear-to-br from-blue-600 via-blue-500 to-indigo-600 transition-all duration-300 group-hover:scale-105" />
-
-                {/* 3D Edge/Depth effect */}
-                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_4px_0_0_rgba(37,99,235,1),0_8px_16px_-4px_rgba(37,99,235,0.5)] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_6px_0_0_rgba(37,99,235,1),0_12px_20px_-4px_rgba(37,99,235,0.6)] transition-all duration-300 group-hover:-translate-y-1" />
-
-                {/* Shine effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                </div>
-
-                {/* Content */}
-                <span className="relative flex items-center gap-3">
-                  <FileUser className="h-6 w-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
-                  <span className="text-lg tracking-wide">Get Resume</span>
-                </span>
-              </Link>
+                Get Resume
+              </PrimaryCtaButton>
             </BlurFade>
 
             <div className="flex items-center gap-3">
               {[
                 {
-                  icon: Linkedin,
+                  icon: <Linkedin className="w-5 h-5 lg:w-7 lg:h-7" />,
                   href: "https://www.linkedin.com/in/naims6/",
                   label: "LinkedIn",
                   color: "from-blue-600 via-blue-500 to-blue-400",
                   shadowColor: "rgba(37,99,235,1)",
                 },
                 {
-                  icon: Github,
+                  icon: <Github className="w-5 h-5 lg:w-7 lg:h-7" />,
                   href: "https://github.com/naims6",
                   label: "GitHub",
                   color: "from-gray-700 via-gray-600 to-gray-500",
                   shadowColor: "rgba(75,85,99,1)",
                 },
                 {
-                  icon: Mail,
+                  icon: <Mail className="w-5 h-5 lg:w-7 lg:h-7" />,
                   href: "mailto:naim.sorker06@gmail.com",
-                  label: "naim.sorker06@gmail.com",
+                  label: "Email",
                   color: "from-red-500 via-red-400 to-red-300",
                   shadowColor: "rgba(239,68,68,1)",
                 },
                 {
-                  icon: SiWhatsapp,
+                  icon: <SiWhatsapp className="w-5 h-5 lg:w-7 lg:h-7" />,
                   href: "https://wa.me/+8801908390036",
-                  label: "+8801908390036",
+                  label: "WhatsApp",
                   color: "from-green-500 via-green-400 to-green-300",
                   shadowColor: "rgba(34,197,94,1)",
                 },
               ].map((social, idx) => (
                 <BlurFade key={social.label} delay={0.45 + idx * 0.05} inView>
-                  <Link
+                  <SocialButton
                     href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="group relative w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl flex items-center justify-center overflow-hidden transition-all duration-300 hover:-translate-y-1"
-                  >
-                    {/* 3D Background */}
-                    <div
-                      className={`absolute inset-0 bg-linear-to-br ${social.color} transition-transform duration-300 group-hover:scale-105`}
-                    />
-                    {/* 3D Shadow/Depth */}
-                    <div
-                      className="absolute inset-0 rounded-xl lg:rounded-2xl transition-all duration-300 group-hover:-translate-y-1"
-                      style={{
-                        boxShadow: `inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(0,0,0,0.2), 0 3px 0 0 ${social.shadowColor}, 0 6px 12px -3px ${social.shadowColor.replace("1)", "0.5)")}`,
-                      }}
-                    />
-                    {/* Shine effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                    </div>
-                    {/* Icon */}
-                    <social.icon className="relative h-5 w-5 lg:h-7 lg:w-7 text-white transition-transform duration-300 group-hover:scale-110" />
-                  </Link>
+                    icon={social.icon}
+                    label={social.label}
+                    color={social.color}
+                    shadowColor={social.shadowColor}
+                    size="lg"
+                  />
                 </BlurFade>
               ))}
             </div>

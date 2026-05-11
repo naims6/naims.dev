@@ -2,17 +2,28 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Home, Cpu, Briefcase, Trophy, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cross as Hamburger } from 'hamburger-react'
+import { Cross as Hamburger } from "hamburger-react";
 import { BlurFade } from "@/components/animation-wrapper";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./logo";
 
 export default function Navbar() {
   const [mounted, setMounted] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(true);
   const [prevScrollPos, setPrevScrollPos] = React.useState(0);
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  const [pillStyle, setPillStyle] = React.useState({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
+  const navRef = React.useRef<HTMLDivElement>(null);
+  const itemRefs = React.useRef<(HTMLAnchorElement | null)[]>([]);
+  const pathname = usePathname();
 
   // Avoid hydration mismatch
   React.useEffect(() => {
@@ -40,43 +51,77 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
 
+  // Helper to get correct href based on current page
+  const getHref = (hash: string) => {
+    if (pathname === "/") {
+      return hash;
+    }
+    return "/" + hash;
+  };
+
+  // Update pill position when hovering
+  const handleMouseEnter = (index: number) => {
+    setHoveredIndex(index);
+    const item = itemRefs.current[index];
+    const nav = navRef.current;
+    if (item && nav) {
+      const navRect = nav.getBoundingClientRect();
+      const itemRect = item.getBoundingClientRect();
+      setPillStyle({
+        left: itemRect.left - navRect.left,
+        width: itemRect.width,
+        opacity: 1,
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+    setPillStyle((prev) => ({ ...prev, opacity: 0 }));
+  };
+
   const navLinks = [
     {
       name: "Home",
       href: "/",
       icon: Home,
       color: "from-purple-500 to-purple-400",
+      hash: "",
     },
     {
       name: "Skills",
-      href: "#tech-stack",
+      href: getHref("#tech-stack"),
       icon: Cpu,
       color: "from-blue-500 to-blue-400",
+      hash: "#tech-stack",
     },
     {
       name: "Projects",
-      href: "#projects",
+      href: getHref("#projects"),
       icon: Briefcase,
       color: "from-amber-500 to-amber-400",
+      hash: "#projects",
     },
     {
       name: "Awards",
-      href: "#achievements",
+      href: getHref("#achievements"),
       icon: Trophy,
       color: "from-yellow-500 to-yellow-400",
+      hash: "#achievements",
     },
     {
       name: "Contact",
-      href: "#contact",
+      href: getHref("#contact"),
       icon: Mail,
       color: "from-red-500 to-red-400",
+      hash: "#contact",
     },
   ];
 
   if (!mounted) {
     return (
       <div className="my-6 py-4 px-6 rounded-full flex items-center justify-between border border-transparent">
-        <span className="text-xl font-bold tracking-tighter"> naims.dev </span>
+        <Logo />
       </div>
     );
   }
@@ -93,19 +138,48 @@ export default function Navbar() {
       >
         {/* logo  */}
         <BlurFade delay={0} inView yOffset={0} blur="2px">
-          <Link
-            href="/"
-            className="text-xl md:text-2xl cursor-pointer font-black tracking-tighter hover:text-primary transition-all duration-300 group"
-          >
-            naim
-            <span className="text-primary group-hover:text-foreground">
-              s.dev
-            </span>
-          </Link>
+          <Logo />
         </BlurFade>
 
         {/* Desktop Nav Links - Center */}
-        <div className="hidden md:flex items-center gap-1">
+        <div
+          ref={navRef}
+          className="hidden md:flex items-center gap-1 relative"
+          onMouseLeave={handleMouseLeave}
+        >
+          {/* Sliding background pill */}
+          <motion.div
+            className="absolute top-0 bottom-0 bg-linear-to-br from-white/15 to-white/5 rounded-xl border border-white/10 backdrop-blur-sm -z-10"
+            animate={{
+              left: pillStyle.left,
+              width: pillStyle.width,
+              opacity: pillStyle.opacity,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 25,
+              mass: 0.8,
+            }}
+          />
+
+          {/* Sliding indicator line */}
+          <motion.div
+            className="absolute bottom-1 h-0.5 rounded-full bg-linear-to-r from-blue-400 via-indigo-400 to-blue-400 shadow-[0_0_8px_rgba(99,102,241,0.6)]"
+            animate={{
+              left: pillStyle.left + pillStyle.width / 2 - 8,
+              width: 16,
+              opacity: pillStyle.opacity,
+              scaleX: pillStyle.opacity > 0 ? 1 : 0.5,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 350,
+              damping: 28,
+              mass: 0.6,
+            }}
+          />
+
           {navLinks.map((link, idx) => (
             <BlurFade
               key={link.name}
@@ -114,26 +188,34 @@ export default function Navbar() {
               yOffset={0}
             >
               <Link
+                ref={(el) => {
+                  itemRefs.current[idx] = el;
+                }}
                 href={link.href}
-                className="relative flex items-center gap-2 px-4 py-2 text-xs font-bold text-muted-foreground/80 hover:text-white rounded-full transition-all duration-300 uppercase tracking-widest group overflow-hidden"
+                onMouseEnter={() => handleMouseEnter(idx)}
+                className="relative flex items-center gap-2 px-4 py-2 text-xs font-bold text-foreground/60 hover:text-foreground rounded-xl transition-colors duration-200 uppercase tracking-widest"
               >
-                {/* Animated background */}
-                <span className="absolute inset-0 bg-linear-to-r from-blue-600 via-blue-500 to-indigo-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
-                {/* Glow effect */}
-                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)]" />
-                {/* Content */}
                 <link.icon
-                  className="relative w-4 h-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300"
+                  className="relative w-4 h-4 transition-all duration-200"
                   style={{
-                    stroke: link.color.includes("purple")
-                      ? "#a855f7"
-                      : link.color.includes("blue")
-                        ? "#3b82f6"
-                        : link.color.includes("amber")
-                          ? "#f59e0b"
-                          : link.color.includes("yellow")
-                            ? "#eab308"
-                            : "#ef4444",
+                    stroke:
+                      hoveredIndex === idx
+                        ? "currentColor"
+                        : link.color.includes("purple")
+                          ? "#a855f7"
+                          : link.color.includes("blue")
+                            ? "#3b82f6"
+                            : link.color.includes("amber")
+                              ? "#f59e0b"
+                              : link.color.includes("yellow")
+                                ? "#eab308"
+                                : "#ef4444",
+                    transform:
+                      hoveredIndex === idx ? "scale(1.15)" : "scale(1)",
+                    filter:
+                      hoveredIndex === idx
+                        ? "drop-shadow(0 0 6px currentColor)"
+                        : "none",
                   }}
                 />
                 <span className="relative">{link.name}</span>

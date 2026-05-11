@@ -11,18 +11,19 @@ import {
   Github,
   Linkedin,
   Facebook,
+  Send,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { BlurFade } from "@/components/animation-wrapper";
-import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { SectionHeader } from "../section-header";
-import { Send } from "lucide-react";
+import PrimaryCtaButton from "@/components/primary-cta-button";
+import SocialButton from "@/components/social-button";
 
 type ContactFormData = {
   from_name: string;
@@ -105,24 +106,28 @@ export default function Contact() {
     {
       icon: <Github className="w-5 h-5" />,
       href: "https://github.com/naims6",
+      label: "GitHub",
       color: "from-gray-700 via-gray-600 to-gray-500",
       shadowColor: "rgba(75,85,99,1)",
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       href: "https://linkedin.com/in/naims6",
+      label: "LinkedIn",
       color: "from-blue-600 via-blue-500 to-blue-400",
       shadowColor: "rgba(37,99,235,1)",
     },
     {
       icon: <Facebook className="w-5 h-5" />,
       href: "https://facebook.com/naim.sorker6",
+      label: "Facebook",
       color: "from-blue-500 via-blue-400 to-blue-300",
       shadowColor: "rgba(59,130,246,1)",
     },
     {
       icon: <FaWhatsapp className="w-5 h-5" />,
       href: "https://wa.me/+8801908390036",
+      label: "WhatsApp",
       color: "from-green-500 via-green-400 to-green-300",
       shadowColor: "rgba(34,197,94,1)",
     },
@@ -185,32 +190,15 @@ export default function Contact() {
                 </h3>
                 <div className="flex gap-4">
                   {socialLinks.map((link, i) => (
-                    <Link
+                    <SocialButton
                       key={i}
                       href={link.href}
-                      target="_blank"
-                      className="group relative w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
-                    >
-                      {/* 3D Background */}
-                      <div
-                        className={`absolute inset-0 bg-linear-to-br ${link.color} transition-transform duration-300 group-hover:scale-105`}
-                      />
-                      {/* 3D Shadow */}
-                      <div
-                        className="absolute inset-0 rounded-xl transition-all duration-300"
-                        style={{
-                          boxShadow: `inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(0,0,0,0.2), 0 2px 0 0 ${link.shadowColor}, 0 4px 8px -2px ${link.shadowColor.replace("1)", "0.4)")}`,
-                        }}
-                      />
-                      {/* Shine effect */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                      </div>
-                      {/* Icon */}
-                      <div className="relative text-white transition-transform duration-300 group-hover:scale-110">
-                        {link.icon}
-                      </div>
-                    </Link>
+                      icon={link.icon}
+                      label={link.label}
+                      color={link.color}
+                      shadowColor={link.shadowColor}
+                      size="md"
+                    />
                   ))}
                 </div>
               </div>
@@ -301,40 +289,27 @@ export default function Contact() {
                 )}
               </div>
 
-              <button
+              <PrimaryCtaButton
                 type="submit"
+                onClick={handleSubmit(onSubmit)}
                 disabled={isSubmitting}
-                className="group relative w-full inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 ease-out rounded-2xl overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {/* 3D Background with gradient */}
-                <div className="absolute inset-0 bg-linear-to-br from-blue-600 via-blue-500 to-indigo-600 transition-all duration-300 group-hover:scale-105" />
-
-                {/* 3D Edge/Depth effect */}
-                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_4px_0_0_rgba(37,99,235,1),0_8px_16px_-4px_rgba(37,99,235,0.5)] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_6px_0_0_rgba(37,99,235,1),0_12px_20px_-4px_rgba(37,99,235,0.6)] transition-all duration-300 group-hover:-translate-y-1" />
-
-                {/* Shine effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                </div>
-
-                {/* Content */}
-                <span className="relative flex items-center gap-3">
-                  {isSubmitting ? (
+                className="w-full"
+                icon={
+                  isSubmitting ? (
                     <Loader2 className="w-6 h-6 animate-spin" />
                   ) : isSuccess ? (
-                    <Check className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+                    <Check className="w-6 h-6" />
                   ) : (
-                    <Send className="w-6 h-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
-                  )}
-                  <span className="text-lg tracking-wide">
-                    {isSubmitting
-                      ? "Sending..."
-                      : isSuccess
-                        ? "Sent Successfully"
-                        : "Send Message"}
-                  </span>
-                </span>
-              </button>
+                    <Send className="w-6 h-6" />
+                  )
+                }
+              >
+                {isSubmitting
+                  ? "Sending..."
+                  : isSuccess
+                    ? "Sent Successfully"
+                    : "Send Message"}
+              </PrimaryCtaButton>
             </form>
           </div>
         </BlurFade>

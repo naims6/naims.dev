@@ -19,7 +19,12 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function Achievements() {
   return (
-    <div className="mt-20 scroll-mt-28" id="achievements">
+    <div className="mt-20 relative scroll-mt-28" id="achievements">
+      {/* Background decorative blobs for glassmorphism effect */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none -z-10" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none -z-10" />
+
       <SectionHeader title="Achievements & Certificates" className="mb-12" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {achievements.map((achievement, index) => {

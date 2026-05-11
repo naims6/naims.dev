@@ -17,11 +17,6 @@ export default function Header() {
       <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-12 lg:gap-16">
         {/* Left Side: Name and Intro */}
         <div className="w-full lg:w-[60%] space-y-8 relative">
-          {/* Subtle colorful gradient background */}
-          <div className="absolute -inset-4 lg:-inset-8 bg-linear-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-3xl blur-2xl -z-10" />
-          <div className="absolute -top-8 -right-8 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-purple-400/10 rounded-full blur-3xl" />
-
           <div className="space-y-3">
             <BlurFade delay={0} inView>
               <div className="flex justify-center lg:justify-start">
@@ -30,7 +25,7 @@ export default function Header() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                   </span>
-                  Open to Work
+                  Start a Project
                 </span>
               </div>
             </BlurFade>

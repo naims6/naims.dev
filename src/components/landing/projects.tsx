@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import SecondaryButton from "../secondary-button";
 import {
   SiNextdotjs,
   SiReact,
@@ -85,27 +85,13 @@ export default function Projects() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <Link
+          <SecondaryButton
             href="/projects"
-            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 ease-out rounded-2xl overflow-hidden"
+            className="px-8 py-4 text-base"
+            icon={<ChevronRight className="w-5 h-5" />}
           >
-            {/* 3D Background with gradient */}
-            <div className="absolute inset-0 bg-linear-to-br from-blue-600 via-blue-500 to-indigo-600 transition-all duration-300 group-hover:scale-105" />
-
-            {/* 3D Edge/Depth effect */}
-            <div className="absolute inset-0 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_4px_0_0_rgba(37,99,235,1),0_8px_16px_-4px_rgba(37,99,235,0.5)] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.2),0_6px_0_0_rgba(37,99,235,1),0_12px_20px_-4px_rgba(37,99,235,0.6)] transition-all duration-300 group-hover:-translate-y-1" />
-
-            {/* Shine effect */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            </div>
-
-            {/* Content */}
-            <span className="relative flex items-center gap-3">
-              <span className="text-lg tracking-wide">View All Projects</span>
-              <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </span>
-          </Link>
+            <span className="text-base tracking-wide">View All Projects</span>
+          </SecondaryButton>
         </div>
       </div>
     </section>

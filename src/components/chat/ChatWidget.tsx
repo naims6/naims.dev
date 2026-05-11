@@ -279,6 +279,21 @@ export default function ChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:shadow-primary/20 transition-all duration-300 relative"
       >
+        <svg className="absolute inset-0 w-0 h-0">
+          <defs>
+            <linearGradient
+              id="chat-gradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor="#3b82f6" />
+              <stop offset="50%" stopColor="#8b5cf6" />
+              <stop offset="100%" stopColor="#ec4899" />
+            </linearGradient>
+          </defs>
+        </svg>
         <AnimatePresence mode="wait">
           {isOpen ? (
             <motion.div
@@ -298,7 +313,10 @@ export default function ChatWidget() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <MessageCircle className="h-6 w-6" />
+              <MessageCircle
+                className="h-6 w-6"
+                style={{ stroke: "url(#chat-gradient)" }}
+              />
             </motion.div>
           )}
         </AnimatePresence>

@@ -4,12 +4,7 @@ import * as React from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ExternalLink,
-  Github,
-  ArrowLeft,
-  CheckCircle2,
-} from "lucide-react";
+import { ExternalLink, Github, ArrowLeft, CheckCircle2 } from "lucide-react";
 import {
   SiNextdotjs,
   SiReact,
@@ -34,6 +29,7 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { BlurFade } from "@/components/animation-wrapper";
 import PrimaryCtaButton from "@/components/primary-cta-button";
+import SecondaryButton from "@/components/secondary-button";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -189,29 +185,32 @@ export default function ProjectDetailPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full"
+                      icon={<ExternalLink className="w-5 h-5" />}
                     >
-                      <span className="text-lg tracking-wide">Live Demo</span>
-                      <ExternalLink className="w-5 h-5" />
+                      Live Demo
                     </PrimaryCtaButton>
-                    <PrimaryCtaButton
+                    <SecondaryButton
                       href={project.githubRepository}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full"
+                      icon={<Github className="w-5 h-5" />}
                     >
-                      <span className="text-lg tracking-wide">Source Code</span>
-                      <Github className="w-5 h-5" />
-                    </PrimaryCtaButton>
+                      Source Code
+                    </SecondaryButton>
                   </div>
                 </div>
               </BlurFade>
 
               {/* Back Link */}
               <BlurFade delay={0.7}>
-                <PrimaryCtaButton href="/projects" className="w-full">
-                  <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
-                  <span className="text-lg tracking-wide">All Projects</span>
-                </PrimaryCtaButton>
+                <SecondaryButton
+                  href="/projects"
+                  className="w-full"
+                  icon={<ArrowLeft className="w-5 h-5" />}
+                >
+                  All Projects
+                </SecondaryButton>
               </BlurFade>
             </div>
           </div>

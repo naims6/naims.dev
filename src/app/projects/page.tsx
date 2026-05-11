@@ -25,7 +25,7 @@ import { BlurFade } from "@/components/animation-wrapper";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ArrowLeft } from "lucide-react";
-import PrimaryCtaButton from "@/components/primary-cta-button";
+import SecondaryButton from "@/components/secondary-button";
 
 export default function AllProjectsPage() {
   const getTechIcon = (tech: string) => {
@@ -89,10 +89,9 @@ export default function AllProjectsPage() {
             ))}
           </div>
           <div className="mt-12 flex justify-center">
-            <PrimaryCtaButton href="/">
-              <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
-              <span className="text-lg tracking-wide">Return Home</span>
-            </PrimaryCtaButton>
+            <SecondaryButton href="/" icon={<ArrowLeft className="w-5 h-5" />}>
+              Return Home
+            </SecondaryButton>
           </div>
         </div>
       </section>

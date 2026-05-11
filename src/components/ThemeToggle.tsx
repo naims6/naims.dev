@@ -28,7 +28,7 @@ const ThemeToggle = () => {
           >
             <Moon
               className="h-[1.1rem] w-[1.1rem]"
-              style={{ stroke: "#6366f1" }}
+              style={{ stroke: "#22d3ee", fill: "#22d3ee", fillOpacity: 0.2 }}
             />
           </motion.div>
         ) : (

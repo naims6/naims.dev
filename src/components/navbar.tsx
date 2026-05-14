@@ -149,7 +149,7 @@ export default function Navbar() {
         >
           {/* Sliding background pill */}
           <motion.div
-            className="absolute top-0 bottom-0 bg-linear-to-br from-white/15 to-white/5 rounded-xl border border-white/10 backdrop-blur-sm -z-10"
+            className="absolute top-0 bottom-0 bg-linear-to-br from-black/10 to-black/5 dark:from-white/15 dark:to-white/5 rounded-xl border border-black/10 dark:border-white/10 backdrop-blur-sm -z-10"
             animate={{
               left: pillStyle.left,
               width: pillStyle.width,

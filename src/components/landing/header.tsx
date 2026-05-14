@@ -7,7 +7,6 @@ import About from "./about";
 import { TechMarquee } from "./tech-marquee";
 import PrimaryCtaButton from "@/components/primary-cta-button";
 import SocialButton from "@/components/social-button";
-import StylizedO from "@/components/stylized-o";
 
 export default function Header() {
   return (
@@ -32,8 +31,7 @@ export default function Header() {
             </BlurFade>
             <BlurFade delay={0.05} inView>
               <h1 className="text-center lg:text-left text-5xl lg:text-7xl font-black tracking-tight leading-none bg-linear-to-r from-blue-600 via-purple-600 to-pink-500 bg-size-[200%_auto] animate-gradient-x bg-clip-text animate-fade-in-up">
-                Naim S<StylizedO />
-                rker
+                Naim Sorker
               </h1>
             </BlurFade>
             <BlurFade delay={0.1} inView>

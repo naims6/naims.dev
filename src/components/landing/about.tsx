@@ -6,7 +6,7 @@ export default function About() {
       <BlurFade delay={0.25} inView>
         <p className="max-w-2xl text-base lg:text-lg text-muted-foreground leading-relaxed">
           I am a Full Stack Developer. My goal in the next{" "}
-          <span className="font-semibold text-foreground">3-5 years</span> is to
+          <span className="font-semibold text-foreground">2-3 years</span> is to
           become a good{" "}
           <span className="font-semibold text-foreground">Tech Leader</span> by
           guiding junior developers, making better technical decisions, and

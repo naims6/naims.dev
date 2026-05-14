@@ -26,6 +26,7 @@ import {
   SiMysql,
   SiRedis,
   SiEsotericsoftware,
+  SiSocketdotio,
 } from "react-icons/si";
 
 export const techStack = [
@@ -131,10 +132,10 @@ export const techStack = [
         description: "In-memory data structure store.",
       },
       {
-        name: "Mongoose",
-        icon: <SiMongoose className="mr-1 text-[#880000]" />,
-        color: "#880000",
-        description: "MongoDB object modeling for Node.js.",
+        name: "Socket.io",
+        icon: <SiSocketdotio className="mr-1" />,
+        color: "#000000",
+        description: "Real-time bidirectional event-based communication.",
       },
       {
         name: "Prisma",

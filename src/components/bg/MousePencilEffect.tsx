@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+import { useMounted } from "@/hooks/use-mounted";
 
 interface Point {
   x: number;
@@ -16,11 +17,7 @@ export default function MousePencilEffect() {
   const requestRef = useRef<number>(null);
   const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   useEffect(() => {
     if (!mounted) return;

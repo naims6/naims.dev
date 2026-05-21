@@ -1,117 +1,96 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+import { useMounted } from "@/hooks/use-mounted";
 
 interface Point {
   x: number;
   y: number;
   age: number;
-  opacity: number;
 }
+
+const MAX_POINTS = 80;
+const FADE_FRAMES = 40;
 
 export default function MousePencilEffect() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointsRef = useRef<Point[]>([]);
-  const requestRef = useRef<number>(null);
-  const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const rafRef = useRef<number>(null);
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   useEffect(() => {
     if (!mounted) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const handleResize = () => {
+    const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-
-      // Add a new point
-      pointsRef.current.push({
-        x: e.clientX,
-        y: e.clientY,
-        age: 0,
-        opacity: 1,
-      });
+    const onMove = (e: MouseEvent) => {
+      pointsRef.current.push({ x: e.clientX, y: e.clientY, age: 0 });
+      if (pointsRef.current.length > MAX_POINTS) {
+        pointsRef.current.shift();
+      }
     };
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", handleMouseMove);
-    handleResize();
+    resize();
+    window.addEventListener("resize", resize);
+    window.addEventListener("mousemove", onMove);
 
-    const animate = () => {
+    const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Pencil color based on theme
-      // Graphite/Darker feel
-      const color =
-        resolvedTheme === "dark"
-          ? "rgba(200, 200, 200," // Silver/Grey for dark mode
-          : "rgba(30, 30, 30,"; // Deep charcoal for light mode
+      const dark = resolvedTheme === "dark";
+      const color = dark ? "200, 200, 200" : "15, 15, 20";
+      const strokeAlpha = dark ? 0.55 : 0.88;
+      const lineScale = dark ? 1.5 : 2;
 
-      // Update and filter points
-      pointsRef.current = pointsRef.current.filter((p) => {
-        p.age += 1;
-        p.opacity = Math.max(0, 1 - p.age / 35); // Slightly faster fade
-        return p.opacity > 0;
-      });
+      pointsRef.current = pointsRef.current
+        .map((p) => ({ ...p, age: p.age + 1 }))
+        .filter((p) => p.age < FADE_FRAMES);
 
-      if (pointsRef.current.length > 1) {
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-
-        // Group segments to minimize state changes
-        for (let i = 1; i < pointsRef.current.length; i++) {
-          const p1 = pointsRef.current[i - 1];
-          const p2 = pointsRef.current[i];
-
-          const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-          if (dist < 80) {
-            const alpha = 0.5 * p2.opacity; // More visible
-            ctx.strokeStyle = `${color} ${alpha})`;
-            ctx.lineWidth = (1 + Math.sin(p2.age * 0.2) * 0.2) * p2.opacity; // Subtle pressure variation
-
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-
-            // Minimal jitter for performance - only for very fresh points
-            if (p2.age < 5) {
-              ctx.fillStyle = `${color} ${alpha * 0.2})`;
-              ctx.fillRect(
-                p2.x + (Math.random() - 0.5) * 4,
-                p2.y + (Math.random() - 0.5) * 4,
-                1,
-                1,
-              );
-            }
-          }
-        }
+      if (pointsRef.current.length < 2) {
+        rafRef.current = requestAnimationFrame(draw);
+        return;
       }
 
-      requestRef.current = requestAnimationFrame(animate);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      for (let i = 1; i < pointsRef.current.length; i++) {
+        const p1 = pointsRef.current[i - 1];
+        const p2 = pointsRef.current[i];
+        const opacity = 1 - p2.age / FADE_FRAMES;
+
+        if (opacity <= 0) continue;
+
+        const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+        if (dist > 60) continue;
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(${color}, ${opacity * strokeAlpha})`;
+        ctx.lineWidth = lineScale * opacity;
+        ctx.stroke();
+      }
+
+      rafRef.current = requestAnimationFrame(draw);
     };
 
-    requestRef.current = requestAnimationFrame(animate);
+    rafRef.current = requestAnimationFrame(draw);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMove);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [mounted, resolvedTheme]);
 
@@ -120,10 +99,11 @@ export default function MousePencilEffect() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-50 overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-50"
       style={{
-        mixBlendMode: resolvedTheme === "dark" ? "plus-lighter" : "multiply",
+        mixBlendMode: resolvedTheme === "dark" ? "plus-lighter" : "normal",
       }}
+      aria-hidden
     />
   );
 }

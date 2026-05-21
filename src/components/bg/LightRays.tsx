@@ -151,6 +151,9 @@ const LightRays: React.FC<LightRaysProps> = ({
       rendererRef.current = renderer;
 
       const gl = renderer.gl;
+      gl.clearColor(0, 0, 0, 0);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
       gl.canvas.style.width = '100%';
       gl.canvas.style.height = '100%';
 
@@ -258,7 +261,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 void main() {
   vec4 color;
   mainImage(color, gl_FragCoord.xy);
-  gl_FragColor  = color;
+  float alpha = clamp(max(color.r, max(color.g, color.b)), 0.0, 1.0);
+  gl_FragColor = vec4(color.rgb, alpha);
 }`;
 
       const uniforms: Uniforms = {

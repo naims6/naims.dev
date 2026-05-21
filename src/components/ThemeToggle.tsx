@@ -4,12 +4,29 @@ import { Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
+import { useMounted } from "@/hooks/use-mounted";
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const mounted = useMounted();
+
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
+
+  if (!mounted) {
+    return (
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-hidden
+        className="rounded-full w-10 h-10 bg-background/10 border border-border/40 backdrop-blur-sm"
+      >
+        <Sun className="h-[1.1rem] w-[1.1rem] opacity-0" />
+      </Button>
+    );
+  }
+
   return (
     <Button
       variant="ghost"
@@ -18,7 +35,7 @@ const ThemeToggle = () => {
       className="rounded-full w-10 h-10 bg-background/10 hover:bg-background/80 border border-border/40 backdrop-blur-sm transition-all duration-300"
     >
       <AnimatePresence mode="wait" initial={false}>
-        {theme === "dark" ? (
+        {resolvedTheme === "dark" ? (
           <motion.div
             key="moon"
             initial={{ rotate: -90, scale: 0, opacity: 0 }}

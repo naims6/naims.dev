@@ -1,8 +1,8 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import LightRays from "./LightRays";
+import { useMounted } from "@/hooks/use-mounted";
 
 interface ThemeAwareLightRaysProps {
   raysOrigin?:
@@ -36,12 +36,7 @@ export default function ThemeAwareLightRays({
   className = "",
 }: ThemeAwareLightRaysProps) {
   const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // Avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   if (!mounted) {
     return null;
@@ -53,9 +48,9 @@ export default function ThemeAwareLightRays({
   // Theme-specific configurations
   const themeConfig = {
     light: {
-      raysColor: "#2a2a2a", // Darker rays for light background
-      fadeDistance: 0.5, // Shorter fade for better visibility
-      saturation: 0.3, // Lower saturation for subtle effect
+      raysColor: "#2a2a2a",
+      fadeDistance: 0.5,
+      saturation: 0.3,
     },
     dark: {
       raysColor: "#ffffff", // White rays for dark background

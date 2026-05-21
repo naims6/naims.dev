@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import ChatWidget from "@/components/chat/ChatWidgetWrapper";
 import Script from "next/script";
 import BackgroundWrapper from "@/components/bg/BackgroundWrapper";
+import MousePencilEffect from "@/components/bg/MousePencilEffect";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -187,6 +188,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <BackgroundWrapper />
+          <MousePencilEffect />
           {children}
           <Toaster position="bottom-right" reverseOrder={false} />
           <ChatWidget />

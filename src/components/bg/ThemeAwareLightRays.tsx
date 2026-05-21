@@ -48,9 +48,9 @@ export default function ThemeAwareLightRays({
   // Theme-specific configurations
   const themeConfig = {
     light: {
-      raysColor: "#2a2a2a", // Darker rays for light background
-      fadeDistance: 0.5, // Shorter fade for better visibility
-      saturation: 0.3, // Lower saturation for subtle effect
+      raysColor: "#2a2a2a",
+      fadeDistance: 0.5,
+      saturation: 0.3,
     },
     dark: {
       raysColor: "#ffffff", // White rays for dark background

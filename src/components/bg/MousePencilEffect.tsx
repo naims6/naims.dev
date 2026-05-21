@@ -48,7 +48,9 @@ export default function MousePencilEffect() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const dark = resolvedTheme === "dark";
-      const color = dark ? "200, 200, 200" : "30, 30, 30";
+      const color = dark ? "200, 200, 200" : "15, 15, 20";
+      const strokeAlpha = dark ? 0.55 : 0.88;
+      const lineScale = dark ? 1.5 : 2;
 
       pointsRef.current = pointsRef.current
         .map((p) => ({ ...p, age: p.age + 1 }))
@@ -75,8 +77,8 @@ export default function MousePencilEffect() {
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
-        ctx.strokeStyle = `rgba(${color}, ${opacity * 0.55})`;
-        ctx.lineWidth = 1.5 * opacity;
+        ctx.strokeStyle = `rgba(${color}, ${opacity * strokeAlpha})`;
+        ctx.lineWidth = lineScale * opacity;
         ctx.stroke();
       }
 
@@ -99,7 +101,7 @@ export default function MousePencilEffect() {
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-50"
       style={{
-        mixBlendMode: resolvedTheme === "dark" ? "plus-lighter" : "multiply",
+        mixBlendMode: resolvedTheme === "dark" ? "plus-lighter" : "normal",
       }}
       aria-hidden
     />

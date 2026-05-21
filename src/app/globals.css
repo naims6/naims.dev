@@ -129,22 +129,15 @@ html {
   }
 }
 
-/* Custom lightray styles for better theme integration */
-.custom-rays {
+/* Theme-aware rays: dark uses wrapper opacity only (original look) */
+.theme-rays {
   transition: opacity 0.3s ease-in-out;
-  mix-blend-mode: soft-light;
 }
 
-/* Enhanced blending for light theme */
-.light .custom-rays {
+/* Light theme only — subtle rays without affecting dark mode */
+.light .theme-rays {
   mix-blend-mode: multiply;
-  opacity: 0.15;
-}
-
-/* Enhanced blending for dark theme */
-.dark .custom-rays {
-  mix-blend-mode: screen;
-  opacity: 0.2;
+  opacity: 0.28;
 }
 
 /* selection color of website any text */

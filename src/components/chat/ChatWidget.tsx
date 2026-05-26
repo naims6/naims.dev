@@ -277,7 +277,7 @@ export default function ChatWidget() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:shadow-primary/20 transition-all duration-300 relative"
+        className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg border border-primary/30 hover:bg-primary/80 hover:shadow-primary/40 transition-all duration-300 relative"
       >
         <svg className="absolute inset-0 w-0 h-0">
           <defs>

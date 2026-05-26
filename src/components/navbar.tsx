@@ -132,7 +132,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`my-6 py-3 px-6 rounded-full flex items-center justify-between sticky top-6 z-50 ${scrolled ? 'bg-white/30 dark:bg-white/5 backdrop-blur-md border-b border-white/20 dark:border-white/10' : 'bg-transparent'} border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/50 dark:hover:border-white/20`}
+        className={`my-6 py-3 px-6 rounded-full flex items-center justify-between sticky top-6 z-50 ${scrolled ? 'bg-white/30 dark:bg-white/5 backdrop-blur-md border-b border-white/20 dark:border-white/10' : 'bg-transparent'} border border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/50 dark:hover:border-white/20`}
         style={{
           transform: isVisible ? "translateY(0)" : "translateY(-100%)",
           opacity: isVisible ? 1 : 0,

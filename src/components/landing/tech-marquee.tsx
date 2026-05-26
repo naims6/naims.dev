@@ -40,15 +40,19 @@ export function TechMarquee() {
   const repeatedIcons = [...techIcons, ...techIcons, ...techIcons];
 
   return (
-    <div className="w-[calc(100%+2rem)] md:w-full -mx-4 md:mx-0 overflow-hidden py-10 relative group">
+    <div className="w-[calc(100%+2rem)] md:w-full -mx-4 md:mx-0 overflow-hidden py-4 relative">
+      {/* Fade edges */}
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-16 z-10 bg-gradient-to-r from-background to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10 bg-gradient-to-l from-background to-transparent" />
+
       <div className="flex w-max animate-marquee whitespace-nowrap">
         {repeatedIcons.map((tech, index) => (
           <div
             key={index}
-            className="flex items-center gap-4 px-8 py-4 mx-4 rounded-2xl "
+            className="flex items-center gap-3 px-5 py-3 mx-3 rounded-2xl bg-white/60 dark:bg-white/5 backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.15)] transition-all duration-300 group/item"
           >
             <div
-              className="text-3xl transition-all duration-300 group-hover/item:scale-125"
+              className="text-2xl transition-all duration-300 group-hover/item:scale-110 flex-shrink-0"
               style={{
                 color:
                   tech.color &&
@@ -60,7 +64,7 @@ export function TechMarquee() {
             >
               {tech.icon}
             </div>
-            <span className="text-sm font-bold text-muted-foreground group-hover/item:text-foreground transition-colors duration-300 uppercase tracking-widest">
+            <span className="text-xs font-semibold text-foreground/70 group-hover/item:text-foreground transition-colors duration-300 uppercase tracking-widest">
               {tech.name}
             </span>
           </div>

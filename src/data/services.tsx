@@ -4,23 +4,23 @@ export const services = [
   {
     title: "Full-Stack Development",
     description:
-      "Building scalable web applications using Next.js/MERN, containerized with Docker and deployed via automated CI/CD pipelines.",
+      "Building scalable web applications using Next.js/PERN, containerized with Docker and deployed via automated CI/CD pipelines.",
     icon: <Code2 className="w-6 h-6" />,
     color: "#3B82F6", // Blue
   },
   {
-    title: "Responsive UI/UX",
-    description:
-      "Crafting beautiful, pixel-perfect interfaces with Tailwind CSS and Framer Motion.",
-    icon: <Layout className="w-6 h-6" />,
-    color: "#EC4899", // Pink
-  },
-  {
     title: "Backend & API Design",
     description:
-      "Designing robust RESTful APIs and database schemas with Node.js and MongoDB.",
+      "Designing robust RESTful APIs and database schemas with Node.js and MongoDB, PostgreSQL.",
     icon: <Server className="w-6 h-6" />,
     color: "#10B981", // Green
+  },
+  {
+    title: "Web Performance",
+    description:
+      "Optimizing sites for maximum speed and Core Web Vitals compliance.",
+    icon: <Globe className="w-6 h-6" />,
+    color: "#8B5CF6", // Violet
   },
   {
     title: "Authentication Systems",
@@ -30,11 +30,11 @@ export const services = [
     color: "#F59E0B", // Amber
   },
   {
-    title: "Web Performance",
+    title: "Responsive UI/UX",
     description:
-      "Optimizing sites for maximum speed and Core Web Vitals compliance.",
-    icon: <Globe className="w-6 h-6" />,
-    color: "#8B5CF6", // Violet
+      "Crafting beautiful, pixel-perfect interfaces with Tailwind CSS and Framer Motion.",
+    icon: <Layout className="w-6 h-6" />,
+    color: "#EC4899", // Pink
   },
   {
     title: "SEO Optimization",

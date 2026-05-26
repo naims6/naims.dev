@@ -40,7 +40,7 @@ export function TechMarquee() {
   const repeatedIcons = [...techIcons, ...techIcons, ...techIcons];
 
   return (
-    <div className="w-[calc(100%+2rem)] md:w-full -mx-4 md:mx-0 overflow-hidden py-10 relative group bg-background/5">
+    <div className="w-[calc(100%+2rem)] md:w-full -mx-4 md:mx-0 overflow-hidden py-10 relative group bg-white/20 dark:bg-white/[0.03] backdrop-blur-md border-y border-white/20 dark:border-white/10">
       {/* Gradient Fades for edges */}
       <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-background to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-background to-transparent z-10 pointer-events-none" />

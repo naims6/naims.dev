@@ -177,7 +177,7 @@ export default function ProjectDetailPage() {
             {/* Links and Actions */}
             <div className="space-y-8">
               <BlurFade delay={0.6}>
-                <div className="p-8 rounded-2xl bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] space-y-6">
+                <div className="p-8 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] space-y-6">
                   <h3 className="text-xl font-bold">Project Links</h3>
                   <div className="flex flex-col gap-4">
                     <PrimaryCtaButton

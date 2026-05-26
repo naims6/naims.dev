@@ -129,7 +129,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="my-6 py-3 px-6 rounded-full flex items-center justify-between sticky top-6 z-50 bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/45 dark:hover:border-white/25"
+        className="my-6 py-3 px-6 rounded-full flex items-center justify-between sticky top-6 z-50 bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/50 dark:hover:border-white/20"
         style={{
           transform: isVisible ? "translateY(0)" : "translateY(-100%)",
           opacity: isVisible ? 1 : 0,
@@ -253,7 +253,7 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-x-4 top-24 z-50 md:hidden"
           >
-            <div className="p-4 rounded-2xl bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] flex flex-col gap-2">
+            <div className="p-4 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] flex flex-col gap-2">
               {navLinks.map((link, idx) => (
                 <motion.div
                   key={link.name}

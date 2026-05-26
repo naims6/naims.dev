@@ -25,7 +25,7 @@ export default function Experience() {
       <div className="flex flex-col gap-6">
         {experiences.map((exp, index) => (
           <BlurFade key={index} delay={0.25 + index * 0.1} inView yOffset={8}>
-            <div className="group relative p-5 sm:p-6 rounded-2xl bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/40 dark:hover:border-white/20 hover:-translate-y-1">
+            <div className="group relative p-5 sm:p-6 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/50 dark:hover:border-white/20 hover:-translate-y-1">
               {/* Accent bar */}
               <div className="absolute left-0 top-6 bottom-6 w-[3px] rounded-full bg-primary/80" />
 

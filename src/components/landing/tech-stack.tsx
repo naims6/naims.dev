@@ -30,7 +30,7 @@ export default function TechStack() {
               <div
                 className={cn(
                   "h-full flex flex-col p-6 rounded-2xl border backdrop-blur-md transition-all duration-300",
-                  "bg-white/10 dark:bg-white/[0.02] border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:border-white/40 dark:hover:border-white/20"
+                  "bg-white/30 dark:bg-white/5 border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:border-white/50 dark:hover:border-white/20"
                 )}
               >
                 {/* Minimalist Column Header */}

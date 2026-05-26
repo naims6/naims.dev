@@ -4,7 +4,7 @@ export const services = [
   {
     title: "Full-Stack Development",
     description:
-      "Building scalable web applications using the MERN stack and Next.js.",
+      "Building scalable web applications using Next.js/MERN, containerized with Docker and deployed via automated CI/CD pipelines.",
     icon: <Code2 className="w-6 h-6" />,
     color: "#3B82F6", // Blue
   },

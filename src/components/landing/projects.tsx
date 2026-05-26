@@ -74,7 +74,7 @@ export default function Projects() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none -z-10" />
 
       <SectionHeader
-        title="Featured Projects"
+        title="Projects"
         className="max-w-6xl mx-auto mb-12"
       />
 

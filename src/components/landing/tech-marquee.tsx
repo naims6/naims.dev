@@ -13,6 +13,8 @@ import {
   SiPostgresql,
   SiRedux,
   SiVercel,
+  SiDocker,
+  SiGithubactions,
 } from "react-icons/si";
 
 const techIcons = [
@@ -25,6 +27,8 @@ const techIcons = [
   { icon: <SiMongodb />, name: "MongoDB", color: "#47A248" },
   { icon: <SiFirebase />, name: "Firebase", color: "#FFCA28" },
   { icon: <SiExpress />, name: "Express", color: "#000000" },
+  { icon: <SiDocker />, name: "Docker", color: "#2496ED" },
+  { icon: <SiGithubactions />, name: "CI/CD", color: "#2088FF" },
   { icon: <SiPrisma />, name: "Prisma", color: "#2D3748" },
   { icon: <SiPostgresql />, name: "PostgreSQL", color: "#4169E1" },
   { icon: <SiRedux />, name: "Redux", color: "#764ABC" },

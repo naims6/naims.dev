@@ -20,7 +20,7 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="h-full"
     >
-      <Card className="overflow-hidden flex flex-col gap-3 h-full bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] p-0 hover:border-primary/50 transition-all duration-300 rounded-2xl group">
+      <Card className="overflow-hidden flex flex-col gap-3 h-full bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] p-0 transition-all duration-300 hover:border-white/40 dark:hover:border-white/20 rounded-2xl group">
         {/* Project Image Container */}
         <div className="p-3">
           <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-muted/20">

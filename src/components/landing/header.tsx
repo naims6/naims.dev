@@ -19,7 +19,7 @@ export default function Header() {
         <div className="w-full lg:w-[60%] space-y-8 relative">
           <div className="space-y-3">
             <BlurFade delay={0} inView>
-              <div className="flex justify-center lg:justify-start">
+              <div className="flex justify-center lg:justify-start hidden md:flex">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-bold uppercase tracking-wider">
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>

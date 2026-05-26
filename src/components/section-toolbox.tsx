@@ -111,7 +111,7 @@ export default function SectionToolbox() {
 
   return (
     <aside className="fixed left-3 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
-      <div className="flex flex-col gap-2 p-2 rounded-2xl bg-white/50 dark:bg-black/25 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-[0_8px_28px_-8px_rgba(0,0,0,0.25)]">
+      <div className="flex flex-col gap-2 p-2 rounded-2xl bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/40 dark:hover:border-white/20">
         {sections.map((section) => {
           const Icon = section.icon;
           const isActive = activeSection === section.id;

@@ -148,7 +148,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-5 gap-6 items-stretch">
           {/* Left Side: Contact Info - Takes 2 columns */}
           <BlurFade delay={0} inView className="lg:col-span-2 flex flex-col">
-            <div className="flex-1 p-6 rounded-3xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)] relative overflow-hidden">
+            <div className="flex-1 p-6 rounded-2xl bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] relative overflow-hidden">
               {/* Decorative gradient blob */}
               <div className="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
 
@@ -165,7 +165,7 @@ export default function Contact() {
                 <div className="space-y-3">
                   {contactInfo.map((info, i) => (
                     <BlurFade key={info.title} delay={0.1 + i * 0.05} inView>
-                      <div className="group flex items-center gap-3 p-3 rounded-xl bg-white/60 dark:bg-white/5 backdrop-blur-sm border border-white/40 dark:border-white/10 hover:bg-white/80 dark:hover:bg-white/10 hover:scale-[1.02] transition-all duration-300 shadow-sm">
+                      <div className="group flex items-center gap-3 p-3 rounded-xl bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/[0.05] hover:border-white/45 dark:hover:border-white/25 hover:scale-[1.02] transition-all duration-300 shadow-sm">
                         <div
                           className={`relative w-9 h-9 rounded-lg bg-gradient-to-br ${info.color} flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform duration-300`}
                         >
@@ -213,7 +213,7 @@ export default function Contact() {
 
           {/* Right Side: Form - Takes 3 columns */}
           <BlurFade delay={0.1} inView className="lg:col-span-3 flex flex-col">
-            <div className="flex-1 p-8 rounded-3xl bg-gradient-to-br from-white/50 to-white/20 dark:from-white/10 dark:to-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)] relative overflow-hidden">
+            <div className="flex-1 p-8 rounded-2xl bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] relative overflow-hidden">
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/10 to-transparent rounded-full blur-3xl" />
 

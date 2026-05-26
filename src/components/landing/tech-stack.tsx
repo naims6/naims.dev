@@ -1,92 +1,91 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { techStack } from "@/data/techStack";
-import { BlurFade } from "@/components/animation-wrapper";
 import { SectionHeader } from "../section-header";
+import { BlurFade } from "@/components/animation-wrapper";
 import { cn } from "@/lib/utils";
+import React from "react";
 
 export default function TechStack() {
   return (
     <section className="mt-20 scroll-mt-28" id="tech-stack">
-      <SectionHeader title="Technical Skills" />
-      <div className="w-full max-w-7xl mx-auto space-y-10 mt-6">
-        {techStack.map((category: any, catIndex: number) => (
-          <div key={category.name} className="space-y-6">
-            <BlurFade delay={0.1 * catIndex} inView>
-              <div className="flex items-center gap-3">
-                {category.icon && (
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    {category.icon}
-                  </div>
+      <SectionHeader title="Skills" />
+
+      {/* Senior Developer 4-Column Responsive Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mt-10">
+        {techStack.map((category, catIndex) => {
+          // Simplified header names for senior aesthetics
+          const displayName = category.name
+            .replace(" & Databases", " & DB")
+            .replace(" & Analytics", " & Design");
+
+          return (
+            <BlurFade
+              key={category.name}
+              delay={0.1 * catIndex}
+              inView
+              className="h-full"
+            >
+              <div
+                className={cn(
+                  "h-full flex flex-col p-6 rounded-2xl border backdrop-blur-md transition-all duration-300",
+                  "bg-white/10 dark:bg-white/[0.02] border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:border-white/40 dark:hover:border-white/20"
                 )}
-                <h3 className="text-lg font-semibold tracking-tight text-foreground/90">
-                  {category.name}
-                </h3>
-                <div className="h-px bg-border flex-1" />
+              >
+                {/* Minimalist Column Header */}
+                <div className="flex items-center justify-between border-b border-border/60 pb-3.5 mb-5">
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-foreground/90">
+                    {displayName}
+                  </h3>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-foreground/5 text-muted-foreground font-mono">
+                    {category.skills.length}
+                  </span>
+                </div>
+
+                {/* Vertical Skills List */}
+                <div className="flex flex-col gap-1.5 flex-grow">
+                  {category.skills.map((skill) => (
+                    <motion.div
+                      key={skill.name}
+                      whileHover={{ x: 4 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      className="group flex items-center justify-between px-3 py-2 rounded-xl transition-all duration-300 hover:bg-foreground/[0.03] dark:hover:bg-white/[0.03] cursor-default"
+                    >
+                      <div className="flex items-center gap-3">
+                        {/* Icon transitions from monochrome to brand color on hover */}
+                        <div
+                          className="text-xl text-muted-foreground/60 transition-colors duration-300 flex items-center justify-center"
+                          style={
+                            {
+                              "--hover-color": skill.color === "#000000" ? "var(--foreground)" : skill.color,
+                            } as React.CSSProperties
+                          }
+                        >
+                          <div className="transition-colors duration-300 group-hover:text-[var(--hover-color)] text-foreground/65">
+                            {skill.icon}
+                          </div>
+                        </div>
+
+                        {/* Skill Name */}
+                        <span className="text-xs font-semibold text-muted-foreground group-hover:text-foreground transition-colors duration-300 tracking-wide">
+                          {skill.name}
+                        </span>
+                      </div>
+
+                      {/* Small Core stack tag indicator */}
+                      {skill.isCore && (
+                        <span className="text-[8px] font-extrabold uppercase tracking-widest px-1.5 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 scale-[0.9] origin-right select-none opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                          Core
+                        </span>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </BlurFade>
-
-            <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4">
-              {category.skills.map((skill: any, index: number) => (
-                <BlurFade
-                  key={skill.name}
-                  delay={0.1 * catIndex + 0.05 * index}
-                  inView
-                  className={cn(index >= 8 && "hidden md:block")}
-                >
-                  <motion.div
-                    whileHover={{ y: -6, scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 600, damping: 20 }}
-                    className={cn(
-                      "group relative flex flex-col items-center justify-center p-4 rounded-2xl backdrop-blur-xl border transition-all duration-200 aspect-square overflow-hidden",
-                      "bg-white/30 dark:bg-white/5 border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20",
-                    )}
-                  >
-                    <div className="absolute inset-0 bg-linear-to-br from-white/20 to-transparent dark:from-white/5 dark:to-transparent opacity-50 pointer-events-none" />
-
-                    <div
-                      className="relative z-10 mb-2 text-2xl md:text-3xl transition-all duration-200 group-hover:scale-125 flex items-center justify-center"
-                      style={{
-                        color:
-                          skill.color === "#000000" ? undefined : skill.color,
-                      }}
-                    >
-                      <div
-                        className={
-                          skill.color === "#000000" ? "text-foreground" : ""
-                        }
-                      >
-                        {skill.icon}
-                      </div>
-                    </div>
-                    <span className="relative z-10 text-[10px] md:text-xs font-bold text-muted-foreground group-hover:text-foreground transition-colors duration-200 text-center uppercase tracking-wider">
-                      {skill.name}
-                    </span>
-
-                    {/* Enhanced Glow effect matching icon color */}
-                    <div
-                      className="absolute inset-x-0 bottom-0 h-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20"
-                      style={{
-                        backgroundColor:
-                          skill.color === "#000000"
-                            ? "var(--primary)"
-                            : skill.color || "var(--primary)",
-                        boxShadow: `0 -4px 16px ${skill.color === "#000000" ? "var(--primary)" : skill.color || "var(--primary)"}40`,
-                      }}
-                    />
-
-                    <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-[0.15] dark:group-hover:opacity-[0.08] transition-opacity duration-200 pointer-events-none z-0"
-                      style={{
-                        background: `radial-gradient(circle at center, ${skill.color === "#000000" ? "var(--primary)" : skill.color || "white"}, transparent 70%)`,
-                      }}
-                    />
-                  </motion.div>
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

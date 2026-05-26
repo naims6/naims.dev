@@ -25,7 +25,7 @@ export default function Achievements() {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none -z-10" />
 
-      <SectionHeader title="Achievements & Certificates" className="mb-12" />
+      <SectionHeader title="Achievements" className="mb-12" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {achievements.map((achievement, index) => {
           const Icon = iconMap[achievement.iconName] || Award;
@@ -36,7 +36,7 @@ export default function Achievements() {
               inView
               yOffset={8}
             >
-              <Card className="group overflow-hidden flex flex-col h-full bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] transition-all duration-300 hover:border-primary/50 rounded-2xl">
+              <Card className="group overflow-hidden flex flex-col h-full bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/40 dark:hover:border-white/20 rounded-2xl">
                 {/* Certificate Image Preview */}
                 <div className="p-1.5 relative">
                   {achievement.status && achievement.status !== "completed" && (
@@ -57,7 +57,7 @@ export default function Achievements() {
                         className={cn(
                           "object-cover transition-transform duration-500 group-hover:scale-110",
                           achievement.status === "upcoming" &&
-                            "opacity-60 grayscale-[0.5]",
+                          "opacity-60 grayscale-[0.5]",
                         )}
                         src={achievement.image}
                         alt={achievement.title}

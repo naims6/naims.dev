@@ -9,7 +9,7 @@ import { SectionHeader } from "../section-header";
 export default function Services() {
   return (
     <section className="mt-6" id="services">
-      <SectionHeader title="Services & Specializations" />
+      <SectionHeader title="Specialized" />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6">
         {services.map((service, index) => (
           <BlurFade
@@ -23,7 +23,7 @@ export default function Services() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="h-full"
             >
-              <Card className="h-full bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] group overflow-hidden relative rounded-2xl transition-all duration-300 hover:border-primary/50">
+              <Card className="h-full bg-white/10 dark:bg-white/[0.02] backdrop-blur-md border border-white/20 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] group overflow-hidden relative rounded-2xl transition-all duration-300 hover:border-white/40 dark:hover:border-white/20">
                 {/* Space Vibe Glow on Hover */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"

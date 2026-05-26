@@ -36,7 +36,7 @@ export default function Achievements() {
               inView
               yOffset={8}
             >
-              <Card className="group overflow-hidden flex flex-col h-full bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/50 dark:hover:border-white/20 rounded-2xl">
+              <Card className="group overflow-hidden flex flex-col h-full bg-transparent backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/50 dark:hover:border-white/20 rounded-2xl">
                 {/* Certificate Image Preview */}
                 <div className="p-1.5 relative">
                   {achievement.status && achievement.status !== "completed" && (

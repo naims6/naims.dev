@@ -40,24 +40,20 @@ export function TechMarquee() {
   const repeatedIcons = [...techIcons, ...techIcons, ...techIcons];
 
   return (
-    <div className="w-[calc(100%+2rem)] md:w-full -mx-4 md:mx-0 overflow-hidden py-10 relative group bg-white/20 dark:bg-white/[0.03] backdrop-blur-md border-y border-white/20 dark:border-white/10">
-      {/* Gradient Fades for edges */}
-      <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-background to-transparent z-10 pointer-events-none" />
-
+    <div className="w-[calc(100%+2rem)] md:w-full -mx-4 md:mx-0 overflow-hidden py-10 relative group">
       <div className="flex w-max animate-marquee whitespace-nowrap">
         {repeatedIcons.map((tech, index) => (
           <div
             key={index}
-            className="flex items-center gap-4 px-8 py-4 mx-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 group/item shrink-0 shadow-lg"
+            className="flex items-center gap-4 px-8 py-4 mx-4 rounded-2xl "
           >
             <div
               className="text-3xl transition-all duration-300 group-hover/item:scale-125"
               style={{
                 color:
                   tech.color &&
-                  tech.color !== "#000000" &&
-                  tech.color !== "#181717"
+                    tech.color !== "#000000" &&
+                    tech.color !== "#181717"
                     ? tech.color
                     : "var(--foreground)",
               }}

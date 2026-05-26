@@ -48,7 +48,7 @@ export default function Header() {
           <BlurFade delay={0.2} inView>
             <div className="flex items-center gap-2 text-muted-foreground/80 font-semibold uppercase tracking-widest text-sm lg:text-base">
               <MapPin size={20} style={{ stroke: "#3b82f6" }} />
-              <span>Tangail, Dhaka, Bangladesh</span>
+              <span>Dhaka, Bangladesh</span>
             </div>
           </BlurFade>
         </div>
@@ -61,7 +61,7 @@ export default function Header() {
               <div className="group relative w-48 h-48 lg:w-60 lg:h-60 rounded-2xl lg:rounded-3xl overflow-hidden border border-primary/10 bg-background shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-primary/40 cursor-pointer">
                 <Image
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  src="/assets/naims6_profile.png"
+                  src="https://res.cloudinary.com/dynxnpj21/image/upload/v1779201470/smfpwyk2icoiljlxfq44.png"
                   alt="Naim Sorker"
                   width={200}
                   height={200}

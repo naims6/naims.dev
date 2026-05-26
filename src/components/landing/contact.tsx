@@ -148,7 +148,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-5 gap-6 items-stretch">
           {/* Left Side: Contact Info - Takes 2 columns */}
           <BlurFade delay={0} inView className="lg:col-span-2 flex flex-col">
-            <div className="flex-1 p-6 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] relative overflow-hidden">
+            <div className="flex-1 p-6 rounded-2xl bg-transparent backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] relative overflow-hidden">
               {/* Decorative gradient blob */}
               <div className="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
 
@@ -213,7 +213,7 @@ export default function Contact() {
 
           {/* Right Side: Form - Takes 3 columns */}
           <BlurFade delay={0.1} inView className="lg:col-span-3 flex flex-col">
-            <div className="flex-1 p-8 rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] relative overflow-hidden">
+            <div className="flex-1 p-8 rounded-2xl bg-transparent backdrop-blur-md border border-white/30 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] relative overflow-hidden">
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/10 to-transparent rounded-full blur-3xl" />
 

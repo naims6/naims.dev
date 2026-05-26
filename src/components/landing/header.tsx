@@ -25,7 +25,7 @@ export default function Header() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                   </span>
-                  Start a Project
+                  Available
                 </span>
               </div>
             </BlurFade>
@@ -139,7 +139,7 @@ export default function Header() {
       </div>
 
       {/* Tech Marquee Bottom Section */}
-      <div className="mt-16 pt-10">
+      <div className="mt-8 md:mt-16 pt-4 md:pt-10">
         <BlurFade delay={0.6} inView>
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4 px-4">

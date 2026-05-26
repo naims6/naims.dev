@@ -25,7 +25,7 @@ export function SectionHeader({
       )}
     >
       <div className="relative group">
-        <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-foreground/90 font-outfit flex overflow-hidden">
+        <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-foreground/90 font-mono flex overflow-hidden">
           {letters.map((letter, index) => (
             <motion.span
               key={index}

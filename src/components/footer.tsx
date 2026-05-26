@@ -37,14 +37,14 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative mt-10 lg:mt-16 border-t border-muted/20 bg-background/50 backdrop-blur-md overflow-hidden">
+    <footer className="relative mt-6 md:mt-10 lg:mt-16 border-t border-muted/20 bg-background/50 backdrop-blur-md overflow-hidden -mx-4 md:mx-0 w-[calc(100%+2rem)] md:w-full">
       {/* Decorative gradient background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-linear-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           {/* Copyright and Attribution */}
-          <div className="flex flex-col items-center md:items-start gap-2">
+          <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
             <p className="text-sm text-muted-foreground font-medium">
               © {currentYear}{" "}
               <span className="text-foreground font-bold">Naim Sorker</span>.

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, Youtube } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
 export default function Footer() {
@@ -19,6 +19,14 @@ export default function Footer() {
       label: "GitHub",
       color: "from-gray-700 to-gray-600",
       iconColor: "text-gray-700",
+    },
+    {
+      icon: Youtube,
+      href: "https://www.youtube.com/@NaimsDev",
+      label: "YouTube",
+      color: "from-red-600 to-red-500",
+      iconColor: "text-red-600",
+      iconSize: 16,
     },
     {
       icon: Mail,
@@ -76,7 +84,7 @@ export default function Footer() {
                 className={`p-2.5 rounded-xl bg-gradient-to-br ${link.color} hover:shadow-lg hover:scale-110 transition-all duration-300 border border-transparent backdrop-blur-sm text-white`}
                 aria-label={link.label}
               >
-                <link.icon size={18} />
+                <link.icon size={link.iconSize || 18} />
               </Link>
             ))}
           </div>

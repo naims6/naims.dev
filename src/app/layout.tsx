@@ -170,6 +170,7 @@ export default function RootLayout({
             sameAs: [
               "https://github.com/naims6",
               "https://linkedin.com/in/naims6",
+              "https://www.youtube.com/@NaimsDev",
               "https://www.facebook.com/naim.sorker6",
               "https://wa.me/+8801908390036",
             ],

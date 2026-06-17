@@ -16,13 +16,13 @@ type SocialButtonProps = {
 const sizeClasses = {
   sm: "w-10 h-10 rounded-lg",
   md: "w-12 h-12 rounded-xl",
-  lg: "w-14 h-14 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl",
+  lg: "w-12 h-12 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl",
 };
 
 const iconSizes = {
   sm: "w-4 h-4",
   md: "w-5 h-5",
-  lg: "w-5 h-5 lg:w-7 lg:h-7",
+  lg: "w-[18px] h-[18px] lg:w-[24px] lg:h-[24px]",
 };
 
 export default function SocialButton({

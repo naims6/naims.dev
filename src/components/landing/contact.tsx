@@ -12,6 +12,7 @@ import {
   Linkedin,
   Facebook,
   Send,
+  Youtube,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
@@ -115,6 +116,13 @@ export default function Contact() {
       label: "LinkedIn",
       color: "from-blue-600 via-blue-500 to-blue-400",
       shadowColor: "rgba(37,99,235,1)",
+    },
+    {
+      icon: <Youtube className="w-[17px] h-[17px]" />,
+      href: "https://www.youtube.com/@NaimsDev",
+      label: "YouTube",
+      color: "from-red-600 via-red-500 to-red-400",
+      shadowColor: "rgba(220,38,38,1)",
     },
     {
       icon: <Facebook className="w-5 h-5" />,

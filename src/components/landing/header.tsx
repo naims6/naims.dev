@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FileUser, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { FileUser, Github, Linkedin, Mail, MapPin, Youtube } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
 import { BlurFade } from "@/components/animation-wrapper";
@@ -94,28 +94,35 @@ export default function Header() {
             <div className="flex items-center gap-3">
               {[
                 {
-                  icon: <Linkedin className="w-5 h-5 lg:w-7 lg:h-7" />,
+                  icon: <Linkedin className="w-[18px] h-[18px] lg:w-[24px] lg:h-[24px]" />,
                   href: "https://www.linkedin.com/in/naims6/",
                   label: "LinkedIn",
                   color: "from-blue-600 via-blue-500 to-blue-400",
                   shadowColor: "rgba(37,99,235,1)",
                 },
                 {
-                  icon: <Github className="w-5 h-5 lg:w-7 lg:h-7" />,
+                  icon: <Github className="w-[18px] h-[18px] lg:w-[24px] lg:h-[24px]" />,
                   href: "https://github.com/naims6",
                   label: "GitHub",
                   color: "from-gray-700 via-gray-600 to-gray-500",
                   shadowColor: "rgba(75,85,99,1)",
                 },
                 {
-                  icon: <Mail className="w-5 h-5 lg:w-7 lg:h-7" />,
+                  icon: <Youtube className="w-[16px] h-[16px] lg:w-[22px] lg:h-[22px]" />,
+                  href: "https://www.youtube.com/@NaimsDev",
+                  label: "YouTube",
+                  color: "from-red-600 via-red-500 to-red-400",
+                  shadowColor: "rgba(220,38,38,1)",
+                },
+                {
+                  icon: <Mail className="w-[18px] h-[18px] lg:w-[24px] lg:h-[24px]" />,
                   href: "mailto:naim.sorker06@gmail.com",
                   label: "Email",
                   color: "from-red-500 via-red-400 to-red-300",
                   shadowColor: "rgba(239,68,68,1)",
                 },
                 {
-                  icon: <SiWhatsapp className="w-5 h-5 lg:w-7 lg:h-7" />,
+                  icon: <SiWhatsapp className="w-[18px] h-[18px] lg:w-[24px] lg:h-[24px]" />,
                   href: "https://wa.me/+8801908390036",
                   label: "WhatsApp",
                   color: "from-green-500 via-green-400 to-green-300",

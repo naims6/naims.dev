@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Cpu, Briefcase, Trophy, Mail } from "lucide-react";
+import { Home, Cpu, Briefcase, Trophy, Mail, Video } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cross as Hamburger } from "hamburger-react";
 import { BlurFade } from "@/components/animation-wrapper";
@@ -104,6 +104,13 @@ export default function Navbar() {
       icon: Briefcase,
       color: "from-amber-500 to-amber-400",
       hash: "#projects",
+    },
+    {
+      name: "Tutorials",
+      href: getHref("#tutorials"),
+      icon: Video,
+      color: "from-rose-500 to-rose-400",
+      hash: "#tutorials",
     },
     {
       name: "Awards",

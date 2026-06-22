@@ -7,6 +7,7 @@ import SectionToolbox from "@/components/section-toolbox";
 const Services = dynamic(() => import("@/components/landing/services"));
 const TechStack = dynamic(() => import("@/components/landing/tech-stack"));
 const Projects = dynamic(() => import("@/components/landing/projects"));
+const Tutorials = dynamic(() => import("@/components/landing/tutorials"));
 const Experience = dynamic(() => import("@/components/landing/experience"));
 const Achievements = dynamic(() => import("@/components/landing/achievements"));
 const Contact = dynamic(() => import("@/components/landing/contact"));
@@ -26,6 +27,7 @@ export default function Home() {
       <Services />
       <TechStack />
       <Projects />
+      <Tutorials />
       <Experience />
       <Achievements />
       <Contact />

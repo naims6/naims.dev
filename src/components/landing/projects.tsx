@@ -73,10 +73,19 @@ export default function Projects() {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none -z-10" />
 
-      <SectionHeader
-        title="Projects"
-        className="max-w-6xl mx-auto mb-12"
-      />
+      <div className="max-w-6xl mx-auto mb-12 flex items-center justify-between gap-4">
+        <SectionHeader
+          title="Projects"
+          className="mb-0"
+        />
+        <SecondaryButton
+          href="/projects"
+          className="px-5 py-2 text-sm shrink-0"
+          icon={<ChevronRight className="w-4 h-4" />}
+        >
+          <span className="text-sm tracking-wide">View All Projects</span>
+        </SecondaryButton>
+      </div>
 
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -85,16 +94,6 @@ export default function Projects() {
               <ProjectCard project={p} getTechIcon={getTechIcon} />
             </BlurFade>
           ))}
-        </div>
-
-        <div className="mt-12 flex justify-center">
-          <SecondaryButton
-            href="/projects"
-            className="px-8 py-4 text-base"
-            icon={<ChevronRight className="w-5 h-5" />}
-          >
-            <span className="text-base tracking-wide">View All Projects</span>
-          </SecondaryButton>
         </div>
       </div>
     </section>

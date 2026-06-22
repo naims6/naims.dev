@@ -8,11 +8,11 @@ const experiences = [
     company: "Rise Together",
     location: "Dhaka, Bangladesh",
     type: "Remote",
-    period: "May 2026 — Present",
+    period: "April 2026 — Present",
     points: [
-      "Designing and developing backend RESTful APIs using Node.js and Express.",
+      "Designing and developing backend RESTful APIs using Node.js, Express, and TypeScript.",
       "Collaborating with frontend developers to ensure seamless API integration.",
-      "Optimizing MongoDB database schemas and queries for better performance.",
+      "Optimizing PostgreSQL database schemas and queries for better performance.",
       "Participating in code reviews and backend architecture discussions.",
     ],
   },
@@ -27,7 +27,6 @@ export default function Experience() {
         {experiences.map((exp, index) => (
           <BlurFade key={index} delay={0.15} inView yOffset={8}>
             <div className="p-6 sm:p-7 rounded-2xl bg-white/60 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-blue-500/20 dark:hover:border-white/15 group">
-
               {/* Header row */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
                 <div>
@@ -57,7 +56,10 @@ export default function Experience() {
               {/* Bullet points */}
               <ul className="space-y-2">
                 {exp.points.map((pt, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                  <li
+                    key={i}
+                    className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500/60 mt-[7px] shrink-0" />
                     {pt}
                   </li>
@@ -69,7 +71,6 @@ export default function Experience() {
                 <MapPin className="w-3.5 h-3.5 text-blue-500/70 shrink-0" />
                 <span>{exp.location}</span>
               </div>
-
             </div>
           </BlurFade>
         ))}

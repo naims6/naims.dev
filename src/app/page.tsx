@@ -15,7 +15,7 @@ const Footer = dynamic(() => import("@/components/footer"));
 
 function SectionDivider() {
   return (
-    <div className="w-full flex items-center gap-4 mt-6 mb-2 opacity-30">
+    <div className="w-full flex items-center gap-4 mt-16 mb-2 opacity-30">
       <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent dark:via-white/10" />
     </div>
   );

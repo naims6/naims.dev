@@ -29,58 +29,63 @@ export default function TechStack() {
             >
               <div
                 className={cn(
-                  "h-full flex flex-col p-6 rounded-2xl border backdrop-blur-md transition-all duration-300",
-                  "bg-white/60 dark:bg-transparent border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:border-primary/30 dark:hover:border-white/20"
+                  "h-full flex flex-col p-6 rounded-2xl border backdrop-blur-md transition-all duration-300 relative overflow-hidden",
+                  "bg-white/60 dark:bg-transparent border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:border-primary/30 dark:hover:border-white/20"
                 )}
               >
-                {/* Minimalist Column Header */}
-                <div className="flex items-center justify-between border-b border-border/60 pb-3.5 mb-5">
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-foreground/90">
-                    {displayName}
-                  </h3>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-foreground/5 text-muted-foreground font-mono">
-                    {category.skills.length}
-                  </span>
-                </div>
+                {/* Decorative gradient blob */}
+                <div className="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-primary/10 to-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
-                {/* Vertical Skills List */}
-                <div className="flex flex-col gap-1.5 flex-grow">
-                  {category.skills.map((skill) => (
-                    <motion.div
-                      key={skill.name}
-                      whileHover={{ x: 4 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                      className="group flex items-center justify-between px-3 py-2 rounded-xl transition-all duration-300 hover:bg-foreground/[0.03] dark:hover:bg-white/[0.03] cursor-default"
-                    >
-                      <div className="flex items-center gap-3">
-                        {/* Icon transitions from monochrome to brand color on hover */}
-                        <div
-                          className="text-xl text-muted-foreground/60 transition-colors duration-300 flex items-center justify-center"
-                          style={
-                            {
-                              "--hover-color": skill.color === "#000000" ? "var(--foreground)" : skill.color,
-                            } as React.CSSProperties
-                          }
-                        >
-                          <div className="transition-colors duration-300 group-hover:text-[var(--hover-color)] text-foreground/65">
-                            {skill.icon}
+                <div className="relative z-10 flex flex-col flex-1">
+                  {/* Minimalist Column Header */}
+                  <div className="flex items-center justify-between border-b border-border/60 pb-3.5 mb-5">
+                    <h3 className="text-sm font-bold uppercase tracking-widest text-foreground/90">
+                      {displayName}
+                    </h3>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-foreground/5 text-muted-foreground font-mono">
+                      {category.skills.length}
+                    </span>
+                  </div>
+
+                  {/* Vertical Skills List */}
+                  <div className="flex flex-col gap-1.5 flex-grow">
+                    {category.skills.map((skill) => (
+                      <motion.div
+                        key={skill.name}
+                        whileHover={{ x: 4 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                        className="group flex items-center justify-between px-3 py-2 rounded-xl transition-all duration-300 hover:bg-foreground/[0.03] dark:hover:bg-white/[0.03] cursor-default"
+                      >
+                        <div className="flex items-center gap-3">
+                          {/* Icon transitions from monochrome to brand color on hover */}
+                          <div
+                            className="text-xl text-muted-foreground/60 transition-colors duration-300 flex items-center justify-center"
+                            style={
+                              {
+                                "--hover-color": skill.color === "#000000" ? "var(--foreground)" : skill.color,
+                              } as React.CSSProperties
+                            }
+                          >
+                            <div className="transition-colors duration-300 group-hover:text-[var(--hover-color)] text-foreground/65">
+                              {skill.icon}
+                            </div>
                           </div>
+
+                          {/* Skill Name */}
+                          <span className="text-xs font-semibold text-muted-foreground group-hover:text-foreground transition-colors duration-300 tracking-wide">
+                            {skill.name}
+                          </span>
                         </div>
 
-                        {/* Skill Name */}
-                        <span className="text-xs font-semibold text-muted-foreground group-hover:text-foreground transition-colors duration-300 tracking-wide">
-                          {skill.name}
-                        </span>
-                      </div>
-
-                      {/* Small Core stack tag indicator */}
-                      {skill.isCore && (
-                        <span className="text-[8px] font-extrabold uppercase tracking-widest px-1.5 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 scale-[0.9] origin-right select-none opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                          Core
-                        </span>
-                      )}
-                    </motion.div>
-                  ))}
+                        {/* Small Core stack tag indicator */}
+                        {skill.isCore && (
+                          <span className="text-[8px] font-extrabold uppercase tracking-widest px-1.5 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 scale-[0.9] origin-right select-none opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                            Core
+                          </span>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </BlurFade>

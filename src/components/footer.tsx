@@ -45,7 +45,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative mt-6 md:mt-10 lg:mt-16 border-t border-white/30 dark:border-white/10 bg-transparent overflow-hidden -mx-4 md:mx-0 w-[calc(100%+2rem)] md:w-full">
+    <footer className="relative mt-4 md:mt-6 border-t border-white/30 dark:border-white/10 bg-transparent overflow-hidden -mx-4 md:mx-0 w-[calc(100%+2rem)] md:w-full">
       {/* Decorative gradient background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-linear-to-r from-transparent via-primary/30 to-transparent" />
 

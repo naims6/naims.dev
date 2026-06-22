@@ -1,5 +1,6 @@
 import { BlurFade } from "@/components/animation-wrapper";
 import { SectionHeader } from "../section-header";
+import { Calendar, MapPin, Briefcase } from "lucide-react";
 
 const experiences = [
   {
@@ -8,71 +9,71 @@ const experiences = [
     location: "Dhaka, Bangladesh",
     type: "Remote",
     period: "May 2026 — Present",
-    description:
-      "Contributing to backend systems and APIs that power scalable digital solutions at Rise Together.",
+    points: [
+      "Designing and developing backend RESTful APIs using Node.js and Express.",
+      "Collaborating with frontend developers to ensure seamless API integration.",
+      "Optimizing MongoDB database schemas and queries for better performance.",
+      "Participating in code reviews and backend architecture discussions.",
+    ],
   },
 ];
 
 export default function Experience() {
   return (
-    <div className="mt-20 relative scroll-mt-28" id="experience">
-      {/* Background decorative blobs for glassmorphism effect */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none -z-10" />
-
+    <section className="mt-10 scroll-mt-28" id="experience">
       <SectionHeader title="Experience" />
+
       <div className="flex flex-col gap-6">
         {experiences.map((exp, index) => (
-          <BlurFade key={index} delay={0.25 + index * 0.1} inView yOffset={8}>
-            <div className="group relative p-5 sm:p-6 rounded-2xl bg-white/60 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-primary/30 dark:hover:border-white/20 hover:-translate-y-1">
-              {/* Accent bar */}
-              <div className="absolute left-0 top-6 bottom-6 w-[3px] rounded-full bg-primary/80" />
+          <BlurFade key={index} delay={0.15} inView yOffset={8}>
+            <div className="p-6 sm:p-7 rounded-2xl bg-white/60 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-blue-500/20 dark:hover:border-white/15 group">
 
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+              {/* Header row */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
                 <div>
-                  <h3 className="text-lg font-bold text-foreground/90 leading-tight">
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
                     {exp.role}
                   </h3>
-                  <p className="text-base font-semibold text-primary mt-0.5">
-                    {exp.company}
-                  </p>
+                  <div className="flex items-center gap-1.5 mt-1 text-sm font-medium text-muted-foreground">
+                    <Briefcase className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                    <span>{exp.company}</span>
+                  </div>
                 </div>
-                <div className="flex flex-wrap items-center gap-2 shrink-0">
-                  <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20">
                     {exp.type}
                   </span>
-                  <span className="text-xs font-medium text-muted-foreground">
-                    {exp.period}
-                  </span>
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <Calendar className="w-3.5 h-3.5 shrink-0" />
+                    <span>{exp.period}</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Description */}
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4 italic">
-                {exp.description}
-              </p>
-              {/* Location */}
-              <div className="mt-4 pt-3 border-t border-border/30 dark:border-white/5 flex items-center gap-1.5 text-xs text-muted-foreground">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="#3b82f6"
-                  className="w-3.5 h-3.5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 1 0 3 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 0 0 2.273 1.765 11.842 11.842 0 0 0 .976.544l.062.029.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                {exp.location}
+              {/* Divider */}
+              <div className="border-t border-border/40 dark:border-white/5 mb-4" />
+
+              {/* Bullet points */}
+              <ul className="space-y-2">
+                {exp.points.map((pt, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500/60 mt-[7px] shrink-0" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Location footer */}
+              <div className="mt-5 flex items-center gap-1.5 text-xs text-muted-foreground/70">
+                <MapPin className="w-3.5 h-3.5 text-blue-500/70 shrink-0" />
+                <span>{exp.location}</span>
               </div>
+
             </div>
           </BlurFade>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

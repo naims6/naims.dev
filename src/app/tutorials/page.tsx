@@ -5,8 +5,8 @@ import { Play, Clock, Calendar, ArrowLeft, Search, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/section-header";
 import { BlurFade } from "@/components/animation-wrapper";
 import SecondaryButton from "@/components/secondary-button";
@@ -49,7 +49,7 @@ export default function AllTutorialsPage() {
                 placeholder="Search tutorials by title or description..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 py-6 rounded-2xl bg-white/40 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 focus-visible:ring-red-500/50"
+                className="pl-10 pr-4 py-6 rounded-2xl bg-white/40 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 focus-visible:ring-blue-500/50"
               />
               {searchQuery && (
                 <button
@@ -74,20 +74,22 @@ export default function AllTutorialsPage() {
                   className="h-full"
                 >
                   <Card
-                    className="group overflow-hidden flex flex-col h-full bg-white/60 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-red-500/30 dark:hover:border-white/20 rounded-2xl cursor-pointer"
+                    className="group overflow-hidden flex flex-col h-full bg-white/60 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-blue-500/30 dark:hover:border-white/20 rounded-2xl cursor-pointer"
                     onClick={() => setActiveVideoId(video.youtubeId)}
                   >
                     {/* Thumbnail */}
                     <div className="p-1.5 relative">
                       <figure className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted/20">
-                        <img
-                          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                        <Image
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
                           src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
                           alt={video.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                         
                         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
-                          <div className="bg-red-600/90 text-white rounded-full p-4 transform scale-90 group-hover:scale-100 opacity-80 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_15px_rgba(220,38,38,0.5)]">
+                          <div className="bg-blue-600/90 text-white rounded-full p-4 transform scale-90 group-hover:scale-100 opacity-80 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.5)]">
                             <Play className="w-5 h-5 fill-current" />
                           </div>
                         </div>
@@ -107,12 +109,12 @@ export default function AllTutorialsPage() {
                         {video.category && (
                           <>
                             <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                            <span className="text-red-500 dark:text-red-400">{video.category}</span>
+                            <span className="text-blue-500 dark:text-blue-400">{video.category}</span>
                           </>
                         )}
                       </div>
 
-                      <h3 className="text-base font-bold text-foreground/90 group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors line-clamp-2 leading-snug mb-3">
+                      <h3 className="text-base font-bold text-foreground/90 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors line-clamp-2 leading-snug mb-3">
                         {video.title}
                       </h3>
 
@@ -129,7 +131,7 @@ export default function AllTutorialsPage() {
               <p className="text-muted-foreground">No tutorials found matching your search criteria.</p>
               <button
                 onClick={() => setSearchQuery("")}
-                className="mt-4 text-red-500 hover:text-red-600 font-semibold text-sm underline underline-offset-4"
+                className="mt-4 text-blue-500 hover:text-blue-600 font-semibold text-sm underline underline-offset-4"
               >
                 Reset search
               </button>
@@ -166,7 +168,7 @@ export default function AllTutorialsPage() {
               {/* Close Button */}
               <button
                 onClick={() => setActiveVideoId(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black/90 text-white hover:text-red-500 rounded-full border border-white/10 transition-colors focus:outline-none"
+                className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black/90 text-white hover:text-blue-500 rounded-full border border-white/10 transition-colors focus:outline-none"
                 aria-label="Close video player"
               >
                 <X className="w-5 h-5" />

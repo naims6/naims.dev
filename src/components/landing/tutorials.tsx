@@ -19,10 +19,10 @@ export default function Tutorials() {
   const showcaseVideos = tutorials.slice(0, 3);
 
   return (
-    <section className="mt-20 relative scroll-mt-28" id="tutorials">
+    <section className="mt-10 relative scroll-mt-28" id="tutorials">
       {/* Decorative glassmorphic background elements */}
-      <div className="absolute top-1/4 right-5 w-72 h-72 bg-red-500/5 rounded-full blur-[110px] pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-5 w-96 h-96 bg-blue-500/5 rounded-full blur-[130px] pointer-events-none -z-10" />
+      <div className="absolute top-1/4 right-5 w-72 h-72 bg-blue-500/5 rounded-full blur-[110px] pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-5 w-96 h-96 bg-purple-500/5 rounded-full blur-[130px] pointer-events-none -z-10" />
 
       <div className="max-w-6xl mx-auto mb-12 flex items-center justify-between gap-4">
         <SectionHeader title="Learn From Me" className="mb-0" />
@@ -40,7 +40,7 @@ export default function Tutorials() {
           {showcaseVideos.map((video, index) => (
             <BlurFade key={video.id} delay={0.1 * index} inView yOffset={8} className="h-full">
               <Card 
-                className="group overflow-hidden flex flex-col h-full bg-white/60 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-red-500/30 dark:hover:border-white/20 rounded-2xl cursor-pointer"
+                className="group overflow-hidden flex flex-col h-full bg-white/60 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-blue-500/30 dark:hover:border-white/20 rounded-2xl cursor-pointer"
                 onClick={() => setActiveVideoId(video.youtubeId)}
               >
                 {/* Video Thumbnail Container */}
@@ -52,12 +52,11 @@ export default function Tutorials() {
                       alt={video.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      unoptimized // Avoid next/image warning for external youtube domain if loaders aren't set
                     />
                     
                     {/* Dark overlay & Play button on hover */}
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
-                      <div className="bg-red-600/90 text-white rounded-full p-4 transform scale-90 group-hover:scale-100 opacity-80 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_15px_rgba(220,38,38,0.5)]">
+                      <div className="bg-blue-600/90 text-white rounded-full p-4 transform scale-90 group-hover:scale-100 opacity-80 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.5)]">
                         <Play className="w-5 h-5 fill-current" />
                       </div>
                     </div>
@@ -78,12 +77,12 @@ export default function Tutorials() {
                     {video.category && (
                       <>
                         <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                        <span className="text-red-500 dark:text-red-400">{video.category}</span>
+                        <span className="text-blue-500 dark:text-blue-400">{video.category}</span>
                       </>
                     )}
                   </div>
 
-                  <h3 className="text-base font-bold text-foreground/90 group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors line-clamp-2 leading-snug mb-3">
+                  <h3 className="text-base font-bold text-foreground/90 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors line-clamp-2 leading-snug mb-3">
                     {video.title}
                   </h3>
 
@@ -118,7 +117,7 @@ export default function Tutorials() {
               {/* Close Button */}
               <button
                 onClick={() => setActiveVideoId(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black/90 text-white hover:text-red-500 rounded-full border border-white/10 transition-colors focus:outline-none"
+                className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black/90 text-white hover:text-blue-500 rounded-full border border-white/10 transition-colors focus:outline-none"
                 aria-label="Close video player"
               >
                 <X className="w-5 h-5" />

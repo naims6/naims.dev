@@ -67,7 +67,7 @@ export default function Projects() {
   const displayProjects = projects.slice(0, 3);
 
   return (
-    <section className="mt-20 relative scroll-mt-28" id="projects">
+    <section className="mt-10 relative scroll-mt-28" id="projects">
       {/* Background decorative blobs for glassmorphism effect */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none -z-10" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />

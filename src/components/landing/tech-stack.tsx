@@ -9,7 +9,7 @@ import React from "react";
 
 export default function TechStack() {
   return (
-    <section className="mt-20 scroll-mt-28" id="tech-stack">
+    <section className="mt-10 scroll-mt-28" id="tech-stack">
       <SectionHeader title="Skills" />
 
       {/* Senior Developer 4-Column Responsive Layout */}

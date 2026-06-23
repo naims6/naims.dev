@@ -4,7 +4,7 @@ import {
   SiTypescript,
   SiJavascript,
   SiHtml5,
-  SiCss3,
+  SiCss,
   SiTailwindcss,
   SiShadcnui,
   SiNodedotjs,
@@ -100,7 +100,7 @@ export const techStack: SkillCategory[] = [
       },
       {
         name: "CSS",
-        icon: <SiCss3 className="mr-1 text-[#1572B6]" />,
+        icon: <SiCss className="mr-1 text-[#1572B6]" />,
         color: "#1572B6",
         description: "Cascading Style Sheets.",
       },

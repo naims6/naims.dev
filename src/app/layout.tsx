@@ -24,17 +24,19 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://naims-dev.vercel.app"),
 
   title: {
-    default: "Naim Sorker | Full Stack Developer",
+    default: "Naim Sorker | Full Stack Engineer",
     template: "%s | Naim Sorker",
   },
 
   description:
-    "Naim Sorker is a professional Full Stack Developer (MERN) based in Bangladesh. Specializing in Next.js, React, TypeScript, and Node.js to build high-performance, scalable, and user-friendly web applications.",
+    "Naim Sorker is a Jr. Software Engineer based in Bangladesh. Specializing in Next.js, TypeScript, Node.js, Docker, CI/CD  to build high-performance, scalable, and user-friendly web applications.",
 
   keywords: [
     "Naim Sorker",
     "Naim Sarker",
+    "Naim Sorkar",
     "Nayem Sarker",
+    "Nayem Sorker",
     "Naim Sorker Developer",
     "Naim Sorker Full Stack Developer Portfolio",
     "Naim Sorker Portfolio",
@@ -77,7 +79,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Naim Sorker | Full Stack Developer",
     description:
-      "Full Stack Developer specializing in Next.js, React, TypeScript and modern web technologies.",
+      "Software Engineer specializing in Next.js, React, TypeScript and modern web technologies.",
     url: "https://naims-dev.vercel.app",
     siteName: "Naim Sorker",
     type: "website",
@@ -96,7 +98,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naim Sorker | Full Stack Developer",
     description:
-      "Full Stack Developer specializing in Next.js, React and TypeScript.",
+      "Software Engineer specializing in Next.js, TypeScript, Node.js, Docker, CI/CD.",
     creator: "@naimsorker",
     images: ["https://naims-dev.vercel.app/og-image.png"],
   },

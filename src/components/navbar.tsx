@@ -112,13 +112,13 @@ export default function Navbar() {
       color: "from-rose-500 to-rose-400",
       hash: "#tutorials",
     },
-    {
-      name: "Awards",
-      href: getHref("#achievements"),
-      icon: Trophy,
-      color: "from-yellow-500 to-yellow-400",
-      hash: "#achievements",
-    },
+    // {
+    //   name: "Awards",
+    //   href: getHref("#achievements"),
+    //   icon: Trophy,
+    //   color: "from-yellow-500 to-yellow-400",
+    //   hash: "#achievements",
+    // },
     {
       name: "Contact",
       href: getHref("#contact"),

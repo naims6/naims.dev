@@ -28,7 +28,7 @@ export default function Tutorials() {
         <SectionHeader title="Learn From Me" className="mb-0" />
         <SecondaryButton
           href="/tutorials"
-          className="px-5 py-2 text-sm shrink-0"
+          className="px-5 py-2 text-sm shrink-0 max-sm:hidden"
           icon={<ChevronRight className="w-4 h-4" />}
         >
           <span className="text-sm tracking-wide">Explore All Tutorials</span>
@@ -93,6 +93,15 @@ export default function Tutorials() {
               </Card>
             </BlurFade>
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center sm:hidden">
+          <SecondaryButton
+            href="/tutorials"
+            icon={<ChevronRight className="w-4 h-4" />}
+          >
+            <span className="text-sm tracking-wide">Explore All Tutorials</span>
+          </SecondaryButton>
         </div>
       </div>
 

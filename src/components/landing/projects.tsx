@@ -80,7 +80,7 @@ export default function Projects() {
         />
         <SecondaryButton
           href="/projects"
-          className="px-5 py-2 text-sm shrink-0"
+          className="px-5 py-2 text-sm shrink-0 max-sm:hidden"
           icon={<ChevronRight className="w-4 h-4" />}
         >
           <span className="text-sm tracking-wide">View All Projects</span>
@@ -94,6 +94,15 @@ export default function Projects() {
               <ProjectCard project={p} getTechIcon={getTechIcon} />
             </BlurFade>
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center sm:hidden">
+          <SecondaryButton
+            href="/projects"
+            icon={<ChevronRight className="w-4 h-4" />}
+          >
+            <span className="text-sm tracking-wide">View All Projects</span>
+          </SecondaryButton>
         </div>
       </div>
     </section>

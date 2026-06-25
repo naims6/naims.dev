@@ -4,7 +4,7 @@ export const projects = [
     img: "/assets/projects/dcms-main.png",
     name: "DCMS - School Management",
     description:
-      "CareNow is a comprehensive, full-stack caregiving platform designed to connect families with verified caregivers for babysitting, elderly care, and special needs in Bangladesh. Built with performance, accessibility, and modern UI/UX in mind.",
+      "A full-stack school management platform with role-based access control, internationalization (NextIntl), and SEO optimization. Features CI/CD pipeline with Docker, Redis caching, and BullMQ for background job processing — built for managing students and academic operations.",
     features: [
       "Interlization support with NextIntl",
       "SEO optimization",
@@ -15,6 +15,7 @@ export const projects = [
       "Dark Mode Support: Seamless theme switching with next-themes",
     ],
     githubRepository: "https://github.com/naims6/dcms-frontend.git",
+    githubRepositoryBackend: "https://github.com/naims6/dcms-backend.git",
     liveLink: "https://dcms-frontend-woad.vercel.app/bn",
     tech: [
       "Next.js",
@@ -69,6 +70,7 @@ export const projects = [
       "Dark & light theme toggle etc.",
     ],
     githubRepository: "https://github.com/naims6/Innovate-X.git",
+    githubRepositoryBackend: "https://github.com/naims6/Innovate-X-Server.git",
     liveLink: "https://innovate-x6.vercel.app/",
     tech: [
       "React.js",
@@ -78,7 +80,6 @@ export const projects = [
       "Firebase",
       "Stripe",
     ],
-    githubBackend: "https://github.com/naims6/Innovate-X-Server.git",
   },
 
   {
@@ -94,7 +95,7 @@ export const projects = [
       "Firebase-based secure user authentication",
     ],
     githubRepository: "https://github.com/naims6/The-Book-Haven.git",
-    githubBackend: "https://github.com/naims6/Book-Haven-Server.git",
+    githubRepositoryBackend: "https://github.com/naims6/Book-Haven-Server.git",
     liveLink: "https://the-book-haven-dusky.vercel.app/",
     tech: ["React.js", "Firebase", "Node.js", "Express.js", "MongoDB"],
   },
@@ -122,22 +123,6 @@ export const projects = [
       "MongoDB",
     ],
   },
-  //   {
-  //     id: 5,
-  //     img: "/assets/projects/HeroAppStore.png",
-  //     name: "Hero App Store",
-  //     description: `Hero App Store is a modern and user-friendly web application that brings the app store experience to the browser.
-  // Users can explore apps, view detailed information, and enjoy a fast, responsive interface built with React and Tailwind CSS.`,
-  //     features: [
-  //       "Browse and explore a collection of modern apps",
-  //       "View detailed app information and descriptions",
-  //       "Fast, responsive UI built with React & Tailwind CSS",
-  //       "Smooth navigation using React Router",
-  //     ],
-  //     githubRepository: "https://github.com/naims6/Assignment8.git",
-  //     liveLink: "#",
-  //     tech: ["React.js", "JavaScript", "Tailwind CSS", "React Router"],
-  //   },
   {
     id: 7,
     img: "/assets/projects/job-application-tracker.png",

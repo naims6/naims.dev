@@ -13,6 +13,13 @@ import {
   SiNodedotjs,
   SiExpress,
   SiMongodb,
+  SiPostgresql,
+  SiRedis,
+  SiDocker,
+  SiGithubactions,
+  SiStripe,
+  SiPrisma,
+  SiMysql,
   SiFirebase,
   SiSocketdotio,
   SiFramer,
@@ -59,6 +66,20 @@ export default function Projects() {
         return <SiFramer className="w-3 h-3" />;
       case "Material UI":
         return <SiMui className="w-3 h-3 text-[#007FFF]" />;
+      case "PostgreSQL":
+        return <SiPostgresql className="w-3 h-3 text-[#336791]" />;
+      case "Redis":
+        return <SiRedis className="w-3 h-3 text-[#DC382D]" />;
+      case "Docker":
+        return <SiDocker className="w-3 h-3 text-[#2496ED]" />;
+      case "CI/CD":
+        return <SiGithubactions className="w-3 h-3 text-[#2088FF]" />;
+      case "Stripe":
+        return <SiStripe className="w-3 h-3 text-[#008CDD]" />;
+      case "Prisma":
+        return <SiPrisma className="w-3 h-3 text-[#2D3748]" />;
+      case "MySQL":
+        return <SiMysql className="w-3 h-3 text-[#336791]" />;
       default:
         return null;
     }

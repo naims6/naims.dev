@@ -78,41 +78,68 @@ export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
             </div>
           </div>
 
-          <div className="mt-auto pt-6 flex items-center justify-between gap-3">
-            {/* View Details Link */}
-            <PrimaryCtaButton
-              href={`/projects/${p.id}`}
-              size="sm"
-              icon={<ChevronRight className="w-4 h-4" />}
-            >
-              View Details
-            </PrimaryCtaButton>
+          <div className="mt-auto pt-5">
+            <div className="border-t border-border/40 dark:border-white/5 mb-4" />
 
-            {/* Quick Links */}
-            <div className="flex items-center gap-5">
+            {/* Repo + Live links row */}
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              {p.githubRepositoryBackend ? (
+                <>
+                  <Link
+                    href={p.githubRepository}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-primary/5 border border-primary/10 text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all"
+                    aria-label={`${p.name} frontend repository`}
+                  >
+                    <Github className="w-3 h-3" />
+                    <span>Frontend</span>
+                  </Link>
+                  <Link
+                    href={p.githubRepositoryBackend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-primary/5 border border-primary/10 text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all"
+                    aria-label={`${p.name} backend repository`}
+                  >
+                    <Github className="w-3 h-3" />
+                    <span>Backend</span>
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  href={p.githubRepository}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-primary/5 border border-primary/10 text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all"
+                  aria-label={`View ${p.name} on GitHub`}
+                >
+                  <Github className="w-3 h-3" />
+                  <span>Code</span>
+                </Link>
+              )}
+
               <Link
                 href={p.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-full bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20 hover:bg-green-500/20 hover:text-green-700 dark:hover:text-green-300 transition-all"
+                aria-label={`Live demo of ${p.name}`}
               >
-                <span>Live</span>
-                <ExternalLink
-                  className="w-3.5 h-3.5"
-                  style={{ stroke: "#3b82f6" }}
-                />
-              </Link>
-              <Link
-                href={p.githubRepository}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                aria-label={`View ${p.name} on GitHub`}
-              >
-                <span>Code</span>
-                <Github className="w-3.5 h-3.5" style={{ stroke: "#6b7280" }} />
+                <ExternalLink className="w-3 h-3" />
+                <span>Live Demo</span>
               </Link>
             </div>
+
+            {/* View Details */}
+            <PrimaryCtaButton
+              href={`/projects/${p.id}`}
+              size="sm"
+              className="w-full justify-center"
+              icon={<ChevronRight className="w-4 h-4" />}
+            >
+              View Details
+            </PrimaryCtaButton>
           </div>
         </CardContent>
       </Card>

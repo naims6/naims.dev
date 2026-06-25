@@ -16,6 +16,13 @@ import {
   SiNodedotjs,
   SiExpress,
   SiMongodb,
+  SiPostgresql,
+  SiRedis,
+  SiDocker,
+  SiGithubactions,
+  SiStripe,
+  SiPrisma,
+  SiMysql,
   SiFirebase,
   SiSocketdotio,
   SiFramer,
@@ -81,6 +88,20 @@ export default function ProjectDetailPage() {
         return <SiFramer className="w-4 h-4" />;
       case "Material UI":
         return <SiMui className="w-4 h-4 text-[#007FFF]" />;
+      case "PostgreSQL":
+        return <SiPostgresql className="w-4 h-4 text-[#336791]" />;
+      case "Redis":
+        return <SiRedis className="w-4 h-4 text-[#DC382D]" />;
+      case "Docker":
+        return <SiDocker className="w-4 h-4 text-[#2496ED]" />;
+      case "CI/CD":
+        return <SiGithubactions className="w-4 h-4 text-[#2088FF]" />;
+      case "Stripe":
+        return <SiStripe className="w-4 h-4 text-[#008CDD]" />;
+      case "Prisma":
+        return <SiPrisma className="w-4 h-4 text-[#2D3748]" />;
+      case "MySQL":
+        return <SiMysql className="w-4 h-4 text-[#336791]" />;
       default:
         return null;
     }
@@ -189,15 +210,39 @@ export default function ProjectDetailPage() {
                     >
                       Live Demo
                     </PrimaryCtaButton>
-                    <SecondaryButton
-                      href={project.githubRepository}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full"
-                      icon={<Github className="w-5 h-5" />}
-                    >
-                      Source Code
-                    </SecondaryButton>
+
+                    {project.githubRepositoryBackend ? (
+                      <div className="flex flex-col gap-3">
+                        <SecondaryButton
+                          href={project.githubRepository}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full"
+                          icon={<Github className="w-5 h-5" />}
+                        >
+                          Frontend Code
+                        </SecondaryButton>
+                        <SecondaryButton
+                          href={project.githubRepositoryBackend}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full"
+                          icon={<Github className="w-5 h-5" />}
+                        >
+                          Backend Code
+                        </SecondaryButton>
+                      </div>
+                    ) : (
+                      <SecondaryButton
+                        href={project.githubRepository}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full"
+                        icon={<Github className="w-5 h-5" />}
+                      >
+                        Source Code
+                      </SecondaryButton>
+                    )}
                   </div>
                 </div>
               </BlurFade>

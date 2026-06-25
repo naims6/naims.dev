@@ -65,6 +65,16 @@ export const tutorials: Tutorial[] = [
     category: "BullMQ",
   },
   {
+    id: "7",
+    title: "TypeScript Crash Course in Bangla 2026 | Beginner to Advanced",
+    description:
+      "A complete beginner-friendly TypeScript tutorial in Bangla.Learn TypeScript fundamentals, types, interfaces, functions, generics, and best practices with practical examples.",
+    youtubeId: "f5r-3c9uaW8",
+    duration: "39:51",
+    date: "Jun 2026",
+    category: "TypeScript",
+  },
+  {
     id: "5",
     title: "Zod Tutorial for Beginners | Learn Validation in Zod | Naims Dev",
     description:

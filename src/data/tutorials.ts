@@ -32,11 +32,22 @@ export const tutorials: Tutorial[] = [
     category: "Redis",
   },
   {
+    id: "6",
+    title:
+      "GitHub Actions CI/CD Tutorial Bangla | Automate Build & Deploy for Beginners",
+    description:
+      "In this tutorial, I explain GitHub Actions in a simple and beginner-friendly way. You will learn how CI/CD works, how to automate build and deployment processes, and how GitHub Actions can save time in real-world development projects.",
+    youtubeId: "50C2E7-4xCU",
+    duration: "24:27",
+    date: "Jun 2026",
+    category: "Github Actions",
+  },
+  {
     id: "3",
     title:
       "Swagger Tutorial for Beginners in Bangla | API Documentation Made Easy",
     description:
-      "In this video, you'll learn Swagger from the scratch with simple explanations and practical examples. We will cover: What is API Documentation, What is Swagger?, API Documentation, Swagger UI Setup, Documenting API Endpoints, Request Response Body. Swagger helps developers create, maintain, and share API documentation efficiently. It makes APIs easier to understand, test, and collaborate on. Whether you're learning Node.js, Express.js, or Backend Development, Swagger is an essential tool to have in your toolkit.",
+      "In this video, you'll learn Swagger from the scratch with simple explanations and practical examples. We will cover: What is API Documentation, What is Swagger?, API Documentation, Swagger UI Setup, Documenting API Endpoints, Request Response Body. Swagger helps developers create, maintain, and share API documentation efficiently.",
     youtubeId: "JIFwDMAzKBE",
     duration: "46:29",
     date: "Jun 2026",

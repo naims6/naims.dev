@@ -1,6 +1,29 @@
+"use client";
+
 import { BlurFade } from "@/components/animation-wrapper";
 import { SectionHeader } from "../section-header";
 import { Calendar, MapPin, Briefcase } from "lucide-react";
+
+function getDurationDisplay(startDate: Date): string {
+  const now = new Date();
+  let months =
+    (now.getFullYear() - startDate.getFullYear()) * 12 +
+    (now.getMonth() - startDate.getMonth()) + 1;
+
+  if (now.getDate() < startDate.getDate()) {
+    months--;
+  }
+
+  if (months < 1) return "< 1 month";
+  if (months === 1) return "1 month";
+  if (months < 12) return `${months} months`;
+
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+  if (remainingMonths === 0)
+    return `${years} ${years === 1 ? "year" : "years"}`;
+  return `${years} ${years === 1 ? "year" : "years"} ${remainingMonths} ${remainingMonths === 1 ? "month" : "months"}`;
+}
 
 const experiences = [
   {
@@ -9,6 +32,7 @@ const experiences = [
     location: "Dhaka, Bangladesh",
     type: "Remote",
     period: "April 2026 — Present",
+    startDate: new Date("2026-04-01"),
     points: [
       "Designing and developing backend RESTful APIs using Node.js, Express, and TypeScript.",
       "Collaborating with frontend developers to ensure seamless API integration.",
@@ -45,7 +69,9 @@ export default function Experience() {
                   </span>
                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <Calendar className="w-3.5 h-3.5 shrink-0" />
-                    <span>{exp.period}</span>
+                    <span>
+                      {exp.period} · {getDurationDisplay(exp.startDate)}
+                    </span>
                   </div>
                 </div>
               </div>

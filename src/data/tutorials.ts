@@ -32,6 +32,17 @@ export const tutorials: Tutorial[] = [
     category: "Redis",
   },
   {
+    id: "9",
+    title:
+      "PostgreSQL Full Course in Bangla | Beginner to Advanced | Complete SQL Database Tutorial",
+    description:
+      "Learn PostgreSQL from scratch in Bangla. In this tutorial, you'll learn what PostgreSQL is, why PostgreSQL is used, PostgreSQL installation",
+    youtubeId: "ZEsOqIFvnmw",
+    duration: "1:24:29",
+    date: "Jul 2026",
+    category: "PostgreSQL",
+  },
+  {
     id: "6",
     title:
       "GitHub Actions CI/CD Tutorial Bangla | Automate Build & Deploy for Beginners",
@@ -73,6 +84,17 @@ export const tutorials: Tutorial[] = [
     duration: "39:51",
     date: "Jun 2026",
     category: "TypeScript",
+  },
+  {
+    id: "10",
+    title:
+      "OOP in JavaScript & TypeScript (Bangla) | Complete Beginner Tutorial",
+    description:
+      "In this video, you'll learn the fundamentals of Object-Oriented Programming with simple explanations, real-world examples, and practical code. 📚 Topics Covered: Programming Paradigm Functional vs OOP Object & Class Constructor this Keyword Instance & Methods Access Modifiers Encapsulation Inheritance Polymorphism Abstraction Static Getter & Setter Readonly",
+    youtubeId: "0elAc23JTcE",
+    duration: "53:05",
+    date: "Jul 2026",
+    category: "OOP in Javascript",
   },
   {
     id: "5",

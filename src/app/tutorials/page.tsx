@@ -18,7 +18,7 @@ export default function AllTutorialsPage() {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
   // Limit display to 6 tutorials
-  const displayVideos = useMemo(() => tutorials.slice(0, 7), []);
+  const displayVideos = useMemo(() => tutorials.slice(0, 10), []);
 
   // Filter tutorials based on search query
   const filteredTutorials = useMemo(() => {

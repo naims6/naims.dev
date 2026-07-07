@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import Image from "next/image";
 import { Play, Clock, Calendar, ChevronRight, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { BlurFade } from "../animation-wrapper";
 import { SectionHeader } from "../section-header";
 import SecondaryButton from "../secondary-button";

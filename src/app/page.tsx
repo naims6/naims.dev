@@ -9,6 +9,7 @@ const Services = dynamic(() => import("@/components/landing/services"));
 const TechStack = dynamic(() => import("@/components/landing/tech-stack"));
 const Projects = dynamic(() => import("@/components/landing/projects"));
 const Tutorials = dynamic(() => import("@/components/landing/tutorials"));
+const VideoReviews = dynamic(() => import("@/components/landing/video-reviews"));
 // const Achievements = dynamic(() => import("@/components/landing/achievements"));
 const Contact = dynamic(() => import("@/components/landing/contact"));
 const Footer = dynamic(() => import("@/components/footer"));
@@ -47,6 +48,9 @@ export default function Home() {
 
       <SectionDivider />
       <Tutorials />
+
+      <SectionDivider />
+      <VideoReviews />
 
       {/* <SectionDivider /> */}
       {/* <Achievements /> */}

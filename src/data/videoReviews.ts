@@ -80,9 +80,39 @@ export const videoReviews: VideoReview[] = [
     name: "Al Shahariar Arafat Shawon",
     avatar:
       "https://res.cloudinary.com/dynxnpj21/image/upload/v1783938670/1770736288626_vuwkp5.jpg",
-    reviewText:
-      "These classes are truly helpful for us. The way you are teaching Naim bhai is really matter of praising. After completing the internship fully, I believe I will be a backend developer with hands on project knowledge.",
+    reviewText: `আমি রিসেন্টলি আমার ব্যাকেন্ড জার্নি শুরু করেছি Rise Together টিমের সাথে। সত্যি কথা বলতে, অনেকেই আনপেইড ইন্টার্নের কথা শুনলে নাক ছিটকান। কিন্তু Rise Together টিমের Mohammed Rakib Gazi এবং Naim Sorker ভাইয়ের থেকে যা যা শিখছি অকল্পনীয়।রিয়েল ওয়ার্ল্ড এর প্রোডাকশন লেভেলের স্কিল আমাদের শেখানো হচ্ছে, যেটা আমি কোনো বড় পেইড কোর্সেও হয়তো এভাবে পাবোনা।
+আমার শেখার যাত্রার শুরু থেকেই ব্যাকেন্ডের উপর আলাদা একটা টান ছিলো আর এটা নিয়ে এখন আমি অনেকটুকু কনফিডেন্ট যে যেকোনো প্রডাকশন লেভেলের ব্যাকেন্ড আমি সামলাতে পারবো শুধু একজন টিম মেম্বার হিসেবে না, একজন টিম লিডার হিসেবেও।
+যা যা শিখবো এখানে থেকে 
+1. TypeScript
+2. Zod validation
+3. Nodejs, Expressjs
+4. Backend Architecture (MVC, Modular)
+5. Mongoose
+6. PostgreSQL (ERD design, database design, sql language, RDBMS)
+7. Prisma
+8. Redis
+9. Docker
+10. Aws
+11. Nestjs
+12. Testing Expert with Postman, Remotely, Bruno, Thunderbolt
+এছাড়াও প্রোডাকশন লেভেলের কাজ করতে আর যা যা দরকার পড়বে সবই শিখানো হচ্ছে।
+A big thanks to Rise Together, Mohammed Rakib Gazi, Naim Sorker .`,
     source: "linkedin",
     linkedinId: "shahariar-dev",
+  },
+  {
+    id: "review-8",
+    name: "China Akhter",
+    avatar:
+      "https://res.cloudinary.com/dynxnpj21/image/upload/v1783941154/1767167837053_oftxsl.jpg",
+    reviewText: `I recently attended 4 amazing backend development classes organized by Rise Together and conducted by Naim Sorker.
+
+The sessions were incredibly helpful and beginner-friendly. I learned many important backend concepts including Express.js, TypeScript, routing, controllers, services, and professional project structure.
+
+A big thanks to @Naim Sorkar for his clear explanations and supportive teaching style. Also grateful to Rise Together for creating such a valuable learning opportunity for aspiring developers like us. 
+
+Excited to continue this backend learning journey and improve my development skills every day.`,
+    source: "linkedin",
+    linkedinId: "china-akther",
   },
 ];

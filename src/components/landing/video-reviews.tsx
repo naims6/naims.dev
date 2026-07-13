@@ -12,7 +12,6 @@ import { SectionHeader } from "../section-header";
 import SecondaryButton from "../secondary-button";
 import { videoReviews, type VideoReview } from "@/data/videoReviews";
 
-const INITIAL_SHOW = 3;
 const TRUNCATE_LENGTH = 180;
 
 /* ------------------------------------------------------------------ */

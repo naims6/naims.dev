@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Play, Clock, Calendar, ArrowLeft, Search, X } from "lucide-react";
+import { Play, Clock, Calendar, ArrowLeft, Search, X, Youtube } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -138,10 +138,18 @@ export default function AllTutorialsPage() {
             </div>
           )}
 
-          {/* Return Home Button */}
-          <div className="mt-16 flex justify-center">
-            <SecondaryButton href="/" icon={<ArrowLeft className="w-5 h-5" />}>
+          {/* Action Buttons */}
+          <div className="mt-16 flex flex-wrap items-center justify-center gap-4">
+            <SecondaryButton href="/" icon={<ArrowLeft className="w-4 h-4" />}>
               Return Home
+            </SecondaryButton>
+            <SecondaryButton
+              href="https://www.youtube.com/@NaimsDev"
+              target="_blank"
+              rel="noopener noreferrer"
+              icon={<Youtube className="w-4 h-4 text-red-500 fill-red-500/20" />}
+            >
+              YouTube Channel
             </SecondaryButton>
           </div>
         </div>

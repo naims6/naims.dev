@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { ArrowLeft, Search, X, SlidersHorizontal } from "lucide-react";
+import { ArrowLeft, SlidersHorizontal, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { SectionHeader } from "@/components/section-header";
 import { BlurFade } from "@/components/animation-wrapper";
 import SecondaryButton from "@/components/secondary-button";
-import { Input } from "@/components/ui/input";
 import { ReviewCard } from "@/components/landing/video-reviews";
 import { videoReviews } from "@/data/videoReviews";
 import { SiYoutube } from "react-icons/si";
@@ -17,20 +17,13 @@ import { FaLinkedinIn } from "react-icons/fa";
 type Filter = "all" | "linkedin" | "youtube";
 
 export default function AllReviewsPage() {
-  const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
 
   const filtered = useMemo(() => {
     return videoReviews.filter((r) => {
-      const matchesSource = filter === "all" || r.source === filter;
-      const q = search.toLowerCase();
-      const matchesSearch =
-        !q ||
-        r.name.toLowerCase().includes(q) ||
-        r.reviewText.toLowerCase().includes(q);
-      return matchesSource && matchesSearch;
+      return filter === "all" || r.source === filter;
     });
-  }, [search, filter]);
+  }, [filter]);
 
   const filterButtons: { label: string; value: Filter; icon: React.ReactNode }[] =
     [
@@ -75,77 +68,50 @@ export default function AllReviewsPage() {
             </p>
           </BlurFade>
 
-          {/* Search + Filter bar */}
+          {/* Filter pills */}
           <BlurFade delay={0.15} inView yOffset={6}>
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              {/* Search */}
-              <div className="relative flex-1 max-w-lg">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder="Search by name or review text…"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="pl-10 pr-4 py-5 rounded-2xl bg-white/40 dark:bg-transparent backdrop-blur-md border border-border/50 dark:border-white/10 focus-visible:ring-blue-500/50"
-                />
-                {search && (
-                  <button
-                    onClick={() => setSearch("")}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground rounded-full"
-                    aria-label="Clear search"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                )}
-              </div>
+            <div className="flex flex-wrap items-center gap-2 mb-10">
+              {filterButtons.map((btn) => (
+                <button
+                  key={btn.value}
+                  onClick={() => setFilter(btn.value)}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold border transition-all duration-200 ${
+                    filter === btn.value
+                      ? btn.value === "linkedin"
+                        ? "bg-[#0A66C2] border-[#0A66C2] text-white"
+                        : btn.value === "youtube"
+                        ? "bg-[#FF0000] border-[#FF0000] text-white"
+                        : "bg-foreground border-foreground text-background"
+                      : "bg-white/40 dark:bg-white/[0.03] border-border/60 dark:border-white/10 text-muted-foreground hover:border-border dark:hover:border-white/20 hover:text-foreground"
+                  }`}
+                >
+                  {btn.icon}
+                  {btn.label}
+                </button>
+              ))}
 
-              {/* Source filter pills */}
-              <div className="flex items-center gap-2">
-                {filterButtons.map((btn) => (
-                  <button
-                    key={btn.value}
-                    onClick={() => setFilter(btn.value)}
-                    className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold border transition-all duration-200 ${
-                      filter === btn.value
-                        ? btn.value === "linkedin"
-                          ? "bg-[#0A66C2] border-[#0A66C2] text-white"
-                          : btn.value === "youtube"
-                          ? "bg-[#FF0000] border-[#FF0000] text-white"
-                          : "bg-foreground border-foreground text-background"
-                        : "bg-white/40 dark:bg-white/[0.03] border-border/60 dark:border-white/10 text-muted-foreground hover:border-border dark:hover:border-white/20 hover:text-foreground"
-                    }`}
-                  >
-                    {btn.icon}
-                    {btn.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </BlurFade>
-
-          {/* Stats row */}
-          <BlurFade delay={0.2} inView yOffset={6}>
-            <div className="flex items-center gap-3 mb-8 text-xs text-muted-foreground">
-              <span className="font-semibold text-foreground/90">
-                {filtered.length}
-              </span>
-              <span>
-                {filtered.length === 1 ? "review" : "reviews"} found
-              </span>
-              {filter !== "all" && (
-                <span className="flex items-center gap-1">
-                  · filtered by{" "}
-                  <span
-                    className={
-                      filter === "linkedin"
-                        ? "text-[#0A66C2] dark:text-[#60a5fa] font-semibold"
-                        : "text-[#FF0000] dark:text-[#f87171] font-semibold"
-                    }
-                  >
-                    {filter === "linkedin" ? "LinkedIn" : "YouTube"}
+              {/* Count */}
+              <span className="text-xs text-muted-foreground ml-2">
+                <span className="font-semibold text-foreground/90">
+                  {filtered.length}
+                </span>{" "}
+                {filtered.length === 1 ? "review" : "reviews"}
+                {filter !== "all" && (
+                  <span>
+                    {" "}
+                    from{" "}
+                    <span
+                      className={
+                        filter === "linkedin"
+                          ? "text-[#0A66C2] dark:text-[#60a5fa] font-semibold"
+                          : "text-[#FF0000] dark:text-[#f87171] font-semibold"
+                      }
+                    >
+                      {filter === "linkedin" ? "LinkedIn" : "YouTube"}
+                    </span>
                   </span>
-                </span>
-              )}
+                )}
+              </span>
             </div>
           </BlurFade>
 
@@ -165,22 +131,55 @@ export default function AllReviewsPage() {
               className="text-center py-20 bg-white/20 dark:bg-white/[0.03] border border-border/50 dark:border-white/10 rounded-2xl backdrop-blur-md"
             >
               <p className="text-muted-foreground mb-4">
-                No reviews found matching your criteria.
+                No reviews found for this filter.
               </p>
               <button
-                onClick={() => {
-                  setSearch("");
-                  setFilter("all");
-                }}
+                onClick={() => setFilter("all")}
                 className="text-blue-500 hover:text-blue-600 font-semibold text-sm underline underline-offset-4"
               >
-                Reset filters
+                Show all reviews
               </button>
             </motion.div>
           )}
 
+          {/* Social links CTA */}
+          <BlurFade delay={0.25} inView yOffset={8}>
+            <div className="mt-16 p-6 sm:p-8 rounded-2xl bg-white/50 dark:bg-white/[0.03] backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.15)]">
+              <h3 className="text-sm font-bold text-foreground mb-2">
+                Want to share your learning experience?
+              </h3>
+              <p className="text-xs text-muted-foreground mb-5 max-w-md">
+                Your feedback helps other learners and keeps me motivated to
+                create more content. Leave a review on YouTube or connect with
+                me on LinkedIn!
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link
+                  href="https://www.youtube.com/@NaimsDev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FF0000] hover:bg-[#CC0000] text-white text-xs font-bold transition-all duration-200 hover:shadow-[0_4px_16px_rgba(255,0,0,0.3)] hover:scale-[1.03]"
+                >
+                  <SiYoutube className="w-4 h-4" />
+                  Visit YouTube Channel
+                  <ExternalLink className="w-3 h-3 opacity-70" />
+                </Link>
+                <Link
+                  href="https://www.linkedin.com/in/naims6/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A66C2] hover:bg-[#004182] text-white text-xs font-bold transition-all duration-200 hover:shadow-[0_4px_16px_rgba(10,102,194,0.3)] hover:scale-[1.03]"
+                >
+                  <FaLinkedinIn className="w-4 h-4" />
+                  Connect on LinkedIn
+                  <ExternalLink className="w-3 h-3 opacity-70" />
+                </Link>
+              </div>
+            </div>
+          </BlurFade>
+
           {/* Return Home */}
-          <div className="mt-16 flex justify-center">
+          <div className="mt-12 flex justify-center">
             <SecondaryButton href="/#reviews" icon={<ArrowLeft className="w-5 h-5" />}>
               Back to Home
             </SecondaryButton>

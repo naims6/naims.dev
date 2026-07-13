@@ -285,13 +285,13 @@ export default function VideoReviews() {
           </AnimatePresence>
         </div>
 
-        {/* Show More / Less */}
+        {/* Show More / Less (hidden on mobile, use All Reviews link instead) */}
         {videoReviews.length > INITIAL_SHOW && (
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-10 flex items-center justify-center gap-4">
             <BlurFade delay={0.2} inView yOffset={6}>
               <button
                 onClick={() => setShowAll((prev) => !prev)}
-                className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-border/70 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] backdrop-blur-md text-sm font-semibold text-foreground/80 hover:border-blue-500/40 dark:hover:border-white/25 hover:text-blue-500 dark:hover:text-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.12)] transition-all duration-300"
+                className="hidden sm:inline-flex group items-center gap-2 px-6 py-2.5 rounded-full border border-border/70 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] backdrop-blur-md text-sm font-semibold text-foreground/80 hover:border-blue-500/40 dark:hover:border-white/25 hover:text-blue-500 dark:hover:text-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.12)] transition-all duration-300"
               >
                 {showAll ? (
                   <>

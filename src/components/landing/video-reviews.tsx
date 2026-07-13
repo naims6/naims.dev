@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Quote, ChevronDown, ChevronUp, X, ChevronRight } from "lucide-react";
+import { Quote, X, ChevronRight } from "lucide-react";
 import { SiYoutube } from "react-icons/si";
 import { FaLinkedinIn } from "react-icons/fa";
 import { BlurFade } from "../animation-wrapper";
@@ -238,10 +238,7 @@ export function ReviewCard({
 /*  Main section (homepage widget)                                      */
 /* ------------------------------------------------------------------ */
 export default function VideoReviews() {
-  const [showAll, setShowAll] = useState(false);
-  const displayed = showAll
-    ? videoReviews
-    : videoReviews.slice(0, INITIAL_SHOW);
+  const displayed = videoReviews.slice(0, 6);
 
   return (
     <section className="mt-10 relative scroll-mt-28" id="reviews">
@@ -251,28 +248,30 @@ export default function VideoReviews() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/4 rounded-full blur-[100px] pointer-events-none -z-10" />
 
       {/* Header */}
-      <div className="max-w-6xl mx-auto mb-10 flex items-center justify-between gap-4">
-        <div>
-          <SectionHeader title="What Learners Say" className="mb-4" />
-          <p className="text-sm text-muted-foreground max-w-xl">
-            Real feedback from students — shared on{" "}
-            <span className="text-[#0A66C2] dark:text-[#60a5fa] font-semibold">
-              LinkedIn
-            </span>{" "}
-            and{" "}
-            <span className="text-[#FF0000] dark:text-[#f87171] font-semibold">
-              YouTube
-            </span>
-            .
-          </p>
-        </div>
+      <div className="max-w-6xl mx-auto mb-4 flex items-center justify-between gap-4">
+        <SectionHeader title="What Learners Say" className="mb-0" />
         <SecondaryButton
           href="/reviews"
           className="px-5 py-2 text-sm shrink-0 max-sm:hidden"
           icon={<ChevronRight className="w-4 h-4" />}
         >
-          <span className="text-sm tracking-wide">All Reviews</span>
+          <span className="text-sm tracking-wide">Explore All Reviews</span>
         </SecondaryButton>
+      </div>
+
+      {/* Description */}
+      <div className="max-w-6xl mx-auto mb-10">
+        <p className="text-sm text-muted-foreground max-w-xl">
+          Real feedback from students — shared on{" "}
+          <span className="text-[#0A66C2] dark:text-[#60a5fa] font-semibold">
+            LinkedIn
+          </span>{" "}
+          and{" "}
+          <span className="text-[#FF0000] dark:text-[#f87171] font-semibold">
+            YouTube
+          </span>
+          .
+        </p>
       </div>
 
       {/* Grid */}
@@ -284,40 +283,6 @@ export default function VideoReviews() {
             ))}
           </AnimatePresence>
         </div>
-
-        {/* Show More / Less (hidden on mobile, use All Reviews link instead) */}
-        {videoReviews.length > INITIAL_SHOW && (
-          <div className="mt-10 flex items-center justify-center gap-4">
-            <BlurFade delay={0.2} inView yOffset={6}>
-              <button
-                onClick={() => setShowAll((prev) => !prev)}
-                className="hidden sm:inline-flex group items-center gap-2 px-6 py-2.5 rounded-full border border-border/70 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] backdrop-blur-md text-sm font-semibold text-foreground/80 hover:border-blue-500/40 dark:hover:border-white/25 hover:text-blue-500 dark:hover:text-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.12)] transition-all duration-300"
-              >
-                {showAll ? (
-                  <>
-                    <ChevronUp className="w-4 h-4" />
-                    Show Less
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-300" />
-                    Show More Reviews
-                  </>
-                )}
-              </button>
-            </BlurFade>
-
-            {/* Mobile: View All link */}
-            <div className="sm:hidden">
-              <SecondaryButton
-                href="/reviews"
-                icon={<ChevronRight className="w-4 h-4" />}
-              >
-                <span className="text-sm">All Reviews</span>
-              </SecondaryButton>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

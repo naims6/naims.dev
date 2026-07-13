@@ -8,7 +8,8 @@ function getDurationDisplay(startDate: Date): string {
   const now = new Date();
   let months =
     (now.getFullYear() - startDate.getFullYear()) * 12 +
-    (now.getMonth() - startDate.getMonth()) + 1;
+    (now.getMonth() - startDate.getMonth()) +
+    1;
 
   if (now.getDate() < startDate.getDate()) {
     months--;
@@ -34,10 +35,9 @@ const experiences = [
     period: "April 2026 — Present",
     startDate: new Date("2026-04-01"),
     points: [
-      "Designing and developing backend RESTful APIs using Node.js, Express, and TypeScript.",
-      "Collaborating with frontend developers to ensure seamless API integration.",
-      "Optimizing PostgreSQL database schemas and queries for better performance.",
-      "Participating in code reviews and backend architecture discussions.",
+      "Conducted technical training sessions on modern backend architecture, focusing on Docker container-ization, Redis caching and PostgreSQL project setups.",
+      "Developing backend APIs using Node.js, Express.js, and PostgreSQL to handle core platform data",
+      "Designed secure RESTful APIs and optimized backend and database schemas for scalability.",
     ],
   },
 ];

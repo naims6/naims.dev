@@ -1,30 +1,4 @@
-"use client";
-
-import * as React from "react";
-import {
-  SiNextdotjs,
-  SiReact,
-  SiTypescript,
-  SiJavascript,
-  SiHtml5,
-  SiTailwindcss,
-  SiShadcnui,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiPostgresql,
-  SiRedis,
-  SiDocker,
-  SiGithubactions,
-  SiStripe,
-  SiPrisma,
-  SiMysql,
-  SiFirebase,
-  SiSocketdotio,
-  SiFramer,
-  SiMui,
-  SiMongoose,
-} from "react-icons/si";
+import type { Metadata } from "next";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeader } from "@/components/section-header";
@@ -34,66 +8,53 @@ import Footer from "@/components/footer";
 import { ArrowLeft } from "lucide-react";
 import SecondaryButton from "@/components/secondary-button";
 
-export default function AllProjectsPage() {
-  const getTechIcon = (tech: string) => {
-    switch (tech) {
-      case "Next.js":
-        return <SiNextdotjs className="w-3 h-3" />;
-      case "React.js":
-        return <SiReact className="w-3 h-3 text-[#61DAFB]" />;
-      case "TypeScript":
-        return <SiTypescript className="w-3 h-3 text-[#3178C6]" />;
-      case "JavaScript":
-        return <SiJavascript className="w-3 h-3 text-[#F7DF1E]" />;
-      case "HTML/CSS":
-        return <SiHtml5 className="w-3 h-3 text-[#E34F26]" />;
-      case "Tailwind CSS":
-      case "Tailwind":
-        return <SiTailwindcss className="w-3 h-3 text-[#06B6D4]" />;
-      case "Shadcn/ui":
-        return <SiShadcnui className="w-3 h-3" />;
-      case "Node.js":
-        return <SiNodedotjs className="w-3 h-3 text-[#339933]" />;
-      case "Express.js":
-        return <SiExpress className="w-3 h-3" />;
-      case "MongoDB":
-        return <SiMongodb className="w-3 h-3 text-[#47A248]" />;
-      case "Mongoose":
-        return <SiMongoose className="w-3 h-3 text-[#800020]" />;
-      case "Firebase":
-        return <SiFirebase className="w-3 h-3 text-[#FFCA28]" />;
-      case "Socket.io":
-        return <SiSocketdotio className="w-3 h-3" />;
-      case "Framer Motion":
-        return <SiFramer className="w-3 h-3" />;
-      case "Material UI":
-        return <SiMui className="w-3 h-3 text-[#007FFF]" />;
-      case "PostgreSQL":
-        return <SiPostgresql className="w-3 h-3 text-[#336791]" />;
-      case "Redis":
-        return <SiRedis className="w-3 h-3 text-[#DC382D]" />;
-      case "Docker":
-        return <SiDocker className="w-3 h-3 text-[#2496ED]" />;
-      case "CI/CD":
-        return <SiGithubactions className="w-3 h-3 text-[#2088FF]" />;
-      case "Stripe":
-        return <SiStripe className="w-3 h-3 text-[#008CDD]" />;
-      case "Prisma":
-        return <SiPrisma className="w-3 h-3 text-[#2D3748]" />;
-      case "MySQL":
-        return <SiMysql className="w-3 h-3 text-[#336791]" />;
-      default:
-        return null;
-    }
-  };
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Explore full-stack projects by Naim Sorker — built with Next.js, React, TypeScript, Node.js, PostgreSQL, Redis, Docker, and more.",
+  alternates: {
+    canonical: "https://naims-dev.vercel.app/projects",
+  },
+  openGraph: {
+    title: "Projects | Naim Sorker",
+    description:
+      "Explore full-stack projects by Naim Sorker — built with Next.js, React, TypeScript, Node.js, PostgreSQL, Redis, Docker, and more.",
+    url: "https://naims-dev.vercel.app/projects",
+    siteName: "Naim Sorker",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://naims-dev.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Naim Sorker - Projects",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects | Naim Sorker",
+    description:
+      "Explore full-stack projects by Naim Sorker — built with Next.js, React, TypeScript, Node.js, PostgreSQL, Redis, Docker, and more.",
+    images: ["https://naims-dev.vercel.app/og-image.png"],
+  },
+  keywords: [
+    "Naim Sorker projects",
+    "Next.js projects",
+    "full stack projects",
+    "React projects",
+    "TypeScript projects",
+    "web developer portfolio",
+  ],
+};
 
+export default function AllProjectsPage() {
   return (
     <main className="flex flex-col min-h-screen mx-auto px-4 max-w-6xl">
       <Navbar />
 
       <section className="mt-12 mb-20 relative">
-        {/* Decorative gradient removed for cleaner look */}
-
         <div className="relative z-10">
           <SectionHeader title="All My Projects" className="mb-12" />
 
@@ -105,7 +66,7 @@ export default function AllProjectsPage() {
                 inView
                 className="h-full"
               >
-                <ProjectCard project={p} getTechIcon={getTechIcon} />
+                <ProjectCard project={p} />
               </BlurFade>
             ))}
           </div>

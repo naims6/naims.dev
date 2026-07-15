@@ -7,13 +7,88 @@ import { ExternalLink, Github, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import PrimaryCtaButton from "@/components/primary-cta-button";
+import {
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiJavascript,
+  SiHtml5,
+  SiTailwindcss,
+  SiShadcnui,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiRedis,
+  SiDocker,
+  SiGithubactions,
+  SiStripe,
+  SiPrisma,
+  SiMysql,
+  SiFirebase,
+  SiSocketdotio,
+  SiFramer,
+  SiMui,
+  SiMongoose,
+} from "react-icons/si";
+
+const getTechIcon = (tech: string) => {
+  switch (tech) {
+    case "Next.js":
+      return <SiNextdotjs className="w-3 h-3" />;
+    case "React.js":
+      return <SiReact className="w-3 h-3 text-[#61DAFB]" />;
+    case "TypeScript":
+      return <SiTypescript className="w-3 h-3 text-[#3178C6]" />;
+    case "JavaScript":
+      return <SiJavascript className="w-3 h-3 text-[#F7DF1E]" />;
+    case "HTML/CSS":
+      return <SiHtml5 className="w-3 h-3 text-[#E34F26]" />;
+    case "Tailwind CSS":
+    case "Tailwind":
+      return <SiTailwindcss className="w-3 h-3 text-[#06B6D4]" />;
+    case "Shadcn/ui":
+      return <SiShadcnui className="w-3 h-3" />;
+    case "Node.js":
+      return <SiNodedotjs className="w-3 h-3 text-[#339933]" />;
+    case "Express.js":
+      return <SiExpress className="w-3 h-3" />;
+    case "MongoDB":
+      return <SiMongodb className="w-3 h-3 text-[#47A248]" />;
+    case "Mongoose":
+      return <SiMongoose className="w-3 h-3 text-[#800020]" />;
+    case "Firebase":
+      return <SiFirebase className="w-3 h-3 text-[#FFCA28]" />;
+    case "Socket.io":
+      return <SiSocketdotio className="w-3 h-3" />;
+    case "Framer Motion":
+      return <SiFramer className="w-3 h-3" />;
+    case "Material UI":
+      return <SiMui className="w-3 h-3 text-[#007FFF]" />;
+    case "PostgreSQL":
+      return <SiPostgresql className="w-3 h-3 text-[#336791]" />;
+    case "Redis":
+      return <SiRedis className="w-3 h-3 text-[#DC382D]" />;
+    case "Docker":
+      return <SiDocker className="w-3 h-3 text-[#2496ED]" />;
+    case "CI/CD":
+      return <SiGithubactions className="w-3 h-3 text-[#2088FF]" />;
+    case "Stripe":
+      return <SiStripe className="w-3 h-3 text-[#008CDD]" />;
+    case "Prisma":
+      return <SiPrisma className="w-3 h-3 text-[#2D3748]" />;
+    case "MySQL":
+      return <SiMysql className="w-3 h-3 text-[#336791]" />;
+    default:
+      return null;
+  }
+};
 
 interface ProjectCardProps {
   project: any;
-  getTechIcon: (tech: string) => React.ReactNode;
 }
 
-export function ProjectCard({ project: p, getTechIcon }: ProjectCardProps) {
+export function ProjectCard({ project: p }: ProjectCardProps) {
   return (
     <motion.div
       whileHover={{ y: -8 }}

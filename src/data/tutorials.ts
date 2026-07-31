@@ -10,7 +10,26 @@ export interface Tutorial {
 
 export const tutorials: Tutorial[] = [
   {
-    id: "1",
+    id: "nestjs",
+    title:
+      "NestJS Full Course in Bangla | Build Real Projects & CRUD API | Beginner to Advanced",
+    description:
+     `Want to learn NestJS the right way? This complete NestJS course covers everything from basic concepts to building production-ready APIs using industry-standard architecture and best practices.    By the end of this course, you will be able to:
+      • Understand NestJS architecture
+      • Build scalable REST APIs
+      • Use Dependency Injection effectively
+      • Create CRUD APIs
+      • Implement Validation Pipes and DTOs
+      • Secure APIs with Guards and Middleware
+      • Configure CORS and Global Prefix
+      This course is designed for JavaScript, TypeScript, Express.js, and Node.js developers who want to become professional backend developers.`,
+    youtubeId: "hn9KEItLMPc",
+    duration: "1:45:00",
+    date: "Jul 2026",
+    category: "NestJS",
+  },
+  {
+    id: "docker",
     title:
       "Docker Complete Tutorial in Bangla | Image, Container, Dockerfile, Docker Compose & Deploy",
     description:
@@ -21,7 +40,7 @@ export const tutorials: Tutorial[] = [
     category: "Docker",
   },
   {
-    id: "2",
+    id: "redis",
     title:
       "Redis Tutorial in Bangla | Node.js Redis Package + Redis CLI for Beginner",
     description:
@@ -32,7 +51,7 @@ export const tutorials: Tutorial[] = [
     category: "Redis",
   },
   {
-    id: "9",
+    id: "postgresql",
     title:
       "PostgreSQL Full Course in Bangla | Beginner to Advanced | Complete SQL Database Tutorial",
     description:
@@ -43,7 +62,7 @@ export const tutorials: Tutorial[] = [
     category: "PostgreSQL",
   },
   {
-    id: "6",
+    id: "github-actions",
     title:
       "GitHub Actions CI/CD Tutorial Bangla | Automate Build & Deploy for Beginners",
     description:
@@ -54,7 +73,7 @@ export const tutorials: Tutorial[] = [
     category: "Github Actions",
   },
   {
-    id: "3",
+    id: "swagger",
     title:
       "Swagger Tutorial for Beginners in Bangla | API Documentation Made Easy",
     description:
@@ -65,7 +84,7 @@ export const tutorials: Tutorial[] = [
     category: "Swagger",
   },
   {
-    id: "4",
+    id: "bullmq",
     title:
       "BullMQ Tutorial in Bangla | Complete Beginner Guide with Node.js & Redis",
     description:
@@ -76,7 +95,7 @@ export const tutorials: Tutorial[] = [
     category: "BullMQ",
   },
   {
-    id: "7",
+    id: "typescript",
     title: "TypeScript Crash Course in Bangla 2026 | Beginner to Advanced",
     description:
       "A complete beginner-friendly TypeScript tutorial in Bangla.Learn TypeScript fundamentals, types, interfaces, functions, generics, and best practices with practical examples.",
@@ -86,7 +105,7 @@ export const tutorials: Tutorial[] = [
     category: "TypeScript",
   },
   {
-    id: "10",
+    id: "oop",
     title:
       "OOP in JavaScript & TypeScript (Bangla) | Complete Beginner Tutorial",
     description:
@@ -96,14 +115,14 @@ export const tutorials: Tutorial[] = [
     date: "Jul 2026",
     category: "OOP in Javascript",
   },
-  {
-    id: "5",
-    title: "Zod Tutorial for Beginners | Learn Validation in Zod | Naims Dev",
-    description:
-      "In this beginner-friendly Zod tutorial in Bangla, you'll learn everything about Zod from scratch with practical examples.",
-    youtubeId: "tubCdiOlHJE",
-    duration: "24:56",
-    date: "Jun 2026",
-    category: "Zod",
-  },
+  // {
+  //   id: "zod",
+  //   title: "Zod Tutorial for Beginners | Learn Validation in Zod | Naims Dev",
+  //   description:
+  //     "In this beginner-friendly Zod tutorial in Bangla, you'll learn everything about Zod from scratch with practical examples.",
+  //   youtubeId: "tubCdiOlHJE",
+  //   duration: "24:56",
+  //   date: "Jun 2026",
+  //   category: "Zod",
+  // },
 ];

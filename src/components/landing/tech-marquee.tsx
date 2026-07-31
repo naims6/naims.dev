@@ -1,4 +1,6 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import {
   SiNextdotjs,
   SiReact,
@@ -15,6 +17,8 @@ import {
   SiVercel,
   SiDocker,
   SiGithubactions,
+  SiPython,
+  SiN8N,
 } from "react-icons/si";
 
 const techIcons = [
@@ -33,11 +37,81 @@ const techIcons = [
   { icon: <SiPostgresql />, name: "PostgreSQL", color: "#4169E1" },
   { icon: <SiRedux />, name: "Redux", color: "#764ABC" },
   { icon: <SiVercel />, name: "Vercel", color: "#000000" },
+  { icon: <SiPython />, name: "Python", color: "#3776AB" },
+  { icon: <SiN8N />, name: "n8n", color: "#EA4B71" },
 ];
 
 export function TechMarquee() {
   // Triple the array to ensure no gaps during animation
   const repeatedIcons = [...techIcons, ...techIcons, ...techIcons];
+
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const draggingRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragStartOffsetRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const contentWidthRef = useRef(1);
+  const [isDragging, setIsDragging] = useState(false);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const updateWidth = () => {
+      contentWidthRef.current = Math.round(track.scrollWidth / 3) || 1;
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+
+    let raf: number;
+    const tick = (time: number) => {
+      if (!draggingRef.current) {
+        const dt = lastTimeRef.current
+          ? (time - lastTimeRef.current) / 1000
+          : 0;
+        lastTimeRef.current = time;
+        const third = contentWidthRef.current;
+        offsetRef.current -= (third / 40) * dt;
+        offsetRef.current = ((offsetRef.current % third) - third) % third;
+        track.style.transform = `translateX(${offsetRef.current}px)`;
+      } else {
+        lastTimeRef.current = 0;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", updateWidth);
+    };
+  }, []);
+
+  const handlePointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    draggingRef.current = true;
+    dragStartXRef.current = e.clientX;
+    dragStartOffsetRef.current = offsetRef.current;
+    setIsDragging(true);
+  };
+
+  const handlePointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) return;
+    const third = contentWidthRef.current;
+    const dx = e.clientX - dragStartXRef.current;
+    let next = dragStartOffsetRef.current + dx;
+    next = ((next % third) - third) % third;
+    offsetRef.current = next;
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(${next}px)`;
+    }
+  };
+
+  const handlePointerUp = () => {
+    draggingRef.current = false;
+    lastTimeRef.current = 0;
+    setIsDragging(false);
+  };
 
   return (
     <div className="w-[calc(100%+2rem)] md:w-full -mx-4 md:mx-0 overflow-hidden py-4 relative max-w-[100vw]">
@@ -45,11 +119,23 @@ export function TechMarquee() {
       <div className="pointer-events-none absolute left-0 top-0 h-full w-16 z-10 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10 bg-gradient-to-l from-background to-transparent" />
 
-      <div className="flex w-max animate-marquee whitespace-nowrap">
+      <div
+        ref={trackRef}
+        className={`flex w-max whitespace-nowrap select-none will-change-transform ${
+          isDragging ? "cursor-grabbing" : "cursor-grab"
+        }`}
+        style={{ transform: "translateX(0px)" }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
         {repeatedIcons.map((tech, index) => (
           <div
             key={index}
             className="flex items-center gap-3 px-5 py-3 mx-3 rounded-2xl bg-white/60 dark:bg-white/5 backdrop-blur-md border border-border/50 dark:border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.15)] transition-all duration-300 group/item"
+            draggable={false}
           >
             <div
               className="text-2xl transition-all duration-300 group-hover/item:scale-110 flex-shrink-0"

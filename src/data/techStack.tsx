@@ -28,6 +28,8 @@ import {
   SiSocketdotio,
   SiDocker,
   SiGithubactions,
+  SiPython,
+  SiN8N,
 } from "react-icons/si";
 
 export interface Skill {
@@ -162,6 +164,12 @@ export const techStack: SkillCategory[] = [
         description: "Database toolkit for Node.js.",
       },
       {
+        name: "Python",
+        icon: <SiPython className="mr-1 text-[#3776AB]" />,
+        color: "#3776AB",
+        description: "Versatile programming language for scripting and automation.",
+      },
+      {
         name: "Firebase",
         icon: <SiFirebase className="mr-1 text-[#FFCA28]" />,
         color: "#FFCA28",
@@ -227,6 +235,12 @@ export const techStack: SkillCategory[] = [
         icon: <SiFigma className="mr-1 text-[#F24E1E]" />,
         color: "#F24E1E",
         description: "Collaborative interface design tool.",
+      },
+      {
+        name: "n8n",
+        icon: <SiN8N className="mr-1 text-[#EA4B71]" />,
+        color: "#EA4B71",
+        description: "Workflow automation and AI agent builder.",
       },
       {
         name: "Postman",

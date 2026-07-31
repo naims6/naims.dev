@@ -28,16 +28,17 @@ function getDurationDisplay(startDate: Date): string {
 
 const experiences = [
   {
-    role: "Backend Developer Intern",
+    role: "Backend Developer",
     company: "Rise Together",
     location: "Dhaka, Bangladesh",
     type: "Remote",
-    period: "April 2026 — Present",
-    startDate: new Date("2026-04-01"),
+    period: "March 2026 — Present",
+    startDate: new Date("2026-03-01"), 
     points: [
-      "Conducted technical training sessions on modern backend architecture, focusing on Docker container-ization, Redis caching and PostgreSQL project setups.",
+      "Developed and maintained a production donation platform processing 500+ daily donations.",
+      "Integrated SSLCommerz with payment initiation, success, failure, cancellation, and IPN handling.",
+      "Conducted classes and training sessions on backend development, Docker, Redis, and CI/CD.",
       "Developing backend APIs using Node.js, Express.js, and PostgreSQL to handle core platform data",
-      "Designed secure RESTful APIs and optimized backend and database schemas for scalability.",
     ],
   },
 ];

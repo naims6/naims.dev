@@ -1,6 +1,6 @@
 export const projects = [
   {
-    id: 8,
+    id: "dcms",
     img: "/assets/projects/dcms-main.png",
     name: "DCMS - School Management",
     description:
@@ -30,7 +30,7 @@ export const projects = [
     ],
   },
   {
-    id: 1,
+    id: "carenow",
     img: "/assets/projects/Carenow.png",
     name: "CareNow",
     description:
@@ -55,7 +55,7 @@ export const projects = [
     ],
   },
   {
-    id: 2,
+    id: "innovatex",
     img: "/assets/projects/InnovateX.png",
     name: "InnovateX - Contest Platform",
     description:
@@ -83,7 +83,7 @@ export const projects = [
   },
 
   {
-    id: 3,
+    id: "thebookhaven",
     img: "/assets/projects/thebookhaven.png",
     name: "The Book Haven",
     description: `The Book Haven is a modern full-stack web application built with React and Tailwind CSS, designed for book lovers.
@@ -100,7 +100,7 @@ export const projects = [
     tech: ["React.js", "Firebase", "Node.js", "Express.js", "MongoDB"],
   },
   {
-    id: 4,
+    id: "toybazzar",
     img: "/assets/projects/toybazzar.png",
     name: "Toy Bazaar",
     description:
@@ -124,7 +124,7 @@ export const projects = [
     ],
   },
   {
-    id: 7,
+    id: "job-application-tracker",
     img: "/assets/projects/job-application-tracker.png",
     name: "Job Application Tracker",
     description: `A modern, intuitive web application to help you organize and track your job applications throughout your job search journey.`,

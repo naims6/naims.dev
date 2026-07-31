@@ -30,6 +30,7 @@ import {
   SiGithubactions,
   SiPython,
   SiN8N,
+  SiNestjs,
 } from "react-icons/si";
 
 export interface Skill {
@@ -168,6 +169,13 @@ export const techStack: SkillCategory[] = [
         icon: <SiPython className="mr-1 text-[#3776AB]" />,
         color: "#3776AB",
         description: "Versatile programming language for scripting and automation.",
+      },
+      {
+        name: "NestJS",
+        icon: <SiNestjs className="mr-1 text-[#E0234E]" />,
+        color: "#E0234E",
+        description: "Progressive Node.js framework for scalable server-side apps.",
+        isCore: true,
       },
       {
         name: "Firebase",

@@ -2,7 +2,13 @@
 
 import { BlurFade } from "@/components/animation-wrapper";
 import { SectionHeader } from "../section-header";
-import { Calendar, MapPin, Briefcase } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  Briefcase,
+  ExternalLink,
+  MessageCircle,
+} from "lucide-react";
 
 function getDurationDisplay(startDate: Date): string {
   const now = new Date();
@@ -33,7 +39,9 @@ const experiences = [
     location: "Dhaka, Bangladesh",
     type: "Remote",
     period: "March 2026 — Present",
-    startDate: new Date("2026-03-01"), 
+    startDate: new Date("2026-03-01"),
+    liveUrl: "https://www.an-nusrafoundation.org/bn",
+    feedbackUrl: "https://www.facebook.com/annusrafoundationbd/posts/pfbid02C2UG12Y8RwtWaeF5gXwUPigpS6u1bzaZKz9yeTxAU2DQgnMf7FMqYuEUJjHYqjxql",
     points: [
       "Developed and maintained a production donation platform processing 500+ daily donations.",
       "Integrated SSLCommerz with payment initiation, success, failure, cancellation, and IPN handling.",
@@ -92,6 +100,28 @@ export default function Experience() {
                   </li>
                 ))}
               </ul>
+
+              {/* Links */}
+              <div className="mt-5 flex flex-wrap gap-2">
+                <a
+                  href={exp.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-500 border border-blue-500/20 hover:bg-blue-500/20 transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Live Project
+                </a>
+                <a
+                  href={exp.feedbackUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-500 border border-blue-500/20 hover:bg-blue-500/20 transition-colors"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  User Feedback
+                </a>
+              </div>
 
               {/* Location footer */}
               <div className="mt-5 flex items-center gap-1.5 text-xs text-muted-foreground/70">

@@ -42,11 +42,11 @@ export default function N8nChat() {
        	],
         i18n: {
         	en: {
-       		title: 'Hi there! 👋',
+       		title: 'Naim AI',
        		subtitle: "Start a chat. I am here to help you 24/7.",
-       		footer: '',
+       		footer: 'Backend • DevOps • AI Engineering',
        		getStarted: 'New Conversation',
-            inputPlaceholder: 'Type your question..',
+            inputPlaceholder: 'Ask me anything...',
        		closeButtonTooltip: '',
         	},
       	},

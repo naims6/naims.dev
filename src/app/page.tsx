@@ -5,7 +5,7 @@ import SectionToolbox from "@/components/section-toolbox";
 
 // Lazy load components below the fold
 const Experience = dynamic(() => import("@/components/landing/experience"));
-const Services = dynamic(() => import("@/components/landing/services"));
+// const Services = dynamic(() => import("@/components/landing/services"));
 const TechStack = dynamic(() => import("@/components/landing/tech-stack"));
 const Projects = dynamic(() => import("@/components/landing/projects"));
 const Tutorials = dynamic(() => import("@/components/landing/tutorials"));
@@ -37,8 +37,8 @@ export default function Home() {
       <SectionDivider />
       <Experience />
 
-      <SectionDivider />
-      <Services />
+      {/*<SectionDivider />
+      <Services />*/}
 
       <SectionDivider />
       <TechStack />

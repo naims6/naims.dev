@@ -12,6 +12,7 @@ export default function N8nChat() {
         webhookUrl: "http://localhost:5678/webhook/881ac3f9-6b05-4654-a637-df00ecbcfa9f/chat",
         target: '#n8n-chat',
 	mode: 'window',
+	showWindowCloseButton: true,
 	chatInputKey: 'chatInput',
 	chatSessionKey: 'sessionId',
 	loadPreviousSession: true,

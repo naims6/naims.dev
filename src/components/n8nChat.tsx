@@ -43,7 +43,7 @@ export default function N8nChat() {
         i18n: {
         	en: {
        		title: 'Naim AI',
-       		subtitle: "Start a chat. I am here to help you 24/7.",
+       		subtitle: "💡 This AI is hosted on a free server, so the first response may take 10–40 seconds. Thanks for your patience!",
        		footer: 'Backend • DevOps • AI Engineering',
        		getStarted: 'New Conversation',
             inputPlaceholder: 'Ask me anything...',

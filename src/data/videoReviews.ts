@@ -115,4 +115,15 @@ Excited to continue this backend learning journey and improve my development ski
     source: "linkedin",
     linkedinId: "china-akther",
   },
+  {
+    id: "review-9",
+    name: "@mrpiyalst8799",
+    avatar:
+      "https://res.cloudinary.com/dynxnpj21/image/upload/v1786467907/channels4_profile_ssmxsh.jpg",
+    reviewText: `Learned something new today. ❤
+It would have been even better if you had included the frontend UI along with the backend. Hope you'll upload a complete version with the UI in a future video. Thanks for the great content! 🙌`,
+    source: "youtube",
+    youtubeUsername: "@mrpiyalst8799",
+    youtubeProfileUrl: "https://www.youtube.com/@mrpiyalst8799",
+  },
 ];

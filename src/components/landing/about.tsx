@@ -160,77 +160,82 @@ export default function About() {
         <div className="mt-5 flex justify-center lg:justify-start">
           <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
-              <Button variant="secondary" size="sm">
+              <Button
+                variant="secondary"
+                className="w-full sm:w-auto"
+              >
                 Show More
                 <ArrowUpRight className="h-4 w-4" />
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="max-w-[calc(100%-2rem)] md:max-w-3xl lg:max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-y-auto p-6 sm:p-8">
+            <DialogContent className="max-w-[calc(100%-2rem)] md:max-w-3xl lg:max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-y-auto p-5 sm:p-8">
               <DialogHeader>
-                <div className="flex items-start sm:items-center justify-between gap-4">
+                <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
                   <div className="space-y-1">
-                    <DialogTitle className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+                    <DialogTitle className="text-xl sm:text-3xl font-bold tracking-tight text-foreground">
                       About Me
                     </DialogTitle>
-                    <DialogDescription className="text-sm sm:text-base font-medium">
+                    <DialogDescription className="text-xs sm:text-base font-medium leading-snug">
                       AI Automation · Full-Stack Development
                     </DialogDescription>
                   </div>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="shrink-0 border-blue-500/30 text-blue-500 hover:bg-blue-500/10"
+                    className="shrink-0 border-blue-500/30 text-blue-500 hover:bg-blue-500/10 px-2.5 sm:px-4"
                     onClick={copyAboutLink}
                   >
                     {copied ? (
-                      <>
-                        <Check className="h-4 w-4 text-green-500" />
-                        Copied
-                      </>
+                      <Check className="h-4 w-4 text-green-500" />
                     ) : (
-                      <>
-                        <Link2 className="h-4 w-4" />
-                        Copy Link
-                      </>
+                      <Link2 className="h-4 w-4" />
                     )}
+                    <span className="hidden sm:inline">
+                      {copied ? "Copied" : "Copy Link"}
+                    </span>
                   </Button>
                 </div>
               </DialogHeader>
 
               {/* Wide horizontal layout: profile card + details */}
-              <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 mt-2">
+              <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-5 sm:gap-6 mt-2">
                 {/* Profile card */}
-                <div className="flex flex-col items-center gap-4 rounded-2xl border border-border/50 dark:border-white/10 bg-white/60 dark:bg-transparent p-6 text-center lg:text-left">
-                  <div className="relative rounded-2xl border border-border/60 dark:border-white/10">
+                <div className="flex flex-col items-center gap-4 rounded-2xl border border-border/50 dark:border-white/10 bg-white/60 dark:bg-transparent p-5 sm:p-6 text-center">
+                  {/* Photo */}
+                  <div className="relative shrink-0 rounded-2xl border border-border/60 dark:border-white/10 shadow-sm">
                     <Image
                       src={profile.image}
                       alt={profile.name}
                       width={160}
                       height={160}
-                      className="h-32 w-32 lg:h-40 lg:w-40 rounded-2xl object-cover"
+                      className="h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36 rounded-2xl object-cover"
                     />
-                    <span className="absolute -bottom-1 -right-1 flex h-5 w-5 lg:h-6 lg:w-6">
+                    <span className="absolute -bottom-1 -right-1 flex h-4 w-4 sm:h-5 sm:w-5">
                       <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-40" />
-                      <span className="relative inline-flex h-5 w-5 lg:h-6 lg:w-6 rounded-full bg-green-500 border-2 border-background" />
+                      <span className="relative inline-flex h-4 w-4 sm:h-5 sm:w-5 rounded-full bg-green-500 border-2 border-background" />
                     </span>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <h3 className="text-xl lg:text-2xl font-black tracking-tight text-foreground">
+                  {/* Name & details */}
+                  <div className="flex flex-col items-center gap-1 text-center">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-black tracking-tight text-foreground leading-tight">
                       {profile.name}
                     </h3>
-                    <p className="text-sm font-semibold text-primary">
+                    <p className="text-xs sm:text-sm font-semibold text-primary">
                       {profile.role}
                     </p>
-                    <p className="inline-flex items-center justify-center lg:justify-start gap-1.5 text-xs text-muted-foreground pt-1">
-                      <MapPin className="h-3.5 w-3.5 text-primary" />
+                    <p className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
                       {profile.location}
                     </p>
                   </div>
 
+                  {/* Divider */}
+                  <div className="w-full border-t border-border/40 dark:border-white/5" />
+
                   {/* Social links */}
-                  <div className="w-full grid grid-cols-1 gap-1.5">
+                  <div className="flex flex-wrap items-center justify-center gap-2 w-full lg:flex-col lg:items-stretch">
                     {socialLinks.map((link) => (
                       <a
                         key={link.label}
@@ -239,13 +244,17 @@ export default function About() {
                           link.href.startsWith("mailto") ? undefined : "_blank"
                         }
                         rel="noopener noreferrer"
-                        className={`group inline-flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors ${link.hoverBg}`}
+                        aria-label={link.label}
+                        title={link.label}
+                        className={`group inline-flex h-10 w-10 lg:h-auto lg:w-full items-center justify-center lg:justify-start gap-2.5 rounded-full lg:rounded-lg border border-border/60 dark:border-white/10 bg-white/50 dark:bg-white/5 px-0 lg:px-3 py-2 text-xs font-medium text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 lg:hover:translate-y-0 ${link.hoverBg}`}
                       >
                         <link.icon
                           className={`h-4 w-4 shrink-0 ${link.iconColor}`}
                         />
-                        <span className="truncate">{link.label}</span>
-                        <ArrowUpRight className="h-3 w-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <span className="hidden lg:inline truncate">
+                          {link.label}
+                        </span>
+                        <ArrowUpRight className="hidden lg:inline-flex h-3 w-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                     ))}
                   </div>
@@ -257,7 +266,7 @@ export default function About() {
                     {aboutSections.map((section) => (
                       <div
                         key={section.title}
-                        className="group rounded-2xl border border-border/50 dark:border-white/10 bg-white/60 dark:bg-transparent p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30"
+                        className="group rounded-2xl border border-border/50 dark:border-white/10 bg-white/60 dark:bg-transparent p-4 sm:p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30"
                       >
                         <div className="flex items-center gap-3 mb-2.5">
                           <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-primary">

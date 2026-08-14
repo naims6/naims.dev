@@ -34,7 +34,7 @@ function getDurationDisplay(startDate: Date): string {
 
 const experiences = [
   {
-    role: "Backend Developer",
+    role: "Backend Developer & Technical Instructor",
     company: "Rise Together",
     location: "Dhaka, Bangladesh",
     type: "Remote",

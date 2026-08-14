@@ -54,7 +54,7 @@ const aboutSections: {
   {
     icon: Bot,
     title: "AI & Automation",
-    text: "I design advanced n8n workflows and AI-powered automations that handle repetitive operations for businesses — from data processing and custom integrations to connecting the tools teams already use.",
+    text: "I design n8n workflows and AI-powered automations that handle repetitive operations for businesses — from data processing and custom integrations to connecting the tools teams already use.",
   },
   {
     icon: Code2,

@@ -128,6 +128,63 @@ export default function Navbar() {
     },
   ];
 
+  // Scrollspy: keep the URL hash in sync with the section currently in view.
+  // Without this, manually scrolling leaves a stale hash in the URL, which makes
+  // re-clicking a nav link a no-op (Next.js only scrolls when the hash changes).
+  React.useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sectionIds = ["home", "tech-stack", "projects", "tutorials", "contact"];
+
+    const updateActiveSection = () => {
+      const threshold = window.innerHeight * 0.3;
+      let currentId = sectionIds[0];
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= threshold) {
+          currentId = id;
+        }
+      }
+
+      const newHash = currentId === "home" ? "" : `#${currentId}`;
+      if (newHash !== window.location.hash) {
+        history.replaceState(
+          null,
+          "",
+          `${window.location.pathname}${window.location.search}${newHash}`
+        );
+      }
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    return () => window.removeEventListener("scroll", updateActiveSection);
+  }, [pathname]);
+
+  // Smooth-scroll to the target section when a nav link is clicked on the home
+  // page, so it always works even when the URL hash hasn't changed.
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    link: (typeof navLinks)[number]
+  ) => {
+    setIsMobileMenuOpen(false);
+
+    // On other pages, let Next.js navigate to "/" + hash.
+    if (pathname !== "/") return;
+
+    e.preventDefault();
+
+    if (link.hash) {
+      const element = document.getElementById(link.hash.slice(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   if (!mounted) {
     return (
       <div className="my-6 py-4 px-6 rounded-2xl flex items-center justify-between border border-transparent">
@@ -203,6 +260,7 @@ export default function Navbar() {
                 }}
                 href={link.href}
                 onMouseEnter={() => handleMouseEnter(idx)}
+                onClick={(e) => handleNavClick(e, link)}
                 className="relative flex items-center gap-2 px-4 py-2 text-xs font-bold text-foreground/60 hover:text-foreground rounded-xl transition-colors duration-200 uppercase tracking-widest"
               >
                 <link.icon
@@ -273,7 +331,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(e, link)}
                     className="flex items-center gap-4 p-4 rounded-2xl hover:bg-primary/10 hover:text-primary transition-all duration-300 font-bold uppercase tracking-widest text-sm text-muted-foreground group"
                   >
                     <link.icon

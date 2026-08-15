@@ -4,11 +4,11 @@ import * as React from "react";
 import Link from "next/link";
 import {
   House,
-  Wrench,
   Cpu,
   Briefcase,
   Clock3,
-  Trophy,
+  Video,
+  Star,
   Mail,
 } from "lucide-react";
 
@@ -29,11 +29,11 @@ const sections: SectionItem[] = [
     shadow: "shadow-purple-500/40",
   },
   {
-    id: "services",
-    label: "Services",
-    icon: Wrench,
-    gradient: "from-sky-600 via-blue-500 to-indigo-500",
-    shadow: "shadow-blue-500/40",
+    id: "experience",
+    label: "Experience",
+    icon: Clock3,
+    gradient: "from-emerald-500 via-green-500 to-lime-500",
+    shadow: "shadow-green-500/40",
   },
   {
     id: "tech-stack",
@@ -50,16 +50,16 @@ const sections: SectionItem[] = [
     shadow: "shadow-orange-500/40",
   },
   {
-    id: "experience",
-    label: "Experience",
-    icon: Clock3,
-    gradient: "from-emerald-500 via-green-500 to-lime-500",
-    shadow: "shadow-green-500/40",
+    id: "tutorials",
+    label: "Tutorials",
+    icon: Video,
+    gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
+    shadow: "shadow-rose-500/40",
   },
   {
-    id: "achievements",
-    label: "Awards",
-    icon: Trophy,
+    id: "reviews",
+    label: "Reviews",
+    icon: Star,
     gradient: "from-yellow-500 via-amber-500 to-orange-500",
     shadow: "shadow-amber-500/40",
   },
@@ -67,8 +67,8 @@ const sections: SectionItem[] = [
     id: "contact",
     label: "Contact",
     icon: Mail,
-    gradient: "from-rose-500 via-pink-500 to-fuchsia-500",
-    shadow: "shadow-rose-500/40",
+    gradient: "from-blue-500 via-indigo-500 to-violet-500",
+    shadow: "shadow-indigo-500/40",
   },
 ];
 
@@ -76,28 +76,24 @@ export default function SectionToolbox() {
   const [activeSection, setActiveSection] = React.useState("home");
 
   React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    const updateActiveSection = () => {
+      const threshold = window.innerHeight * 0.3;
+      let current = sections[0].id;
 
-        if (visible?.target?.id) {
-          setActiveSection(visible.target.id);
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= threshold) {
+          current = section.id;
         }
-      },
-      {
-        rootMargin: "-25% 0px -55% 0px",
-        threshold: [0.2, 0.4, 0.6],
-      },
-    );
+      }
 
-    sections.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (element) observer.observe(element);
-    });
+      setActiveSection((prev) => (prev === current ? prev : current));
+    };
 
-    return () => observer.disconnect();
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    return () => window.removeEventListener("scroll", updateActiveSection);
   }, []);
 
   const handleNavigate = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {

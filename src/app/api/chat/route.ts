@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import { ai, DEFAULT_GEMINI_MODEL } from "@/lib/ai/geminiClient";
 import { SYSTEM_PROMPT } from "@/lib/ai/knowledgeBase";
 
 interface ChatMessage {
@@ -9,19 +9,6 @@ interface ChatMessage {
 
 export async function POST(req: Request) {
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-
-    if (!apiKey || apiKey === "your_gemini_api_key_here") {
-      return NextResponse.json(
-        {
-          error: "API key is missing.",
-          reply:
-            "⚠️ **API Key missing**: Please set your `GEMINI_API_KEY` in the `.env` file to enable AI answers.",
-        },
-        { status: 400 }
-      );
-    }
-
     const body = await req.json();
     const { message, history = [] }: { message: string; history?: ChatMessage[] } = body;
 
@@ -32,65 +19,69 @@ export async function POST(req: Request) {
       );
     }
 
-    const ai = new GoogleGenAI({ apiKey });
-    const modelName = process.env.GEMINI_MODEL || "models/gemini-3.6-flash";
+    // Clean history: remove initial welcome message & ensure valid user -> model alternation
+    const validHistoryMessages = (history || []).filter(
+      (m) => m.content && m.content !== "welcome-msg" && !m.content.startsWith("Hi! 👋 I'm **Naim AI**")
+    );
 
-    // Format previous messages for Gemini API
-    const formattedHistory = (history || [])
-      .slice(-8) // Keep recent 8 turns for fast context processing
-      .map((msg) => ({
-        role: msg.role === "assistant" || msg.role === "model" ? "model" : "user",
-        parts: [{ text: msg.content }],
-      }));
+    // Format for Gemini API: map roles to 'user' or 'model'
+    const formattedHistory: { role: "user" | "model"; parts: { text: string }[] }[] = [];
+
+    for (const msg of validHistoryMessages) {
+      const mappedRole = msg.role === "assistant" || msg.role === "model" ? "model" : "user";
+      
+      // Ensure history starts with 'user'
+      if (formattedHistory.length === 0 && mappedRole !== "user") {
+        continue;
+      }
+
+      // Avoid consecutive duplicate roles for clean Gemini context
+      const lastMsg = formattedHistory[formattedHistory.length - 1];
+      if (lastMsg && lastMsg.role === mappedRole) {
+        lastMsg.parts[0].text += `\n${msg.content}`;
+      } else {
+        formattedHistory.push({
+          role: mappedRole,
+          parts: [{ text: msg.content }],
+        });
+      }
+    }
+
+    // Ensure the last message in history before current user message is 'model' (or history ends cleanly)
+    if (formattedHistory.length > 0 && formattedHistory[formattedHistory.length - 1].role === "user") {
+      formattedHistory.pop();
+    }
+
+    // Keep recent 6 turns for optimal speed & low latency
+    const recentHistory = formattedHistory.slice(-6);
 
     const contents = [
-      ...formattedHistory,
+      ...recentHistory,
       {
-        role: "user",
+        role: "user" as const,
         parts: [{ text: message }],
       },
     ];
 
-    // Use Streaming API for instant token-by-token response
-    const responseStream = await ai.models.generateContentStream({
-      model: modelName,
+    // Ultra-clean request using pre-initialized global ai instance
+    const response = await ai.models.generateContent({
+      model: DEFAULT_GEMINI_MODEL,
       contents,
       config: {
         systemInstruction: SYSTEM_PROMPT,
-        temperature: 0.7,
+        temperature: 0.3,      // Lower = faster, more factual answers for a portfolio FAQ bot
+        maxOutputTokens: 512,  // Cap output to prevent slow runaway responses
       },
     });
 
-    const encoder = new TextEncoder();
+    const reply = response.text || "I'm sorry, I couldn't generate a response. Please try again.";
 
-    const stream = new ReadableStream({
-      async start(controller) {
-        try {
-          for await (const chunk of responseStream) {
-            const text = chunk.text;
-            if (text) {
-              controller.enqueue(encoder.encode(text));
-            }
-          }
-          controller.close();
-        } catch (err) {
-          console.error("Stream processing error:", err);
-          controller.error(err);
-        }
-      },
-    });
-
-    return new Response(stream, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-cache",
-      },
-    });
+    return NextResponse.json({ reply });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("POST /api/chat error:", error);
     return NextResponse.json(
-      { error: "Internal Server Error", details: error.message },
+      { error: "Failed to generate AI response", details: error.message },
       { status: 500 }
     );
   }

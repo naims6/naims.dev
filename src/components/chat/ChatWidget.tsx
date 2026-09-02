@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MessageSquare,
   X,
   Send,
   User,
@@ -36,16 +35,15 @@ const INITIAL_WELCOME_MESSAGE: Message = {
   id: "welcome-msg",
   role: "assistant",
   content:
-    "Hi! 👋 I'm **Naim AI**, Naim Sorker's personal assistant. How can I help you today? Ask me about Naim's skills, projects, background, or contact details.",
+    "Hi! 👋 How can I help you today? Ask me about Naim's skills, projects, background, or contact details.",
   timestamp: new Date().toISOString(),
 };
 
 export default function ChatWidget() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    INITIAL_WELCOME_MESSAGE,
-  ]);
+  const [messages, setMessages] = useState<Message[]>([INITIAL_WELCOME_MESSAGE]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -53,7 +51,7 @@ export default function ChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Load chat history from localStorage
+  // Load chat history from localStorage on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem("naim_ai_chat_history");
@@ -65,19 +63,20 @@ export default function ChatWidget() {
       }
     } catch (e) {
       console.error("Failed to parse chat history:", e);
+    } finally {
+      setIsLoaded(true);
     }
   }, []);
 
-  // Save chat history to localStorage
+  // Save chat history to localStorage only AFTER initial load completes
   useEffect(() => {
+    if (!isLoaded) return;
     try {
-      if (messages.length > 0) {
-        localStorage.setItem("naim_ai_chat_history", JSON.stringify(messages));
-      }
+      localStorage.setItem("naim_ai_chat_history", JSON.stringify(messages));
     } catch (e) {
       console.error("Failed to save chat history:", e);
     }
-  }, [messages]);
+  }, [messages, isLoaded]);
 
   // Auto scroll to bottom
   useEffect(() => {
@@ -116,19 +115,9 @@ export default function ChatWidget() {
     if (!textToSend) setInputMessage("");
     setIsLoading(true);
 
-    const assistantMsgId = crypto.randomUUID();
-    const assistantPlaceholderMessage: Message = {
-      id: assistantMsgId,
-      role: "assistant",
-      content: "",
-      timestamp: new Date().toISOString(),
-    };
-
-    // Add empty assistant placeholder for streaming tokens
-    setMessages((prev) => [...prev, assistantPlaceholderMessage]);
-
     try {
-      const historyForBackend = updatedMessages.map((m) => ({
+      // Only send last 6 messages — backend already slices, but this reduces payload size
+      const historyForBackend = updatedMessages.slice(-6).map((m) => ({
         role: m.role,
         content: m.content,
       }));
@@ -142,51 +131,34 @@ export default function ChatWidget() {
         }),
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
         throw new Error(
-          errorData.error || errorData.details || "Failed to connect",
+          data.error || data.details || "Failed to get AI response"
         );
       }
 
-      if (!res.body) {
-        throw new Error("No response body received");
-      }
+      const assistantMessage: Message = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content: data.reply || "Sorry, I couldn't generate a response.",
+        timestamp: new Date().toISOString(),
+      };
 
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let accumulatedContent = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value, { stream: true });
-        accumulatedContent += chunk;
-
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === assistantMsgId
-              ? { ...msg, content: accumulatedContent }
-              : msg,
-          ),
-        );
-      }
+      setMessages((prev) => [...prev, assistantMessage]);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Chat error:", error);
-      toast.error("Failed to fetch response");
-      setMessages((prev) =>
-        prev.map((msg) =>
-          msg.id === assistantMsgId
-            ? {
-                ...msg,
-                content:
-                  "⚠️ Sorry, I could not generate a response right now. Please check `GEMINI_API_KEY` configuration or try again.",
-              }
-            : msg,
-        ),
-      );
+      toast.error(error.message || "Failed to connect");
+      const errorMessage: Message = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content:
+          "⚠️ I ran into an error generating a response. Please verify your environment configuration and try again.",
+        timestamp: new Date().toISOString(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -199,7 +171,7 @@ export default function ChatWidget() {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  // Minimal inline Markdown Parser
+  // Minimal Markdown Parser
   const renderFormattedContent = (content: string) => {
     if (!content) return null;
     const paragraphs = content.split(/\n\n+/);
@@ -287,7 +259,7 @@ export default function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Clean Right Side Drawer */}
+      {/* Clean Right Side Drawer matching website theme */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -295,24 +267,24 @@ export default function ChatWidget() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ type: "spring", stiffness: 350, damping: 35 }}
-            className="fixed inset-y-0 right-0 z-50 w-full sm:w-[450px] md:w-[480px] h-full shadow-2xl bg-background/95 backdrop-blur-2xl border-l border-border/50 flex flex-col overflow-hidden"
+            className="fixed inset-y-0 right-0 z-50 w-full sm:w-[450px] md:w-[480px] h-full shadow-2xl bg-background/95 backdrop-blur-2xl border-l border-border flex flex-col overflow-hidden text-foreground font-mono"
           >
-            {/* Minimal Header */}
-            <div className="p-4 px-5 border-b border-border/40 bg-muted/20 flex justify-between items-center shrink-0">
+            {/* Header */}
+            <div className="p-4 px-5 border-b border-border bg-card flex justify-between items-center shrink-0">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
                     <Bot className="h-5 w-5 text-primary" />
                   </div>
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-background" />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-card" />
                 </div>
 
                 <div>
                   <h2 className="font-bold text-base text-foreground tracking-tight leading-none">
-                    Naim AI
+                    AI Assistant
                   </h2>
-                  <p className="text-xs text-muted-foreground mt-0.5">
-                    Portfolio & Engineering Assistant
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Ask about Naim Sorker
                   </p>
                 </div>
               </div>
@@ -341,8 +313,8 @@ export default function ChatWidget() {
                   }`}
                 >
                   {msg.role === "assistant" && (
-                    <div className="w-7 h-7 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Sparkles className="h-3.5 w-3.5 text-primary" />
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <Sparkles className="h-4 w-4 text-primary" />
                     </div>
                   )}
 
@@ -351,18 +323,10 @@ export default function ChatWidget() {
                       className={`p-3.5 rounded-2xl ${
                         msg.role === "user"
                           ? "bg-primary text-primary-foreground rounded-br-xs shadow-xs font-medium"
-                          : "bg-muted/50 dark:bg-zinc-900/60 border border-border/40 text-foreground rounded-bl-xs"
+                          : "bg-muted/70 dark:bg-card border border-border text-foreground rounded-bl-xs"
                       }`}
                     >
-                      {msg.content ? (
-                        renderFormattedContent(msg.content)
-                      ) : (
-                        <div className="flex items-center gap-1 py-1">
-                          <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                          <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                          <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce" />
-                        </div>
-                      )}
+                      {renderFormattedContent(msg.content)}
                     </div>
 
                     {msg.role === "assistant" && msg.content && (
@@ -396,17 +360,31 @@ export default function ChatWidget() {
                   </div>
 
                   {msg.role === "user" && (
-                    <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center shrink-0 mt-0.5 text-primary-foreground">
-                      <User className="h-3.5 w-3.5" />
+                    <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shrink-0 mt-0.5 text-primary-foreground">
+                      <User className="h-4 w-4" />
                     </div>
                   )}
                 </div>
               ))}
+
+              {/* Loading Indicator */}
+              {isLoading && (
+                <div className="flex gap-3 justify-start">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                    <Bot className="h-4 w-4 text-primary animate-spin" />
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-muted/70 border border-border rounded-bl-xs flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-primary/70 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 bg-primary/70 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 bg-primary/70 rounded-full animate-bounce" />
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Clean Quick Suggestion Chips */}
+            {/* Quick Suggestion Chips */}
             {messages.length <= 2 && !isLoading && (
-              <div className="px-4 py-3 bg-muted/20 border-t border-border/30 shrink-0">
+              <div className="px-4 py-3 bg-muted/30 border-t border-border shrink-0">
                 <p className="text-[11px] font-semibold text-muted-foreground mb-2">
                   Suggested Questions:
                 </p>
@@ -415,7 +393,7 @@ export default function ChatWidget() {
                     <button
                       key={idx}
                       onClick={() => handleSendMessage(suggestion)}
-                      className="text-xs bg-background hover:bg-muted border border-border/50 text-foreground px-3 py-1.5 rounded-lg transition-colors text-left"
+                      className="text-xs bg-background hover:bg-muted border border-border text-foreground px-3 py-1.5 rounded-lg transition-colors text-left"
                     >
                       {suggestion}
                     </button>
@@ -430,15 +408,15 @@ export default function ChatWidget() {
                 e.preventDefault();
                 handleSendMessage();
               }}
-              className="p-3.5 px-4 bg-background border-t border-border/40 flex gap-2 items-center shrink-0"
+              className="p-3.5 px-4 bg-card border-t border-border flex gap-2 items-center shrink-0"
             >
               <Input
                 ref={inputRef}
-                placeholder="Ask anything about Naim Sorker..."
+                placeholder="Type your message..."
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 disabled={isLoading}
-                className="flex-1 bg-muted/40 focus-visible:ring-primary h-10 text-xs sm:text-sm rounded-xl px-3.5"
+                className="flex-1 bg-background focus-visible:ring-primary h-10 text-xs sm:text-sm rounded-xl px-3.5 border-border"
               />
               <Button
                 type="submit"
@@ -453,25 +431,27 @@ export default function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Floating Toggle Button (ONLY shown when drawer is closed to prevent overlap) */}
+      {/* Robot AI Icon Floating Toggle Button (No text, pure icon matching website style) */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            whileHover={{ scale: 1.06 }}
-            whileTap={{ scale: 0.94 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-40 h-12 px-4 rounded-full bg-primary text-primary-foreground flex items-center gap-2 shadow-lg border border-primary/20 hover:shadow-xl transition-all duration-200"
-            aria-label="Open Naim AI Chat"
+            className="fixed bottom-6 right-6 z-40 w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-primary text-primary-foreground border border-border shadow-xl flex items-center justify-center hover:bg-primary/90 transition-all duration-200"
+            aria-label="Open AI Chat"
+            title="Open AI Assistant"
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+            <span className="relative flex items-center justify-center">
+              <Bot className="h-6 w-6" />
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-primary" />
+              </span>
             </span>
-            <MessageSquare className="h-4 w-4" />
-            <span className="font-semibold text-xs sm:text-sm">Naim AI</span>
           </motion.button>
         )}
       </AnimatePresence>

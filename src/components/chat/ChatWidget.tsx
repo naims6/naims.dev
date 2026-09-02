@@ -7,11 +7,11 @@ import {
   X,
   Send,
   User,
-  Sparkles,
   Copy,
   Check,
   ExternalLink,
   Bot,
+  MessageSquare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -116,7 +116,7 @@ export default function ChatWidget() {
     setIsLoading(true);
 
     try {
-      // Only send last 6 messages — backend already slices, but this reduces payload size
+      // Only send last 6 messages — reduces payload size
       const historyForBackend = updatedMessages.slice(-6).map((m) => ({
         role: m.role,
         content: m.content,
@@ -155,7 +155,7 @@ export default function ChatWidget() {
         id: crypto.randomUUID(),
         role: "assistant",
         content:
-          "⚠️ I ran into an error generating a response. Please verify your environment configuration and try again.",
+          "⚠️ I ran into an error generating a response. Please try again.",
         timestamp: new Date().toISOString(),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -190,7 +190,7 @@ export default function ChatWidget() {
             if (isBullet) {
               return (
                 <div key={lIdx} className="flex items-start gap-2 ml-1">
-                  <span className="text-primary font-bold text-sm select-none mt-0.5">
+                  <span className="text-blue-500 font-bold text-sm select-none mt-0.5">
                     •
                   </span>
                   <div className="flex-1">{parts}</div>
@@ -231,7 +231,7 @@ export default function ChatWidget() {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-0.5 text-primary underline underline-offset-4 hover:opacity-80 font-medium"
+              className="inline-flex items-center gap-0.5 text-blue-500 underline underline-offset-4 hover:opacity-80 font-medium"
             >
               {linkText}
               <ExternalLink className="h-3 w-3 inline" />
@@ -245,7 +245,7 @@ export default function ChatWidget() {
 
   return (
     <>
-      {/* Backdrop overlay when open */}
+      {/* Backdrop overlay — active on all screen sizes */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -254,12 +254,12 @@ export default function ChatWidget() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs"
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
           />
         )}
       </AnimatePresence>
 
-      {/* Clean Right Side Drawer matching website theme */}
+      {/* Chat Drawer — overlay on sm/md, push-friendly fixed panel on lg+ */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -267,21 +267,22 @@ export default function ChatWidget() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ type: "spring", stiffness: 350, damping: 35 }}
-            className="fixed inset-y-0 right-0 z-50 w-full sm:w-[450px] md:w-[480px] h-full shadow-2xl bg-background/95 backdrop-blur-2xl border-l border-border flex flex-col overflow-hidden text-foreground font-mono"
+            className="fixed inset-y-0 right-0 z-50 w-full sm:w-[580px] h-full shadow-2xl bg-background/98 backdrop-blur-2xl border-l border-border flex flex-col overflow-hidden text-foreground font-mono"
           >
             {/* Header */}
             <div className="p-4 px-5 border-b border-border bg-card flex justify-between items-center shrink-0">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                    <Bot className="h-5 w-5 text-primary" />
+                  {/* Blue-themed bot avatar */}
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-center">
+                    <Bot className="h-5 w-5 text-blue-500" />
                   </div>
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-card" />
                 </div>
 
                 <div>
                   <h2 className="font-bold text-base text-foreground tracking-tight leading-none">
-                    AI Assistant
+                    Naim AI
                   </h2>
                   <p className="text-xs text-muted-foreground mt-1">
                     Ask about Naim Sorker
@@ -312,18 +313,19 @@ export default function ChatWidget() {
                     msg.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
+                  {/* Assistant icon — MessageSquare in blue */}
                   {msg.role === "assistant" && (
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Sparkles className="h-4 w-4 text-primary" />
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/25 flex items-center justify-center shrink-0 mt-0.5">
+                      <MessageSquare className="h-4 w-4 text-blue-500" />
                     </div>
                   )}
 
-                  <div className="group relative max-w-[85%] sm:max-w-[80%]">
+                  <div className="group relative max-w-[90%] sm:max-w-[85%]">
                     <div
                       className={`p-3.5 rounded-2xl ${
                         msg.role === "user"
-                          ? "bg-primary text-primary-foreground rounded-br-xs shadow-xs font-medium"
-                          : "bg-muted/70 dark:bg-card border border-border text-foreground rounded-bl-xs"
+                          ? "bg-blue-500 text-white rounded-br-sm shadow-sm font-medium"
+                          : "bg-muted/70 dark:bg-card border border-border text-foreground rounded-bl-sm"
                       }`}
                     >
                       {renderFormattedContent(msg.content)}
@@ -360,7 +362,7 @@ export default function ChatWidget() {
                   </div>
 
                   {msg.role === "user" && (
-                    <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shrink-0 mt-0.5 text-primary-foreground">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center shrink-0 mt-0.5 text-white">
                       <User className="h-4 w-4" />
                     </div>
                   )}
@@ -370,13 +372,13 @@ export default function ChatWidget() {
               {/* Loading Indicator */}
               {isLoading && (
                 <div className="flex gap-3 justify-start">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <Bot className="h-4 w-4 text-primary animate-spin" />
+                  <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/25 flex items-center justify-center shrink-0">
+                    <Bot className="h-4 w-4 text-blue-500 animate-spin" />
                   </div>
-                  <div className="p-3.5 rounded-2xl bg-muted/70 border border-border rounded-bl-xs flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-primary/70 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                    <span className="w-1.5 h-1.5 bg-primary/70 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                    <span className="w-1.5 h-1.5 bg-primary/70 rounded-full animate-bounce" />
+                  <div className="p-3.5 rounded-2xl bg-muted/70 border border-border rounded-bl-sm flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-blue-500/70 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 bg-blue-500/70 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 bg-blue-500/70 rounded-full animate-bounce" />
                   </div>
                 </div>
               )}
@@ -393,7 +395,7 @@ export default function ChatWidget() {
                     <button
                       key={idx}
                       onClick={() => handleSendMessage(suggestion)}
-                      className="text-xs bg-background hover:bg-muted border border-border text-foreground px-3 py-1.5 rounded-lg transition-colors text-left"
+                      className="text-xs bg-background hover:bg-blue-500/5 border border-border hover:border-blue-500/30 text-foreground px-3 py-1.5 rounded-lg transition-colors text-left"
                     >
                       {suggestion}
                     </button>
@@ -416,13 +418,13 @@ export default function ChatWidget() {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 disabled={isLoading}
-                className="flex-1 bg-background focus-visible:ring-primary h-10 text-xs sm:text-sm rounded-xl px-3.5 border-border"
+                className="flex-1 bg-background focus-visible:ring-blue-500 h-10 text-xs sm:text-sm rounded-xl px-3.5 border-border"
               />
               <Button
                 type="submit"
                 size="icon"
                 disabled={isLoading || !inputMessage.trim()}
-                className="h-10 w-10 shrink-0 rounded-xl"
+                className="h-10 w-10 shrink-0 rounded-xl bg-blue-500 hover:bg-blue-600 text-white border-0"
               >
                 <Send className="h-4 w-4" />
               </Button>
@@ -431,7 +433,7 @@ export default function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Robot AI Icon Floating Toggle Button (No text, pure icon matching website style) */}
+      {/* Floating Action Button — blue, matches website accent */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
@@ -441,17 +443,18 @@ export default function ChatWidget() {
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-40 w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-primary text-primary-foreground border border-border shadow-xl flex items-center justify-center hover:bg-primary/90 transition-all duration-200"
+            className="fixed bottom-6 right-6 z-40 h-14 w-14 md:w-auto md:px-5 rounded-full bg-blue-500 hover:bg-blue-600 text-white border border-blue-400/30 shadow-xl shadow-blue-500/25 flex items-center justify-center gap-2.5 transition-colors duration-200"
             aria-label="Open AI Chat"
-            title="Open AI Assistant"
+            title="Chat with Naim AI"
           >
             <span className="relative flex items-center justify-center">
               <Bot className="h-6 w-6" />
               <span className="absolute -top-1 -right-1 flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-primary" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-blue-500" />
               </span>
             </span>
+            <span className="hidden md:block font-medium pr-1">Naim AI</span>
           </motion.button>
         )}
       </AnimatePresence>

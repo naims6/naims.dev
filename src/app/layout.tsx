@@ -194,7 +194,6 @@ export default function RootLayout({
           <MousePencilEffect />
           {children}
           <ChatWidget />
-
         </ThemeProvider>
       </body>
     </html>

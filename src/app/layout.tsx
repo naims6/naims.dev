@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "react-hot-toast";
-// import ChatWidget from "@/components/chat/ChatWidgetWrapper";
+import ChatWidget from "@/components/chat/ChatWidgetWrapper";
 import Script from "next/script";
 import BackgroundWrapper from "@/components/bg/BackgroundWrapper";
 import MousePencilEffect from "@/components/bg/MousePencilEffect";
-import N8nChat from "@/components/n8nChat";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -194,9 +193,8 @@ export default function RootLayout({
           <BackgroundWrapper />
           <MousePencilEffect />
           {children}
-          <Toaster position="bottom-right" reverseOrder={false} />
-          {/*<ChatWidget />*/}
-          <N8nChat />
+          <ChatWidget />
+
         </ThemeProvider>
       </body>
     </html>

@@ -69,8 +69,8 @@ export async function POST(req: Request) {
       contents,
       config: {
         systemInstruction: SYSTEM_PROMPT,
-        temperature: 0.3,      // Lower = faster, more factual answers for a portfolio FAQ bot
-        maxOutputTokens: 512,  // Cap output to prevent slow runaway responses
+        temperature: 0.1,      // Near-deterministic: minimizes hallucination for a portfolio FAQ bot
+        maxOutputTokens: 350,  // Hard cap: enforces short answers even if prompt instruction is ignored
       },
     });
 

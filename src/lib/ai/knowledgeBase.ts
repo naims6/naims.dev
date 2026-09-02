@@ -1,11 +1,4 @@
-// =============================================================================
-// NAIM SORKER — AI KNOWLEDGE BASE
-// Structured data for Naim AI portfolio assistant.
-// Add new data here; the SYSTEM_PROMPT is auto-generated from these exports.
-// =============================================================================
-
 // ─── 1. PERSONAL PROFILE ─────────────────────────────────────────────────────
-
 export const PROFILE = {
   name: "Naim Sorker",
   nickname: "Naim",
@@ -23,7 +16,7 @@ export const PROFILE = {
     whatsapp: "https://wa.me/+8801908390036",
   },
   summary:
-    "Software Engineer and Full-Stack Developer specializing in Next.js, React, TypeScript, Node.js, Express, NestJS, Docker, CI/CD, PostgreSQL, and MongoDB. Passionate about building high-performance, scalable web applications and intelligent AI/automation solutions.",
+    "Full-Stack Engineer specializing in Next.js, React, TypeScript, Node.js, Express, NestJS, Docker, CI/CD, PostgreSQL, and MongoDB. Passionate about building high-performance, scalable web applications and intelligent AI/automation solutions.",
 };
 
 // ─── 2. SKILLS & TECH STACK ──────────────────────────────────────────────────
@@ -63,7 +56,7 @@ export const SKILLS = {
     "CI/CD Pipelines (GitHub Actions)",
     "Git & GitHub",
     "Linux",
-    "Vercel (deployment)",
+    "Vercel",
   ],
   auth: [
     "JWT Authentication",
@@ -79,11 +72,30 @@ export const SKILLS = {
 
 export const PROJECTS = [
   {
-    name: "DCMS — School Management Platform",
+    name: "Donation Platform",
     description:
-      "A comprehensive full-stack school management system featuring dynamic Role-Based Access Control (RBAC) for admins, teachers, students, and parents. Supports internationalization (Bangla/English) via next-intl, dark mode, Redis caching, and BullMQ for background job processing (notifications, report generation). Deployed with Docker and GitHub Actions CI/CD.",
+      "A production donation platform processing 500+ daily donations. Developed backend APIs using Node.js, Express.js, and PostgreSQL to handle core platform data. Integrated SSLCommerz payment gateway with initiation, success, failure, cancellation, and IPN handling.",
     highlights: [
-      "Multi-role RBAC (Admin, Teacher, Student, Parent)",
+      "Processes 500+ daily donations",
+      "SSLCommerz payment gateway integration",
+      "PostgreSQL core data handling",
+    ],
+    tech: [
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "SSLCommerz",
+    ],
+    live: "https://www.an-nusrafoundation.org/bn",
+    github: "Private",
+    status: "Live",
+  },
+  {
+    name: "DCMS — School Management System",
+    description:
+      "A comprehensive full-stack school management system featuring dynamic Role-Based Access Control (RBAC) for admins, teachers, students, and parents. Supports internationalization (Bangla/English) via next-intl, dark mode, Redis caching. Deployed with Docker and GitHub Actions CI/CD.",
+    highlights: [
+      "Multi-role RBAC system for admins, teachers, students",
       "Bangla & English i18n support",
       "Redis caching for fast page loads",
       "BullMQ for async job queues",
@@ -106,11 +118,10 @@ export const PROJECTS = [
   {
     name: "CareNow — Caregiver Booking Platform",
     description:
-      "A platform connecting families with verified professional caregivers in Bangladesh for services like babysitting and elderly care. Features Google/GitHub OAuth via NextAuth, JWT session handling, caregiver profile management, and a full booking management system.",
+      "A platform connecting families with verified professional caregivers in Bangladesh for services like babysitting and elderly care. Features Google/GitHub OAuth via NextAuth, JWT session handling, caregiver profile management",
     highlights: [
       "Google & GitHub OAuth login",
       "Caregiver verification system",
-      "Real-time booking management",
       "Mobile-first responsive UI",
     ],
     tech: [
@@ -128,7 +139,7 @@ export const PROJECTS = [
   {
     name: "InnovateX — Contest Management Platform",
     description:
-      "A full-stack platform where contest creators can host paid contests and participants can submit entries. Includes admin moderation, winner selection, and Stripe payment integration for entry fees and prize payouts.",
+      "A full-stack platform where contest creators can host paid contests and participants can submit entries. Includes admin moderation, winner selection, and Stripe payment integration for entry fees.",
     highlights: [
       "Stripe payment integration",
       "Admin moderation dashboard",
@@ -185,8 +196,6 @@ export const SERVICES = [
 ];
 
 // ─── 5. EXPERIENCE ───────────────────────────────────────────────────────────
-// ⚠️  IMPORTANT: Only add REAL experience here. The AI will ONLY state what is
-// written below — no inference. If Naim has job experience, add it here.
 
 export const EXPERIENCE = [
   {

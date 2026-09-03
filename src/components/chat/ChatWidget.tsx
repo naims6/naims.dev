@@ -42,7 +42,9 @@ const INITIAL_WELCOME_MESSAGE: Message = {
 export default function ChatWidget() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([INITIAL_WELCOME_MESSAGE]);
+  const [messages, setMessages] = useState<Message[]>([
+    INITIAL_WELCOME_MESSAGE,
+  ]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -51,32 +53,32 @@ export default function ChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Load chat history from localStorage on mount
+  // Load chat history from DB on mount
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("naim_ai_chat_history");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setMessages(parsed);
-        }
-      }
-    } catch (e) {
-      console.error("Failed to parse chat history:", e);
-    } finally {
-      setIsLoaded(true);
+    let sessionId = localStorage.getItem("naim_ai_session_id");
+    if (!sessionId) {
+      sessionId = crypto.randomUUID();
+      localStorage.setItem("naim_ai_session_id", sessionId);
     }
-  }, []);
 
-  // Save chat history to localStorage only AFTER initial load completes
-  useEffect(() => {
-    if (!isLoaded) return;
-    try {
-      localStorage.setItem("naim_ai_chat_history", JSON.stringify(messages));
-    } catch (e) {
-      console.error("Failed to save chat history:", e);
-    }
-  }, [messages, isLoaded]);
+    fetch(`/api/chat/${sessionId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.messages && data.messages.length > 0) {
+          const formatted = data.messages.map((m: any) => ({
+            id: m._id || crypto.randomUUID(),
+            role: m.role === "ai" ? "assistant" : "user",
+            content: m.content,
+            timestamp: m.createdAt || new Date().toISOString(),
+          }));
+          setMessages(formatted);
+        } else {
+          setMessages([INITIAL_WELCOME_MESSAGE]);
+        }
+      })
+      .catch((e) => console.error("Failed to load chat history:", e))
+      .finally(() => setIsLoaded(true));
+  }, [setIsLoaded]);
 
   // Auto scroll to bottom
   useEffect(() => {
@@ -122,12 +124,14 @@ export default function ChatWidget() {
         content: m.content,
       }));
 
+      const sessionId = localStorage.getItem("naim_ai_session_id");
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: text,
           history: historyForBackend,
+          sessionId: sessionId,
         }),
       });
 
@@ -135,7 +139,7 @@ export default function ChatWidget() {
 
       if (!res.ok) {
         throw new Error(
-          data.error || data.details || "Failed to get AI response"
+          data.error || data.details || "Failed to get AI response",
         );
       }
 
@@ -147,7 +151,7 @@ export default function ChatWidget() {
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Chat error:", error);
       toast.error(error.message || "Failed to connect");

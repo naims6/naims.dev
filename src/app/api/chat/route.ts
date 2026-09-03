@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { ai, DEFAULT_GEMINI_MODEL } from "@/lib/ai/geminiClient";
 import { SYSTEM_PROMPT } from "@/lib/ai/knowledgeBase";
+import dbConnect from "@/lib/mongodb";
+import Conversation from "@/lib/models/Conversation";
 
 interface ChatMessage {
   role: "user" | "model" | "assistant";
@@ -10,7 +12,7 @@ interface ChatMessage {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { message, history = [] }: { message: string; history?: ChatMessage[] } = body;
+    const { message, history = [], sessionId }: { message: string; history?: ChatMessage[], sessionId?: string } = body;
 
     if (!message || typeof message !== "string" || !message.trim()) {
       return NextResponse.json(
@@ -75,6 +77,21 @@ export async function POST(req: Request) {
     });
 
     const reply = response.text || "I'm sorry, I couldn't generate a response. Please try again.";
+
+    if (sessionId) {
+      try {
+        await dbConnect();
+        let conversation = await Conversation.findOne({ sessionId });
+        if (!conversation) {
+          conversation = new Conversation({ sessionId, messages: [] });
+        }
+        conversation.messages.push({ role: "user", content: message });
+        conversation.messages.push({ role: "ai", content: reply });
+        await conversation.save();
+      } catch (dbError) {
+        console.error("Database logging error:", dbError);
+      }
+    }
 
     return NextResponse.json({ reply });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

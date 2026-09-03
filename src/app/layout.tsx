@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Naim Sorker is a Jr. Software Engineer based in Bangladesh. Specializing in Next.js, TypeScript, Node.js, Docker, CI/CD  to build high-performance, scalable, and user-friendly web applications.",
+    "Naim Sorker is a Jr. Full Stack Engineer based in Bangladesh. Specializing in Next.js, TypeScript, Node.js, Docker, CI/CD  to build high-performance, scalable, and user-friendly web applications.",
 
   keywords: [
     "Naim Sorker",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     "Nayem Sarker",
     "Nayem Sorker",
     "Naim Sorker Developer",
-    "Naim Sorker Full Stack Developer Portfolio",
+    "Naim Sorker Full Stack Engineer Portfolio",
     "Naim Sorker Portfolio",
     "Naim Sorker Bangladesh",
     "Best MERN Stack Developer in Bangladesh Naim Sorker Portfolio",
@@ -89,14 +89,14 @@ export const metadata: Metadata = {
         url: "https://naims-dev.vercel.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Naim Sorker - Full Stack Developer Portfolio",
+        alt: "Naim Sorker - Full Stack Engineer Portfolio",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Naim Sorker | Full Stack Developer",
+    title: "Naim Sorker | Full Stack Engineer",
     description:
       "Software Engineer specializing in Next.js, TypeScript, Node.js, Docker, CI/CD.",
     creator: "@naimsorker",

@@ -36,7 +36,7 @@ export default function Header() {
             </BlurFade>
             <BlurFade delay={0.1} inView>
               <h2 className="text-center lg:text-left text-2xl lg:text-3xl font-bold text-primary tracking-tight">
-                Full-Stack Developer
+                Full-Stack Engineer
               </h2>
             </BlurFade>
           </div>

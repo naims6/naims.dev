@@ -34,7 +34,7 @@ const aboutSummary =
 
 const profile = {
   name: "Naim Sorker",
-  role: "Full-Stack Developer",
+  role: "Full-Stack Engineer",
   location: "Dhaka, Bangladesh",
   image:
     "https://res.cloudinary.com/dynxnpj21/image/upload/v1779201470/smfpwyk2icoiljlxfq44.png",

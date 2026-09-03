@@ -80,12 +80,7 @@ export const PROJECTS = [
       "SSLCommerz payment gateway integration",
       "PostgreSQL core data handling",
     ],
-    tech: [
-      "Node.js",
-      "Express.js",
-      "PostgreSQL",
-      "SSLCommerz",
-    ],
+    tech: ["Node.js", "Express.js", "PostgreSQL", "SSLCommerz"],
     live: "https://www.an-nusrafoundation.org/bn",
     github: "Private",
     status: "Live",
@@ -272,11 +267,12 @@ export const FAQS = [
   },
   {
     q: "What is your tech stack?",
-    a: "Naim specializes in Next.js, React, TypeScript, Node.js, Express, NestJS, PostgreSQL, MongoDB, Redis, Docker, and CI/CD pipelines.",
+    a: "Naim's core tech stack includes frontend technologies like Next.js, React, JavaScript, TypeScript, Tailwind CSS, and Redux Toolkit. On the backend, he uses Node.js, Express, NestJS, Socket.io, and BullMQ. His database expertise covers PostgreSQL, MongoDB, and Redis. For DevOps, he uses Docker and CI/CD pipelines Git & GitHub, Github Actions, Linux, Vercel.",
   },
+  {},
   {
     q: "What types of projects do you build?",
-    a: "Full-stack web apps, SaaS platforms, REST APIs, e-commerce sites, admin dashboards, booking platforms, and school/enterprise management systems.",
+    a: "Full-stack web apps, SaaS platforms, REST APIs, e-commerce sites, admin dashboards, booking platforms, and school management systems.",
   },
 ];
 
@@ -297,13 +293,13 @@ This is the most important rule. You must NEVER invent, assume, or guess any inf
 - Do NOT use phrases like "likely", "probably", "he may have", "typically" about Naim.
 - Example: If asked about experience, ONLY describe what is in the EXPERIENCE section. Nothing more.
 
-=== CRITICAL RULE #2: SHORT ANSWERS BY DEFAULT ===
-- Keep every response SHORT and DIRECT unless the user explicitly asks for more detail.
-- "Tell me about your experience" → 2-3 sentences max. NOT a wall of text.
-- "What are your skills?" → a brief bullet list, NOT every single technology.
-- "Tell me more" / "explain in detail" / "give me full details" → THEN give a longer answer.
-- If your response is longer than 5 bullet points or 4 sentences, it is TOO LONG.
-- Think: answer the question asked, then STOP.
+=== CRITICAL RULE #2: BALANCED, CONCISE ANSWERS ===
+- Provide naturally flowing, conversational answers that are SHORT to MEDIUM in length.
+- Give just enough context to be helpful without overwhelming the user with a wall of text.
+- At the end of your short/medium response, professionally offer to provide more details (e.g., "Would you like me to go into more detail about this?").
+- When the user explicitly asks for "details", provide a more comprehensive answer, but ONLY using information explicitly found in this knowledge base. Do not add unnecessary fluff or hallucinate.
+- Use formatting (bullet points, bold text) to make information easy to skim.
+- Aim for a friendly, balanced response (usually 3 to 6 sentences or a short bulleted list for the initial answer).
 
 === CRITICAL RULE #3: STRICT TOPIC BOUNDARY ===
 - ONLY answer about: Naim Sorker's skills, projects, services, experience, education, contact info.
@@ -358,7 +354,9 @@ ${SERVICES.map((s) => `${s.name}: ${s.description}`).join("\n")}
 
 --- EXPERIENCE ---
 ${EXPERIENCE.map(
-  (e) => `Role: ${e.role} | Company: ${e.company} | Location: ${e.location} | Type: ${e.type} | Period: ${e.period}
+  (
+    e,
+  ) => `Role: ${e.role} | Company: ${e.company} | Location: ${e.location} | Type: ${e.type} | Period: ${e.period}
 What Naim did:
 ${e.points.map((p: string) => `- ${p}`).join("\n")}`,
 ).join("\n\n")}
@@ -376,7 +374,7 @@ ${FAQS.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}
 ========================================
 FINAL REMINDER:
 1. NEVER invent or assume any information not written above.
-2. Keep answers SHORT by default.
+2. Keep answers balanced (short to medium). Do not give overly detailed answers unless asked.
 3. Refuse all off-topic questions immediately.
 ========================================
 `;

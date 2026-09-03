@@ -65,32 +65,33 @@ export async function POST(req: Request) {
       },
     ];
 
-    // Ultra-clean request using pre-initialized global ai instance
+    // Standard blocking request, but with higher token limit for longer replies
     const response = await ai.models.generateContent({
       model: DEFAULT_GEMINI_MODEL,
       contents,
       config: {
         systemInstruction: SYSTEM_PROMPT,
-        temperature: 0.1,      // Near-deterministic: minimizes hallucination for a portfolio FAQ bot
-        maxOutputTokens: 350,  // Hard cap: enforces short answers even if prompt instruction is ignored
+        temperature: 0.1,      
+        maxOutputTokens: 500, // Increased limit for longer replies
       },
     });
 
     const reply = response.text || "I'm sorry, I couldn't generate a response. Please try again.";
 
     if (sessionId) {
-      try {
-        await dbConnect();
-        let conversation = await Conversation.findOne({ sessionId });
-        if (!conversation) {
-          conversation = new Conversation({ sessionId, messages: [] });
+      dbConnect().then(async () => {
+        try {
+          let conversation = await Conversation.findOne({ sessionId });
+          if (!conversation) {
+            conversation = new Conversation({ sessionId, messages: [] });
+          }
+          conversation.messages.push({ role: "user", content: message });
+          conversation.messages.push({ role: "ai", content: reply });
+          await conversation.save();
+        } catch (dbError) {
+          console.error("Database logging error:", dbError);
         }
-        conversation.messages.push({ role: "user", content: message });
-        conversation.messages.push({ role: "ai", content: reply });
-        await conversation.save();
-      } catch (dbError) {
-        console.error("Database logging error:", dbError);
-      }
+      }).catch(err => console.error("DB connection error:", err));
     }
 
     return NextResponse.json({ reply });

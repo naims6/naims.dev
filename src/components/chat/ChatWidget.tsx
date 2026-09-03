@@ -45,7 +45,6 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([
     INITIAL_WELCOME_MESSAGE,
   ]);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -65,6 +64,7 @@ export default function ChatWidget() {
       .then((res) => res.json())
       .then((data) => {
         if (data.messages && data.messages.length > 0) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const formatted = data.messages.map((m: any) => ({
             id: m._id || crypto.randomUUID(),
             role: m.role === "ai" ? "assistant" : "user",
@@ -77,8 +77,7 @@ export default function ChatWidget() {
         }
       })
       .catch((e) => console.error("Failed to load chat history:", e))
-      .finally(() => setIsLoaded(true));
-  }, [setIsLoaded]);
+  }, []);
 
   // Auto scroll to bottom
   useEffect(() => {
@@ -151,6 +150,7 @@ export default function ChatWidget() {
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Chat error:", error);

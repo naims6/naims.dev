@@ -4,7 +4,15 @@ import * as React from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github, ArrowLeft, CheckCircle2 } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ArrowLeft,
+  CheckCircle2,
+  Lock,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import {
   SiNextdotjs,
   SiReact,
@@ -28,7 +36,9 @@ import {
   SiFramer,
   SiMui,
   SiMongoose,
+  SiNestjs,
 } from "react-icons/si";
+import { GiChargingBull } from "react-icons/gi";
 
 import { projects } from "@/data/projects";
 import Navbar from "@/components/navbar";
@@ -43,6 +53,7 @@ export default function ProjectDetailPage() {
   const id = params?.id;
 
   const project = projects.find((p) => p.id.toString() === id);
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
 
   if (!project) {
     return (
@@ -102,6 +113,12 @@ export default function ProjectDetailPage() {
         return <SiPrisma className="w-4 h-4 text-[#2D3748]" />;
       case "MySQL":
         return <SiMysql className="w-4 h-4 text-[#336791]" />;
+      case "Nest.js":
+      case "NestJS":
+        return <SiNestjs className="w-4 h-4 text-[#E0234E]" />;
+      case "BullMQ":
+      case "Bull MQ":
+        return <GiChargingBull className="w-4 h-4 text-[#CC292B]" />;
       default:
         return null;
     }
@@ -122,17 +139,137 @@ export default function ProjectDetailPage() {
             </h1>
           </BlurFade>
 
-          {/* Project Image Carousel Look */}
+          {/* Project Image Showcase Window */}
           <BlurFade delay={0.2}>
-            <div className="relative w-full aspect-video md:aspect-21/9 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/5 dark:bg-white/5 mb-16 flex items-center justify-center">
-              <div className="relative w-full h-full">
-                <Image
-                  src={project.img}
-                  alt={project.name}
-                  fill
-                  className="object-contain"
-                  priority
-                />
+            <div className="relative w-full max-w-3xl mx-auto rounded-2xl md:rounded-3xl overflow-hidden border border-border/60 dark:border-white/10 shadow-xl bg-card/60 dark:bg-card/40 backdrop-blur-xl mb-12 group">
+              {/* Browser Mockup Top Bar */}
+              <div className="flex items-center justify-between px-4 md:px-5 py-2.5 border-b border-border/50 dark:border-white/10 bg-muted/40 dark:bg-white/[0.03]">
+                {/* Window Controls */}
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#FF5F56]/90 transition-transform group-hover:scale-105" />
+                  <span className="w-3 h-3 rounded-full bg-[#FFBD2E]/90 transition-transform group-hover:scale-105" />
+                  <span className="w-3 h-3 rounded-full bg-[#27C93F]/90 transition-transform group-hover:scale-105" />
+                </div>
+
+                {/* URL Bar */}
+                {project.liveLink ? (
+                  <Link
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-1 rounded-full bg-background/70 dark:bg-white/5 border border-border/50 dark:border-white/10 text-xs text-muted-foreground hover:text-foreground hover:border-blue-500/50 transition-all max-w-[200px] sm:max-w-xs truncate"
+                  >
+                    <Lock className="w-3 h-3 text-green-500 shrink-0" />
+                    <span className="truncate">
+                      {project.liveLink.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                    </span>
+                    <ExternalLink className="w-3 h-3 shrink-0 opacity-60" />
+                  </Link>
+                ) : (
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-background/70 dark:bg-white/5 border border-border/50 dark:border-white/10 text-xs text-muted-foreground max-w-[200px] truncate">
+                    <Lock className="w-3 h-3 text-muted-foreground shrink-0" />
+                    <span className="truncate">{project.name}</span>
+                  </div>
+                )}
+
+                {/* Status or View Demo Pill */}
+                {project.liveLink ? (
+                  <Link
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500 border border-blue-500/20 hover:bg-blue-500/20 transition-all"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                    <span>Live Preview</span>
+                  </Link>
+                ) : (
+                  <div className="w-10 sm:w-14" />
+                )}
+              </div>
+
+              {/* Main Image Display */}
+              <div className="relative w-full aspect-video overflow-hidden bg-black/5 dark:bg-black/30">
+                <Link
+                  href={project.liveLink || "#"}
+                  target={project.liveLink ? "_blank" : undefined}
+                  rel={project.liveLink ? "noopener noreferrer" : undefined}
+                  className="block relative w-full h-full cursor-pointer group/img"
+                  tabIndex={project.liveLink ? 0 : -1}
+                >
+                  <Image
+                    src={((project as any).images?.[currentImageIndex]) || project.img}
+                    alt={`${project.name} preview`}
+                    fill
+                    className="object-cover object-top transition-transform duration-500 group-hover/img:scale-[1.01]"
+                    priority
+                    sizes="(max-width: 768px) 100vw, 768px"
+                  />
+                  {/* Subtle hover overlay hint */}
+                  {project.liveLink && (
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-sm font-medium shadow-lg transform translate-y-2 group-hover/img:translate-y-0 transition-transform duration-300">
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Open Live Project</span>
+                      </div>
+                    </div>
+                  )}
+                </Link>
+
+                {/* Multiple Images Controls (if any) */}
+                {((project as any).images?.length > 1) && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const len = (project as any).images.length;
+                        setCurrentImageIndex((prev) =>
+                          prev === 0 ? len - 1 : prev - 1
+                        );
+                      }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/75 text-white backdrop-blur-md border border-white/20 transition-all opacity-80 hover:opacity-100 z-10"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const len = (project as any).images.length;
+                        setCurrentImageIndex((prev) => (prev + 1) % len);
+                      }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/75 text-white backdrop-blur-md border border-white/20 transition-all opacity-80 hover:opacity-100 z-10"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+
+                    {/* Pagination indicators */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 z-10">
+                      {(project as any).images.map((_: any, idx: number) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setCurrentImageIndex(idx);
+                          }}
+                          className={`h-2 rounded-full transition-all ${
+                            idx === currentImageIndex
+                              ? "w-6 bg-blue-500"
+                              : "w-2 bg-white/50 hover:bg-white/80"
+                          }`}
+                          aria-label={`Go to slide ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </BlurFade>

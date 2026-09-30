@@ -29,6 +29,7 @@ import {
   SiN8N,
   SiNestjs,
 } from "react-icons/si";
+import { GiChargingBull } from "react-icons/gi";
 
 export interface Skill {
   name: string;
@@ -155,6 +156,12 @@ export const techStack: SkillCategory[] = [
         icon: <SiRedis className="mr-1 text-[#DC382D]" />,
         color: "#DC382D",
         description: "In-memory data structure store.",
+      },
+      {
+        name: "BullMQ",
+        icon: <GiChargingBull className="mr-1 text-[#CC292B]" />,
+        color: "#CC292B",
+        description: "Fast message queue and job scheduler powered by Redis.",
       },
       {
         name: "Socket.io",

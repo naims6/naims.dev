@@ -30,7 +30,9 @@ import {
   SiFramer,
   SiMui,
   SiMongoose,
+  SiNestjs,
 } from "react-icons/si";
+import { GiChargingBull } from "react-icons/gi";
 
 const getTechIcon = (tech: string) => {
   switch (tech) {
@@ -79,6 +81,12 @@ const getTechIcon = (tech: string) => {
       return <SiPrisma className="w-3 h-3 text-[#2D3748]" />;
     case "MySQL":
       return <SiMysql className="w-3 h-3 text-[#336791]" />;
+    case "Nest.js":
+    case "NestJS":
+      return <SiNestjs className="w-3 h-3 text-[#E0234E]" />;
+    case "BullMQ":
+    case "Bull MQ":
+      return <GiChargingBull className="w-3 h-3 text-[#CC292B]" />;
     default:
       return null;
   }

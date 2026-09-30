@@ -66,6 +66,19 @@ export default function ProjectDetailPage() {
     );
   }
 
+  const renderBold = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, i) =>
+      part.startsWith("**") && part.endsWith("**") ? (
+        <strong key={i} className="text-foreground font-semibold">
+          {part.slice(2, -2)}
+        </strong>
+      ) : (
+        part
+      )
+    );
+  };
+
   const getTechIcon = (tech: string) => {
     switch (tech) {
       case "Next.js":
@@ -323,7 +336,7 @@ export default function ProjectDetailPage() {
                       <li key={index} className="flex items-start gap-3 group">
                         <CheckCircle2 className="w-5 h-5 text-blue-500 mt-1 shrink-0 group-hover:scale-110 transition-transform" />
                         <span className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                          {feature}
+                          {renderBold(feature)}
                         </span>
                       </li>
                     ))}

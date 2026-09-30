@@ -6,11 +6,11 @@ export const projects = [
     description:
       "A school website management system for Dhanbari Collegiate Model School. Parents can apply for admission online in 4 simple steps, verify their email with OTP, pay fees online, and download their PDF receipt. School staff get a secure admin dashboard to manage student records, admissions, and school notices.",
     features: [
-      "4-Step Online Admission: Easy application form, email OTP verification, online fee payment, and instant PDF receipt download.",
+      "4-Step Online Admission: Easy application form, email OTP verification, **online fee payment**, and instant **PDF receipt** download.",
       "Track Admission Status: Students can check their admission status anytime using their application ID.",
-      "Admin Dashboard: Easily view, add, edit, and manage student profiles and admission requests.",
+      "Admin Dashboard: Easily view, add, edit, and manage **student profiles** and **admission requests**.",
       "Role-Based Access: Secure logins for admins and teachers so everyone only sees what they need to see.",
-      "School Notice Board: Public notice board with an easy rich-text editor for teachers to post school updates.",
+      "School Notice Board: Public notice board with an easy **rich-text editor** for teachers to post school updates.",
       "Public School Website: Informational pages including school history, photo gallery, teacher directory with profiles, and an alumni forum.",
       "English & Bangla Support: Switch between English and Bengali with one click across the entire site.",
       "Dark & Light Mode: Clean and modern design that looks great on mobile phones, tablets, and computers.",
